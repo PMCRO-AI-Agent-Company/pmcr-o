@@ -1,0 +1,12 @@
+{
+  "trail_id": "2620df98-4e08-4293-b0a4-01aaf8c5c95d",
+  "trail_class": "B",
+  "engine_generated": true,
+  "task_id": "task-sync-marketplace-descriptions",
+  "opened_at": "2026-09-03T18:10:00Z",
+  "sealed_at": "2026-09-03T18:10:50Z",
+  "disposition": "done",
+  "sealed": true,
+  "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+  "next_seed_id": "task-hand-simulate-orchestrate-run"
+}

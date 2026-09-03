@@ -6,12 +6,12 @@
     {
       "name": "pmcro-trail",
       "source": "./plugins/pmcro-trail",
-      "description": "Durable trail/evidence capability. Owns New-Trail (Class B guid-folder materialization) and the trail lifecycle."
+      "description": "Trail-as-Product: durable, schema-conformant PMCR-O trail evidence. Owns New-Trail (Class B guid-folder materialization) and the frame contract every plan/make/check/reflect.jsonl line must satisfy."
     },
     {
       "name": "pmcro-orchestrator",
       "source": "./plugins/pmcro-orchestrator",
-      "description": "Sole dispatch authority. orchestrate run claims/opens a cycle, mints-or-links a trail via pmcro-trail, then hands off to Planner."
+      "description": "Sole dispatch authority. orchestrate run claims/opens a cycle, mints-or-links a trail via pmcro-trail, then hands off to Planner. Never does domain work itself."
     }
   ]
 }
