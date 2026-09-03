@@ -1,0 +1,1 @@
+{"ts":"2026-09-03T23:34:02Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"Cowork's plugin upload rejected pmcro-orchestrator.zip with 'Zip file contains path with invalid characters', after an earlier cycle had already fixed the '.claude-plugin/plugin.json missing' failure on the same upload. Diagnose the new failure and get both plugin zips uploadable."}
