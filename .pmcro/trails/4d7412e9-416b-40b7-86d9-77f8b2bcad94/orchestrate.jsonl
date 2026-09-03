@@ -1,0 +1,1 @@
+{"ts":"2026-09-03T23:50:00Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"After the zip path-separator fix, pmcro-orchestrator.zip still failed Cowork upload validation with a new, different error: \"Agent name 'orchestrator.agent' must start and end with alphanumeric characters and contain only letters, numbers, and hyphens.\" Fix it."}
