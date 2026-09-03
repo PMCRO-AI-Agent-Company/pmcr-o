@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-reflector",
+  "version": "0.1.0",
+  "description": "Closes a cycle: reads the CheckFrame verdict, records a Reflection with a disposition, optionally proposes and enqueues a next seed, then seals the trail. Sole role permitted to seal.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/reflector.md"],
+  "keywords": ["pmcro", "reflector", "reflect-and-seed", "trail", "queue"]
+}

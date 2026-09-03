@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-maker",
+  "version": "0.1.0",
+  "description": "Executes one PlanFrame step at a time and logs exactly what happened as a MakeStep. Never decides the plan, never judges success, never closes the cycle.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/maker.md"],
+  "keywords": ["pmcro", "maker", "make", "trail"]
+}

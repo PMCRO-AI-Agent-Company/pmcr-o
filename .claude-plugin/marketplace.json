@@ -12,6 +12,26 @@
       "name": "pmcro-orchestrator",
       "source": "./plugins/pmcro-orchestrator",
       "description": "Sole dispatch authority. orchestrate run claims/opens a cycle, mints-or-links a trail via pmcro-trail, then hands off to Planner. Never does domain work itself."
+    },
+    {
+      "name": "pmcro-planner",
+      "source": "./plugins/pmcro-planner",
+      "description": "Turns an opened cycle's task into a PlanFrame — goal, ordered steps naming their subject_agent, success_criteria, out_of_scope. Appends to plan.jsonl only; never executes a step itself."
+    },
+    {
+      "name": "pmcro-maker",
+      "source": "./plugins/pmcro-maker",
+      "description": "Executes one PlanFrame step at a time and logs exactly what happened as a MakeStep. Never decides the plan, never judges success, never closes the cycle."
+    },
+    {
+      "name": "pmcro-checker",
+      "source": "./plugins/pmcro-checker",
+      "description": "Evaluates a cycle's MakeStep results against the PlanFrame's success_criteria and appends one CheckFrame with a verdict. Never fixes what it finds — that's a new step, in a new or continued Make phase."
+    },
+    {
+      "name": "pmcro-reflector",
+      "source": "./plugins/pmcro-reflector",
+      "description": "Closes a cycle: reads the CheckFrame verdict, records a Reflection with a disposition, optionally proposes and enqueues a next seed, then seals the trail. Sole role permitted to seal."
     }
   ]
 }

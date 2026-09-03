@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-planner",
+  "version": "0.1.0",
+  "description": "Turns an opened cycle's task into a PlanFrame — goal, ordered steps naming their subject_agent, success_criteria, out_of_scope. Appends to plan.jsonl only; never executes a step itself.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/planner.md"],
+  "keywords": ["pmcro", "planner", "plan", "trail"]
+}

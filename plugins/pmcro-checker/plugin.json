@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-checker",
+  "version": "0.1.0",
+  "description": "Evaluates a cycle's MakeStep results against the PlanFrame's success_criteria and appends one CheckFrame with a verdict. Never fixes what it finds — that's a new step, in a new or continued Make phase.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/checker.md"],
+  "keywords": ["pmcro", "checker", "check", "verification", "trail"]
+}

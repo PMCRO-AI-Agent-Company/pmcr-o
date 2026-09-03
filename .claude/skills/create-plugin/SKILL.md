@@ -101,6 +101,7 @@ chat history.
 
 ## Known-good reference
 
-`plugins/pmcro-orchestrator/` and `plugins/pmcro-trail/` are both current,
-working examples of every rule above — diff against them if something is
-unclear.
+`plugins/pmcro-orchestrator/`, `plugins/pmcro-trail/`, `plugins/pmcro-planner/`,
+`plugins/pmcro-maker/`, `plugins/pmcro-checker/`, and `plugins/pmcro-reflector/`
+are all current, working examples of every rule above — diff against
+whichever is most similar in shape if something is unclear.

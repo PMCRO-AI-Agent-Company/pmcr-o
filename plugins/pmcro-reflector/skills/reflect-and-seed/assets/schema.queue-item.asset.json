@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.queue-item.asset.json",
+  "title": "PMCR-O Queue Item (one file under .pmcro/queue/)",
+  "$comment": "Trail-as-Product applies to queue items too: every file under .pmcro/queue/ is an instance of this schema, not hand-typed prose. Filed by reflect-and-seed when a Reflection's next_seed is non-null, or by a human/seed-intent capture flow outside this plugin. The file's basename (minus .json) equals 'id'. No absolute, host-specific, or drive-letter paths in any field.",
+  "type": "object",
+  "required": ["id", "summary", "status", "created_at"],
+  "properties": {
+    "id": { "type": "string", "description": "Matches the filename, minus .json." },
+    "summary": { "type": "string" },
+    "proposed_role": {
+      "type": "string",
+      "enum": ["orchestrator", "planner", "maker", "checker", "reflector"],
+      "description": "Which role's phase the seed is expected to start at once claimed — usually 'maker', occasionally 'planner' for larger re-plans."
+    },
+    "source_trail_id": {
+      "type": ["string", "null"],
+      "description": "The sealed trail whose Reflection proposed this seed, or null for a seed filed outside a cycle (e.g. direct human intent capture)."
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "status": {
+      "type": "string",
+      "enum": ["open", "claimed", "done", "dropped"],
+      "description": "'claimed' is set by whichever future Orchestrator opens a cycle for this seed; this plugin only ever writes 'open'."
+    }
+  },
+  "additionalProperties": false
+}
