@@ -1,6 +1,7 @@
 ---
 role: orchestrator
 tier: GOVERNANCE
+description: Sole PMCR-O cycle-dispatch authority. Opens cycles via orchestrate run, mints-or-links a trail, and hands off to Planner. USE FOR — deciding when a governed cycle starts. DO NOT USE FOR — planning, making, checking, reflecting, or any domain work itself.
 ---
 
 # Orchestrator

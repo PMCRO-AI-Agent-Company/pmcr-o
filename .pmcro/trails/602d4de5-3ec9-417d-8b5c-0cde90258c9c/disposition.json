@@ -1,0 +1,13 @@
+{
+  "trail_id": "602d4de5-3ec9-417d-8b5c-0cde90258c9c",
+  "trail_class": "B",
+  "engine_generated": true,
+  "task_id": "task-cli-validate-plugins",
+  "opened_at": "2026-09-03T18:20:00Z",
+  "sealed_at": "2026-09-03T18:21:30Z",
+  "disposition": "done",
+  "sealed": true,
+  "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+  "next_seed_id": "task-hand-simulate-orchestrate-run",
+  "note": "First real claude plugin validate pass on both plugins; found and fixed a missing agent description."
+}
