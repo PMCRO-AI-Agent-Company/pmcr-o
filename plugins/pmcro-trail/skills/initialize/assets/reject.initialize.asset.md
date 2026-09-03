@@ -11,7 +11,8 @@ target_skill: initialize
 | Reject code | Condition |
 |---|---|
 | `class-a-unsupported` | `--class A` was requested — not implemented by this skill. |
-| `trail-not-found` | `--trail-id` supplied but no such folder exists under `.pmcro/trails/`. |
+| `trail-not-found` | `--trail-id` supplied on the **link** path but no such folder exists under `.pmcro/trails/`. |
+| `trail-already-exists` | `--trail-id` supplied on the **mint** path (via `New-Trail.ps1 -TrailId`) but that folder already exists. Practically unreachable when the id is a freshly-minted guid; a safety check, not a primary path. |
 | `trail-sealed` | The referenced trail's `disposition.json` has `sealed: true`. |
 | `trail-linked` | The referenced trail's `disposition.json` shows `disposition` already bound to another active cycle. |
 | `io-failure` | Folder/file creation failed (permissions, disk, lock). |

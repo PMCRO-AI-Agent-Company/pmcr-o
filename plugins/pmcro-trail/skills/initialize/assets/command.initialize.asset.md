@@ -15,7 +15,7 @@ Materialize (mint) or link (verify + bind) a Class B trail folder under
 ## Invocation
 
 ```text
-/pmcro-trail:initialize [--trail-id <guid>] [--class A|B]
+/pmcro-trail:initialize [--trail-id <guid>] [--class A|B] [--output-path <path>]
 ```
 
 Also callable as an internal step from `pmcro-orchestrator:orchestrate run`'s
@@ -28,6 +28,7 @@ no marketplace round-trip required.
 |---|---|---|---|
 | `--trail-id` | no | mint a new guid | If supplied, link to an existing trail folder instead of minting one. |
 | `--class` | no | `B` | `B` = guid-folder + per-phase jsonl (default, this repo's only implemented shape). `A` = single markdown file — reserved, not implemented by this skill yet. |
+| `--output-path` | no | `.pmcro/trails/<trail_id>/` | Override the target folder entirely. Production cycles should omit this and take the default. Intended for scratch/testing runs — exercising this skill without writing into live evidence. The resulting `disposition.json` records `scratch: true` when this is used, and the trail's own `path` field echoes whatever was supplied — callers must not pass a drive-letter or other host-specific path here if that value will later be logged into a frame. |
 
 ## Result (success)
 

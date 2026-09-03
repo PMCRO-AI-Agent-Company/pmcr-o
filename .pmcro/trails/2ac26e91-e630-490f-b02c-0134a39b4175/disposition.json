@@ -1,0 +1,13 @@
+{
+  "trail_id": "2ac26e91-e630-490f-b02c-0134a39b4175",
+  "trail_class": "B",
+  "engine_generated": true,
+  "task_id": "task-exercise-orchestrate-run-once",
+  "opened_at": "2026-09-03T22:53:20.0369960Z",
+  "sealed_at": "2026-09-03T17:56:00Z",
+  "disposition": "done",
+  "sealed": true,
+  "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+  "next_seed_id": "task-hand-simulate-orchestrate-run",
+  "note": "First real (script-minted, not hand-authored) trail. Also its own test subject for New-Trail.ps1's mint and reject paths; found and fixed one real bug."
+}
