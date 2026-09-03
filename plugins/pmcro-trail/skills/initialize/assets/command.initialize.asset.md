@@ -10,7 +10,9 @@ target_schema: schema.trail-frame.asset.json
 ## Purpose
 
 Materialize (mint) or link (verify + bind) a Class B trail folder under
-`.pmcro/trails/<guid>/` so a cycle has somewhere to write its frames.
+`.pmcro/trails/<guid>/` so a cycle has somewhere to write its frames — one
+jsonl file per role (`orchestrate.jsonl`, `plan.jsonl`, `make.jsonl`,
+`check.jsonl`, `reflect.jsonl`), each written only by the role that owns it.
 
 ## Invocation
 
@@ -38,7 +40,7 @@ no marketplace round-trip required.
   "trail_id": "<guid>",
   "trail_class": "B",
   "path": "trails/<guid>/",
-  "files": ["plan.jsonl", "make.jsonl", "check.jsonl", "reflect.jsonl", "disposition.json"]
+  "files": ["orchestrate.jsonl", "plan.jsonl", "make.jsonl", "check.jsonl", "reflect.jsonl", "disposition.json"]
 }
 ```
 

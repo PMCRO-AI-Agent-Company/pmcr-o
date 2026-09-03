@@ -1,0 +1,13 @@
+{
+  "trail_id": "935f7b17-2eec-434c-befb-ff5166181ff7",
+  "trail_class": "B",
+  "engine_generated": true,
+  "task_id": "task-orchestrator-own-jsonl",
+  "opened_at": "2026-09-03T18:03:00Z",
+  "sealed_at": "2026-09-03T18:04:30Z",
+  "disposition": "done",
+  "sealed": true,
+  "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+  "next_seed_id": "task-hand-simulate-orchestrate-run",
+  "note": "First trail with clean role-to-file ownership across all 5 phase files."
+}

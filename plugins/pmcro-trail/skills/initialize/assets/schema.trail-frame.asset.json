@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema.trail-frame.asset.json",
   "title": "PMCR-O Trail Frame (Class B, one JSONL line)",
-  "$comment": "Trail-as-Product: every line appended to plan.jsonl / make.jsonl / check.jsonl / reflect.jsonl is an instance of this schema, not hand-typed prose. No absolute, host-specific, or drive-letter paths in any field \u2014 reference files repo-relative (e.g. 'plugins/pmcro-trail/...'), never 'P:\\\\...'.",
+  "$comment": "Trail-as-Product: every line appended to orchestrate.jsonl / plan.jsonl / make.jsonl / check.jsonl / reflect.jsonl is an instance of this schema, not hand-typed prose. Each phase file is owned by exactly one role, which is the only role that appends to it: orchestrate.jsonl <- orchestrator, plan.jsonl <- planner, make.jsonl <- maker, check.jsonl <- checker, reflect.jsonl <- reflector. No absolute, host-specific, or drive-letter paths in any field \u2014 reference files repo-relative (e.g. 'plugins/pmcro-trail/...'), never 'P:\\\\...'.",
   "type": "object",
   "required": ["ts", "role", "seq", "type"],
   "properties": {

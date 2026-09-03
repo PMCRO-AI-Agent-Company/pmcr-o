@@ -41,7 +41,7 @@ if (Test-Path $trailPath) {
 
 New-Item -ItemType Directory -Path $trailPath -Force | Out-Null
 
-foreach ($phase in @('plan', 'make', 'check', 'reflect')) {
+foreach ($phase in @('orchestrate', 'plan', 'make', 'check', 'reflect')) {
   New-Item -ItemType File -Path (Join-Path $trailPath "$phase.jsonl") -Force | Out-Null
 }
 
@@ -67,5 +67,5 @@ $reportedPath = if ($OutputPath) { $OutputPath } else { "trails/$TrailId/" }
   trail_class = 'B'
   path        = $reportedPath
   scratch     = [bool]$OutputPath
-  files       = @('plan.jsonl', 'make.jsonl', 'check.jsonl', 'reflect.jsonl', 'disposition.json')
+  files       = @('orchestrate.jsonl', 'plan.jsonl', 'make.jsonl', 'check.jsonl', 'reflect.jsonl', 'disposition.json')
 } | ConvertTo-Json -Depth 5

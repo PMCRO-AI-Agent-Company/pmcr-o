@@ -19,9 +19,11 @@ target_skill: initialize
 
 1. Mint a new guid — `trail_id`.
 2. Create `.pmcro/trails/<trail_id>/`.
-3. Write skeleton `plan.jsonl`, `make.jsonl`, `check.jsonl`, `reflect.jsonl`
-   as empty files (zero lines — the caller appends frames as work happens;
-   this skill never pre-writes placeholder content into them).
+3. Write skeleton `orchestrate.jsonl`, `plan.jsonl`, `make.jsonl`,
+   `check.jsonl`, `reflect.jsonl` as empty files (zero lines — the caller
+   appends frames as work happens; this skill never pre-writes placeholder
+   content into them). Each file is owned by exactly one role — see
+   `schema.trail-frame.asset.json`'s `$comment` for the role-to-file map.
 4. Write `disposition.json`:
    ```json
    {

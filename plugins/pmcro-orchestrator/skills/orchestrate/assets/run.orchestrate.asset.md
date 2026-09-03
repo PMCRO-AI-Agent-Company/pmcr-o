@@ -23,7 +23,8 @@ target_skill: orchestrate
    - `--trail-id` supplied: call `pmcro-trail:initialize --trail-id <id>`
      (link path) → verified, same `trail_id` back.
 2. **Log the orchestrator's own frame** — append one line to that trail's
-   `plan.jsonl`, conforming to `schema.trail-frame.asset.json`
+   own `orchestrate.jsonl` (never `plan.jsonl` — that file belongs to
+   Planner), conforming to `schema.trail-frame.asset.json`
    (`role: "orchestrator"`, `type: "MessySeedIntent"` or a dispatch-note
    type as appropriate), recording the task claimed/received and the
    decision to open this cycle.
