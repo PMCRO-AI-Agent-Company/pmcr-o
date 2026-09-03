@@ -1,0 +1,7 @@
+{
+  "name": "pmcro-trail",
+  "version": "0.1.0",
+  "description": "Trail-as-Product: durable, schema-conformant PMCR-O trail evidence. Owns New-Trail (Class B guid-folder materialization) and the frame contract every plan/make/check/reflect.jsonl line must satisfy.",
+  "skills": ["./skills/"],
+  "keywords": ["pmcro", "trail", "evidence", "trail-as-product", "jsonl", "class-b"]
+}

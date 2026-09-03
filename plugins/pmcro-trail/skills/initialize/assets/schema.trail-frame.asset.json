@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.trail-frame.asset.json",
+  "title": "PMCR-O Trail Frame (Class B, one JSONL line)",
+  "$comment": "Trail-as-Product: every line appended to plan.jsonl / make.jsonl / check.jsonl / reflect.jsonl is an instance of this schema, not hand-typed prose. No absolute, host-specific, or drive-letter paths in any field \u2014 reference files repo-relative (e.g. 'plugins/pmcro-trail/...'), never 'P:\\\\...'.",
+  "type": "object",
+  "required": ["ts", "role", "seq", "type"],
+  "properties": {
+    "ts": { "type": "string", "format": "date-time", "description": "UTC ISO-8601 timestamp this frame was emitted." },
+    "role": { "type": "string", "enum": ["orchestrator", "planner", "maker", "checker", "reflector"] },
+    "seq": { "type": "integer", "minimum": 1, "description": "Monotonic sequence number within this phase file, starting at 1." },
+    "type": { "type": "string", "enum": ["MessySeedIntent", "PlanFrame", "MakeStep", "CheckFrame", "Reflection"] },
+    "content": { "description": "Free-form payload, e.g. verbatim MessySeedIntent text." },
+    "goal": { "type": "string" },
+    "chosen_name": { "type": "string" },
+    "name_rationale": { "type": "string" },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["index", "action", "subject_agent"],
+        "properties": {
+          "index": { "type": "integer" },
+          "action": { "type": "string" },
+          "subject_agent": { "type": "string" }
+        }
+      }
+    },
+    "success_criteria": { "type": "array", "items": { "type": "string" } },
+    "out_of_scope": { "type": "array", "items": { "type": "string" } },
+    "step_index": { "type": "integer", "description": "MakeStep only \u2014 which PlanFrame step.index this executes." },
+    "action": { "type": "string", "description": "MakeStep only \u2014 what was actually done." },
+    "result": { "type": "string", "enum": ["ok", "failed", "skipped"] },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "result"],
+        "properties": {
+          "check": { "type": "string" },
+          "result": { "type": "string", "enum": ["PASS", "FAIL"] },
+          "evidence": { "type": "string" }
+        }
+      }
+    },
+    "verdict": { "type": "string", "enum": ["PASS", "FAIL"] },
+    "disposition": { "type": "string", "enum": ["done", "blocked", "superseded", "informational"] },
+    "next_seed": { "type": ["object", "null"] }
+  },
+  "additionalProperties": false
+}

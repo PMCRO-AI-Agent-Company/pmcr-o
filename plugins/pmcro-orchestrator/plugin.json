@@ -1,0 +1,8 @@
+{
+  "name": "pmcro-orchestrator",
+  "version": "0.1.0",
+  "description": "Sole dispatch authority. orchestrate run claims/opens a cycle, mints-or-links a trail via pmcro-trail, then hands off to Planner. Never does domain work itself.",
+  "skills": ["./skills/"],
+  "agents": ["./agents/orchestrator.agent.md"],
+  "keywords": ["pmcro", "orchestrator", "dispatch", "seed-intent", "trail"]
+}

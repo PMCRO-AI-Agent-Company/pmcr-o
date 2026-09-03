@@ -1,0 +1,14 @@
+{
+  "trail_id": "905190b8-f1e6-45bd-ad93-515559e3c400",
+  "trail_class": "B",
+  "engine_generated": false,
+  "task_id": "task-scaffold-pmcro-trail-and-orchestrator",
+  "opened_by": "orchestrator (manual, no live /pmcro:* skills installed in this session)",
+  "opened_at": "2026-09-03T17:42:42Z",
+  "sealed_at": "2026-09-03T18:27:30Z",
+  "disposition": "done",
+  "sealed": true,
+  "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+  "next_seed_id": "task-exercise-orchestrate-run-once",
+  "note": "Fresh, self-contained repo. Nothing carried over from any other checkout on this host."
+}
