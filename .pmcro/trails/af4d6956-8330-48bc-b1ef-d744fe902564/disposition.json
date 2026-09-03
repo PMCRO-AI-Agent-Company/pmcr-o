@@ -1,0 +1,13 @@
+{
+  "trail_id": "af4d6956-8330-48bc-b1ef-d744fe902564",
+  "trail_class": "B",
+  "engine_generated": true,
+  "task_id": "task-fix-plugin-upload-validation",
+  "opened_at": "2026-09-03T18:24:00Z",
+  "sealed_at": "2026-09-03T18:25:40Z",
+  "disposition": "done",
+  "sealed": true,
+  "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+  "next_seed_id": "task-hand-simulate-orchestrate-run",
+  "note": "Added .claude-plugin/plugin.json (with author field) to both plugins; produced per-plugin zips for Cowork's single-plugin upload flow."
+}

@@ -1,0 +1,1 @@
+{"ts":"2026-09-03T18:24:00Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"user tried Cowork's 'Upload a plugin' with pmcro-skills.zip (the whole repo root) and got: 'Zip must contain a .claude-plugin/plugin.json file or a top-level SKILL.md declaring plugin components' -- fix whatever you can"}
