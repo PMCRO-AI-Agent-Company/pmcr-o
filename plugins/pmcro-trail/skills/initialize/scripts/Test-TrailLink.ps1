@@ -14,7 +14,12 @@
   writes to disposition.json or any *.jsonl file; it is read-only.
 
   Exactly one of -PmcroRoot / -TrailPath must be usable to derive the
-  trail's folder, same convention as the other phase scripts.
+  trail's folder, same convention as the other phase scripts -- -TrailId
+  is only required when deriving the folder from -PmcroRoot; -TrailPath
+  alone is sufficient (fixed 2026-09-04: the original version of this
+  script wrongly required -TrailId even when -TrailPath was supplied
+  directly, contradicting this paragraph and every sibling phase script's
+  actual behavior).
 #>
 param(
   [string]$PmcroRoot,
@@ -22,12 +27,12 @@ param(
   [string]$TrailId
 )
 
-if (-not $TrailId) {
-  Write-Error "missing-target: supply -TrailId to link an existing trail (New-Trail.ps1 is for minting a new one)."
+if (-not $TrailPath -and -not $TrailId) {
+  Write-Error "missing-target: supply -TrailId (with -PmcroRoot) or -TrailPath directly (New-Trail.ps1 is for minting a new one)."
   exit 1
 }
 
-if (-not $PmcroRoot -and -not $TrailPath) {
+if (-not $TrailPath -and -not $PmcroRoot) {
   Write-Error "missing-target: supply either -PmcroRoot (default trails/<guid> layout) or -TrailPath (exact folder override)."
   exit 1
 }
@@ -81,6 +86,7 @@ $isScratch = if ($null -ne $disposition.scratch) { [bool]$disposition.scratch } 
 [pscustomobject]@{
   status      = 'ok'
   trail_id    = $TrailId
+  task_id     = if ($disposition.PSObject.Properties.Name -contains 'task_id') { $disposition.task_id } else { $null }
   trail_class = 'B'
   path        = $reportedPath
   scratch     = $isScratch

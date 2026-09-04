@@ -1,8 +1,9 @@
-﻿{
+{
     "id":  "task-add-trail-link-path-script",
-    "summary":  "pmcro-trail:initialize\u0027s link path (an existing --trail-id supplied to orchestrate run) has no deterministic script of its own -- New-Trail.ps1 only implements mint and explicitly rejects an already-existing trail. Orchestrator\u0027s New-OrchestrateFrame.ps1 covers claiming/verifying a trail is open and unclaimed, but nothing verifies it was actually materialized by pmcro-trail\u0027s own initialize contract. Give pmcro-trail a real link-path script (or an -Link mode on New-Trail.ps1) so that half of its own command contract isn\u0027t still aspirational.",
+    "summary":  "pmcro-trail:initialize's link path (an existing --trail-id supplied to orchestrate run) has no deterministic script of its own -- New-Trail.ps1 only implements mint and explicitly rejects an already-existing trail. Orchestrator's New-OrchestrateFrame.ps1 covers claiming/verifying a trail is open and unclaimed, but nothing verifies it was actually materialized by pmcro-trail's own initialize contract. Give pmcro-trail a real link-path script (or an -Link mode on New-Trail.ps1) so that half of its own command contract isn't still aspirational.",
     "proposed_role":  "maker",
     "source_trail_id":  "a594ffd3-a98b-4e76-a7dc-bb8cc5d96e0f",
     "created_at":  "2026-09-04T00:15:48.6918955Z",
-    "status":  "open"
+    "status":  "done",
+    "resolution_note":  "Test-TrailLink.ps1 already existed (commit 660b993, predating this queue items status ever being updated), but had a real bug: it hard-required -TrailId even when -TrailPath was supplied directly, contradicting its own docstring and every sibling phase scripts convention. Fixed in trail cff63451-185c-4a61-968a-cc126f5f1481: minimal patch merges the precondition checks to the standard -TrailPath-or-TrailId form and adds task_id to the success output for parity with New-Trail.ps1. Verified against all 5 documented paths (trail-not-found, class-a-unsupported, trail-sealed, trail-linked, success) with real fixtures."
 }
