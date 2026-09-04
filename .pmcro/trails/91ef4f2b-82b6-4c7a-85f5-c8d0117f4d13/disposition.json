@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "91ef4f2b-82b6-4c7a-85f5-c8d0117f4d13",
+    "task_id":  "task-adopt-aspire-cli-lifecycle-session-wide",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T09:37:03.8196567Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T09:37:11.7283766Z"
+}
