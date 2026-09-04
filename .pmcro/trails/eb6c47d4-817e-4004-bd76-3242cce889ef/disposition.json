@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "eb6c47d4-817e-4004-bd76-3242cce889ef",
+    "task_id":  "task-rebuild-orchestrationapi-agent-service",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T08:52:08.4034335Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T08:53:50.1313025Z"
+}
