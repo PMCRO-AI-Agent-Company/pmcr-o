@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "cff63451-185c-4a61-968a-cc126f5f1481",
+    "task_id":  "task-add-trail-link-path-script",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T04:03:38.7794142Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T04:22:49.7250104Z"
+}

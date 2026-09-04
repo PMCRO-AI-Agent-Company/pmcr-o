@@ -9,10 +9,10 @@
 
 ## Reconciled runtime counts
 
-- pending queue items: 1 (task-add-trail-link-path-script)
-- completed queue items: 1 (task-hand-run-full-five-plugin-cycle)
-- sealed trails: 17
-- last sealed trail: `4e2a7d63-44df-429a-9c9d-39baa00ce190`
+- pending queue items: 0
+- completed queue items: 2 (task-hand-run-full-five-plugin-cycle, task-add-trail-link-path-script)
+- sealed trails: 18
+- last sealed trail: `cff63451-185c-4a61-968a-cc126f5f1481`
 
 ## Lock table
 
