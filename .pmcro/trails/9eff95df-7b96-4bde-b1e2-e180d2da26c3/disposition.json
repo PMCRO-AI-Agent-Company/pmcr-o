@@ -4,8 +4,9 @@
   "trail_class": "B",
   "engine_generated": true,
   "opened_at": "2026-09-04T23:32:23.800Z",
-  "disposition": "open",
-  "sealed": false,
+  "disposition": "done",
+  "sealed": true,
   "frame_schema": "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
-  "scratch": false
+  "scratch": false,
+  "sealed_at": "2026-09-04T23:42:05.000Z"
 }
