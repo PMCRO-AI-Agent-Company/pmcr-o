@@ -4,24 +4,24 @@
     <TargetFramework>net11.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>9506e558-0f1e-4f33-b5a0-0a651d3a528c</UserSecretsId>
+    <UserSecretsId>f9e375e8-31c6-433c-b75f-e4cab3c96af0</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Aspire.OllamaSharp" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
     <PackageReference Include="Grpc.AspNetCore" />
-    <PackageReference Include="Microsoft.Agents.AI" />
-    <PackageReference Include="Microsoft.Agents.AI.Workflows" />
-    <PackageReference Include="Microsoft.Agents.AI.Workflows.Declarative" />
-    <PackageReference Include="Microsoft.Agents.AI.Workflows.Declarative.Mcp" />
+    <PackageReference Include="Grpc.Net.Client" />
+    <PackageReference Include="Scalar.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\runtime.proto" GrpcServices="Both" />
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectName.Runtime\ProjectName.Runtime.csproj" />
     <ProjectReference Include="..\ProjectName.ServiceDefaults\ProjectName.ServiceDefaults.csproj" />
   </ItemGroup>
 

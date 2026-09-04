@@ -1,0 +1,9 @@
+{
+  "name": "pmcro",
+  "version": "0.1.0",
+  "description": "PMCR-O knowledge plugin for production .NET Aspire and Microsoft Agent Framework implementation.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/pmcro.md"],
+  "keywords": ["pmcro", "dotnet", "aspire", "mcp", "agent-framework"]
+}

@@ -1,0 +1,7 @@
+<Project>
+  <!-- Solution-wide post-import MSBuild customization. Empty for now — no
+       shared targets are needed yet. Directory.Build.props (evaluated
+       before each project file) is where solution-wide properties live;
+       this file (evaluated after) is where solution-wide targets/tasks
+       would go once something needs one. -->
+</Project>

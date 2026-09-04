@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="ProjectName.AppHost/ProjectName.AppHost.csproj" />
+  <Project Path="ProjectName.OrchestrationApi/ProjectName.OrchestrationApi.csproj" />
   <Project Path="ProjectName.Runtime/ProjectName.Runtime.csproj" />
   <Project Path="ProjectName.ServiceDefaults/ProjectName.ServiceDefaults.csproj" />
 </Solution>

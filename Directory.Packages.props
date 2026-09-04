@@ -1,0 +1,37 @@
+<Project>
+  <ItemGroup>
+    <!-- Aspire.Hosting.AppHost intentionally NOT listed here: Aspire.AppHost.Sdk
+         implicitly adds this PackageReference, and CPM forbids centrally
+         versioning implicit references (NU1009 fires otherwise). -->
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="13.5.1-beta.736" />
+    <PackageVersion Include="CommunityToolkit.Aspire.OllamaSharp" Version="13.5.1-beta.736" />
+
+    <!-- Microsoft Agent Framework -->
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.20.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.Workflows" Version="1.20.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.Workflows.Declarative" Version="1.20.0" />
+    <PackageVersion Include="Microsoft.Agents.AI.Workflows.Declarative.Mcp" Version="1.20.0" />
+
+    <!-- Microsoft.Extensions.AI / ASP.NET Core -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="11.0.0-preview.7.26381.103" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.9.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.9.0" />
+
+    <!-- OpenTelemetry -->
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.18.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.18.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.18.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.18.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.18.0" />
+
+    <!-- gRPC -->
+    <PackageVersion Include="Grpc.AspNetCore" Version="2.83.0" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.83.0" />
+
+    <!-- Scalar OpenAPI UI -->
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.17.2" />
+
+    <!-- Tooling -->
+    <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.24.1-preview.1" />
+  </ItemGroup>
+</Project>

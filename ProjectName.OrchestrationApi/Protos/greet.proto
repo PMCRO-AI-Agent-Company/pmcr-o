@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "ProjectName.Runtime";
+option csharp_namespace = "ProjectName.OrchestrationApi";
 
 package greet;
 

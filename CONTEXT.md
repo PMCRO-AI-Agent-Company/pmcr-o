@@ -1,6 +1,6 @@
 # PMCR-O Repository Context
 
-- Repository: `pmcro-skills`
+- Repository: `pmcr-o` (https://github.com/PMCRO-AI-Agent-Company/pmcr-o)
 - Architecture: PMCRO (Planner, Maker, Checker, Reflector, Orchestrator + Trail)
 - Control Plane: ColonyRuntime v1 (`.pmcro/manifest.yaml`)
 

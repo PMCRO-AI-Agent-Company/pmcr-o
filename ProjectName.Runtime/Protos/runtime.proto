@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProjectName.Runtime";
+
+package runtime;
+
+service RuntimeChat {
+  rpc Chat (ChatRequest) returns (ChatReply);
+}
+
+message ChatRequest {
+  string prompt = 1;
+}
+
+message ChatReply {
+  string model = 1;
+  string response = 2;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "pmcro",
+  "version": "0.1.0",
+  "description": "PMCR-O knowledge plugin for production .NET Aspire and Microsoft Agent Framework implementation, including Aspire MCP integration and .NET AI agent, Harness, CodeAct, declarative workflow, and declarative MCP guidance.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/pmcro.md"],
+  "keywords": ["pmcro", "dotnet", "aspire", "mcp", "agent-framework", "harness", "codeact", "workflows"]
+}

@@ -17,3 +17,6 @@ __pycache__/
 [Bb]in/
 [Oo]bj/
 *.user
+
+# Centralized build output (UseArtifactsOutput, see Directory.Build.props)
+/artifacts/

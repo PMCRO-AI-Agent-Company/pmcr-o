@@ -10,11 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectName.OrchestrationApi\ProjectName.OrchestrationApi.csproj" />
     <ProjectReference Include="..\ProjectName.Runtime\ProjectName.Runtime.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="13.5.1-beta.736" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" />
   </ItemGroup>
 
 </Project>

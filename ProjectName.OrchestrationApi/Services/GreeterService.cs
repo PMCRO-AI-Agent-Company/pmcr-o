@@ -1,6 +1,6 @@
 using Grpc.Core;
 
-namespace ProjectName.Runtime.Services;
+namespace ProjectName.OrchestrationApi.Services;
 
 public class GreeterService(ILogger<GreeterService> logger) : Greeter.GreeterBase
 {
