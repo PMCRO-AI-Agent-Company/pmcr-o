@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "1de7efcb-bff0-4e7f-a9ae-7754399a0971",
+    "task_id":  "task-verify-pmcro-aspire-live-connection",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T09:26:48.5476229Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T09:26:56.3062270Z"
+}

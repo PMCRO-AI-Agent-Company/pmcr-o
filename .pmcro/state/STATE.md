@@ -9,10 +9,10 @@
 
 ## Reconciled runtime counts
 
-- pending queue items: 2 (task-verify-pmcro-aspire-live-connection, task-wire-pmcro-env-vars-into-programs)
-- completed queue items: 5 (task-hand-run-full-five-plugin-cycle, task-add-trail-link-path-script, task-rebuild-orchestrationapi-agent-service, task-build-pmcro-aspire-mcp-skill, task-add-orchestrationapi-grpc-integration-test)
-- sealed trails: 23
-- last sealed trail: `d360b692-5014-4267-9018-9b94758e9170`
+- pending queue items: 2 (task-wire-pmcro-env-vars-into-programs, task-adopt-aspire-cli-lifecycle-session-wide)
+- completed queue items: 6 (task-hand-run-full-five-plugin-cycle, task-add-trail-link-path-script, task-rebuild-orchestrationapi-agent-service, task-build-pmcro-aspire-mcp-skill, task-add-orchestrationapi-grpc-integration-test, task-verify-pmcro-aspire-live-connection)
+- sealed trails: 24
+- last sealed trail: `1de7efcb-bff0-4e7f-a9ae-7754399a0971`
 
 ## Lock table
 
