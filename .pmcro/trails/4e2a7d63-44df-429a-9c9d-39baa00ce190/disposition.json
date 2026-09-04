@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "4e2a7d63-44df-429a-9c9d-39baa00ce190",
+    "task_id":  "task-batch-commit-runtime-and-pmcro-work",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T03:41:55.6906733Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T03:46:10.2980399Z"
+}
