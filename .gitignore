@@ -12,3 +12,8 @@
 # Python bytecode
 __pycache__/
 *.py[cod]
+
+# .NET build output
+[Bb]in/
+[Oo]bj/
+*.user
