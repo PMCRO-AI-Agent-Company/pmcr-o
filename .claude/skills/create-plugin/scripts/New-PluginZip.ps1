@@ -24,7 +24,14 @@
      to .NET.
 
 .EXAMPLE
-  .\scripts\New-PluginZip.ps1 -PluginDir .\plugins\pmcro-trail -OutFile .\pmcro-trail.zip
+  .\.claude\skills\create-plugin\scripts\New-PluginZip.ps1 -PluginDir .\plugins\pmcro-trail -OutFile .\pmcro-trail.zip
+
+.NOTES (location)
+  Lives inside the create-plugin skill it belongs to, not at the repo
+  root -- run it from the repo root using the path above, or reference it
+  by an absolute path; it has no dependency on its own location
+  (-PluginDir / -OutFile are both caller-supplied), so being moved here
+  changes nothing about how it behaves.
 #>
 param(
   [Parameter(Mandatory)][string]$PluginDir,

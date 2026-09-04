@@ -1,0 +1,1 @@
+﻿{"ts":"2026-09-04T00:35:18.6009169Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"Human flagged the create-plugin repo skill is a flat SKILL.md with no assets/scripts/references, unlike every other skill in this repo, and that its zip-build script lives at the repo root instead of inside the skill that owns it. Restructure it to match convention."}
