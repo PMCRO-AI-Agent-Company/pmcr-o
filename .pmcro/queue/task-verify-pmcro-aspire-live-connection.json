@@ -1,0 +1,8 @@
+﻿{
+    "id":  "task-verify-pmcro-aspire-live-connection",
+    "summary":  "Run \u0027aspire agent init\u0027 (or manually register \u0027aspire agent mcp\u0027) against this repo\u0027s own agent runtime, start ProjectName.AppHost, and record the first real gather-evidence use (doctor + list_resources at minimum) as MakeStep evidence -- pmcro-aspire is currently scoped-and-documented but not yet live-verified.",
+    "proposed_role":  null,
+    "source_trail_id":  "3a9ec041-f2a4-4e06-864f-a8f723201122",
+    "created_at":  "2026-09-04T09:01:36.6530220Z",
+    "status":  "open"
+}
