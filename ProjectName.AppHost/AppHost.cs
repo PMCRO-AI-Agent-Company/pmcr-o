@@ -21,18 +21,12 @@ var modelOrchestrator = ollama.AddModel("model-orchestrator", "qwen3:8b");
 var runtime = builder.AddProject<Projects.ProjectName_Runtime>("projectname-runtime")
     .WithReference(ollama)
     .WithReference(modelOrchestrator)
-    .WithEnvironment("Pmcro__RuntimeRoot", $"{repoRoot}/.pmcro")
-    .WithEnvironment("Pmcro__TrailRoot", $"{repoRoot}/.pmcro/trails")
-    .WithEnvironment("Pmcro__QueueRoot", $"{repoRoot}/.pmcro/queue")
-    .WithEnvironment("Pmcro__SkillsRoot", "")
     .WaitFor(modelOrchestrator);
 
 // Thin HTTP/gRPC facade. HTTP chat calls cross the runtime boundary over gRPC.
 builder.AddProject<Projects.ProjectName_OrchestrationApi>("projectname-orchestrationapi")
     .WithReference(runtime)
     .WithReference(modelOrchestrator)
-    .WithEnvironment("Pmcro__RuntimeRoot", $"{repoRoot}/.pmcro")
-    .WithEnvironment("Pmcro__TrailRoot", $"{repoRoot}/.pmcro/trails")
     .WaitFor(runtime);
 
 builder.Build().Run();
