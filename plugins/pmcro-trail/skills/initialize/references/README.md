@@ -9,6 +9,7 @@
 | `assets/reject.initialize.asset.md` | refusal-path implementation |
 | `assets/schema.trail-frame.asset.json` | the frame contract every `*.jsonl` line in a trail must satisfy |
 | `scripts/New-Trail.ps1` | deterministic mint-path implementation (zero reasoning) |
+| `scripts/Test-TrailLink.ps1` | deterministic link-path implementation (zero reasoning, read-only) |
 
 ## Source URLs
 

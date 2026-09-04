@@ -41,8 +41,10 @@ target_skill: initialize
 ## Steps (link path — `--trail-id <guid>` supplied and the folder exists)
 
 1. Read `disposition.json` for that trail.
-2. Verify `sealed: false` and `disposition: "open"` — else reject
-   (`trail-sealed` / `trail-linked`).
+2. Verify `sealed: false` — else reject `trail-sealed`. Verify the trail is
+   not already claimed by an active cycle — else reject `trail-linked`
+   (claimed is read off `orchestrate.jsonl`: any existing frame means
+   claimed; see Implementation).
 3. Return the same success result shape, `engine_generated` unchanged.
 
 ## Non-goals
@@ -58,5 +60,7 @@ target_skill: initialize
 ## Implementation
 
 `scripts/New-Trail.ps1` implements the mint path deterministically (zero
-reasoning — file mechanics only). The link path is a plain read + check, no
-script required.
+reasoning — file mechanics only). `scripts/Test-TrailLink.ps1` implements
+the link path the same way: it is read-only (mints/writes nothing), checks
+`trail-not-found` / `class-a-unsupported` / `trail-sealed` / `trail-linked`
+in that order, and returns the same success shape `New-Trail.ps1` does.

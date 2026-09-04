@@ -41,4 +41,9 @@ patterns from this skill when authoring a new one. Do not retype.
 - `assets/run.initialize.asset.md`
 - `assets/reject.initialize.asset.md`
 - `assets/schema.trail-frame.asset.json`
+- `scripts/New-Trail.ps1` — deterministic mint-path implementation; call
+  this to create a new trail rather than hand-writing its files
+- `scripts/Test-TrailLink.ps1` — deterministic link-path implementation
+  (read-only); call this to verify/bind an existing `--trail-id` rather
+  than reading `disposition.json` by hand
 - `references/README.md`
