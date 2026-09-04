@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "de4800c2-6f5f-42d1-93dd-caa7a7f19779",
+    "task_id":  "task-propose-maf-declarative-migration-design",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T10:46:00.9171864Z",
+    "disposition":  "informational",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T10:46:10.0638144Z"
+}
