@@ -1,0 +1,23 @@
+apiVersion: pmcro.ai/v1
+kind: ColonyRuntime
+metadata:
+  colony_id: pmcro-core-colony
+  version: "1.0.0"
+  runtime_root: ".pmcro"
+spec:
+  trail_class: "B"
+  enforce_atomic_file_protocol: true
+  max_loop_limit: 5
+  storage:
+    trails: ".pmcro/trails"
+    queue: ".pmcro/queue"
+    state: ".pmcro/state"
+    memory: ".pmcro/memory"
+    policies: ".pmcro/policies"
+  active_roles:
+    - orchestrator
+    - planner
+    - maker
+    - checker
+    - reflector
+    - trail

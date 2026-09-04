@@ -1,0 +1,18 @@
+{
+  "name": "pmcro-skills",
+  "version": "1.0.0",
+  "description": "Canonical PMCR-O lifecycle skills and role contracts for Codex.",
+  "skills": ["./.agents/skills/"],
+  "agents": [
+    "./plugins/pmcro-orchestrator/agents/",
+    "./plugins/pmcro-planner/agents/",
+    "./plugins/pmcro-maker/agents/",
+    "./plugins/pmcro-checker/agents/",
+    "./plugins/pmcro-reflector/agents/",
+    "./plugins/pmcro-trail/agents/"
+  ],
+  "invocation": {
+    "syntax": "/pmcro-skills:<skill-name> [optional arguments]",
+    "namespace": "pmcro-skills"
+  }
+}

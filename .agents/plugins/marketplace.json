@@ -1,0 +1,14 @@
+{
+  "name": "pmcro-skills-marketplace",
+  "version": "1.0.0",
+  "description": "Canonical PMCRO lifecycle plugin catalog for Claude, Cursor, and Colony agents.",
+  "owner": "PMCRO-AI-Agent-Company",
+  "plugins": [
+    {"name":"pmcro-orchestrator","path":"plugins/pmcro-orchestrator","description":"Sole dispatch authority, goal state, and lifecycle router."},
+    {"name":"pmcro-planner","path":"plugins/pmcro-planner","description":"Minimalist decomposition and PlanFrame generator."},
+    {"name":"pmcro-maker","path":"plugins/pmcro-maker","description":"Certified code and file mutation engine."},
+    {"name":"pmcro-checker","path":"plugins/pmcro-checker","description":"Independent validation and acceptance verification gate."},
+    {"name":"pmcro-reflector","path":"plugins/pmcro-reflector","description":"Evaluation synthesizer, trail disposition sealer, and seed generator."},
+    {"name":"pmcro-trail","path":"plugins/pmcro-trail","description":"Class B durable trail materializer and link verifier."}
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pmcro.ai/schemas/seed-intent.schema.json",
+  "title": "PMCR-O Seed Intent",
+  "type": "object",
+  "required": ["id", "priority", "domain", "status", "created_by", "messy_seed", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^task-[a-z0-9-]+$"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "domain": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "claimed", "in_progress", "done", "rejected"]
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "messy_seed": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_seed": {
+      "type": ["string", "null"]
+    },
+    "trail_id": {
+      "type": ["string", "null"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "claimed_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

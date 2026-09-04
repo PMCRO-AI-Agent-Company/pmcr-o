@@ -1,0 +1,86 @@
+# PMCR-O lifecycle expressed in Microsoft Agent Framework declarative workflow syntax.
+# Runtime responsibility: register the six PMCR-O agents with the MAF provider.
+# MCP responsibility: the MAF Declarative MCP handler owns MCP transport/tool calls.
+# This repository stores the contract; the Aspire runtime owns execution.
+kind: Workflow
+trigger:
+  kind: OnConversationStart
+  id: pmcro_cycle
+  actions:
+    - kind: SetVariable
+      id: capture_seed
+      displayName: Capture seed intent
+      variable: Local.seed
+      value: =System.LastMessage.Text
+
+    - kind: InvokeAzureAgent
+      id: orchestrate
+      displayName: Orchestrator dispatch
+      agent:
+        name: pmcro-orchestrator
+      conversationId: =System.ConversationId
+      input:
+        messages: =UserMessage(Local.seed)
+      output:
+        responseObject: Local.orchestratorResult
+
+    - kind: InvokeAzureAgent
+      id: plan
+      displayName: Planner creates PlanFrame
+      agent:
+        name: pmcro-planner
+      conversationId: =System.ConversationId
+      input:
+        messages: =UserMessage(Local.seed)
+      output:
+        responseObject: Local.planResult
+
+    - kind: InvokeAzureAgent
+      id: make
+      displayName: Maker executes bounded PlanFrame
+      agent:
+        name: pmcro-maker
+      conversationId: =System.ConversationId
+      input:
+        messages: =UserMessage("Execute only the certified PlanFrame.")
+      output:
+        responseObject: Local.makeResult
+
+    - kind: InvokeAzureAgent
+      id: check
+      displayName: Checker validates PlanFrame
+      agent:
+        name: pmcro-checker
+      conversationId: =System.ConversationId
+      input:
+        messages: =UserMessage("Validate the Make result against the PlanFrame.")
+      output:
+        responseObject: Local.checkResult
+
+    - kind: InvokeMcpTool
+      id: evidence_lookup
+      displayName: Governed MCP evidence lookup
+      serverUrl: https://learn.microsoft.com/api/mcp
+      serverLabel: microsoft_docs
+      toolName: microsoft_docs_search
+      conversationId: =System.ConversationId
+      requireApproval: true
+      arguments:
+        query: =Local.seed
+      output:
+        result: Local.evidenceResult
+
+    - kind: InvokeAzureAgent
+      id: reflect
+      displayName: Reflector seals or seeds next work
+      agent:
+        name: pmcro-reflector
+      conversationId: =System.ConversationId
+      input:
+        messages: =UserMessage("Reflect on the Checker result and apply the seal/seed contract.")
+      output:
+        responseObject: Local.reflectResult
+
+    - kind: EndWorkflow
+      id: finish
+      displayName: PMCR-O cycle complete
