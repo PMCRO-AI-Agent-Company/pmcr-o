@@ -23,17 +23,18 @@ reference fills in both steps, and connects the result to
    matches (or other already-available tools/capabilities) used together
    actually cover it. This is Planner/model reasoning, not something
    `discover-capabilities` itself computes.
-4. **If a composition works, record it** with `New-PmcroCapabilityComposition`
-   (`plugins/pmcro-loop/scripts/new-capability-composition.ps1`) — see
-   `.pmcro/compositions.schema.md`. Cite the trail where it was actually
-   exercised. `proven` is derived automatically from the evidence count
-   (2+ independent trails), never asserted by the caller.
+4. **If a composition works, record it** as a markdown file under
+   `.pmcro/compositions/` — see `.pmcro/compositions.schema.md`. Cite the
+   trail where it was actually exercised; `proven` is a manual count of
+   independent evidence trails (2+ means `true`), not a script-derived
+   field — this repo has no `plugins/pmcro-loop`, see that schema's
+   "Source and adaptation" note.
 5. **Only if no composition suffices either, record the gap explicitly**
-   with `New-PmcroCapabilityGap`
-   (`plugins/pmcro-loop/scripts/new-capability-gap.ps1`) — see
-   `.pmcro/capability-gaps.schema.md`. The function refuses to write a gap
-   record without a non-empty explanation of why composition was
-   considered and rejected — a gap is not a shortcut around step 3.
+   as a markdown file under `.pmcro/capability-gaps/` — see
+   `.pmcro/capability-gaps.schema.md`. The author is responsible for
+   never writing a gap record without a non-empty explanation of why
+   composition was considered and rejected — a gap is not a shortcut
+   around step 3.
 6. **On reconnect, an open gap is a lead, not noise.** A future cycle
    facing a similar need should check `.pmcro/capability-gaps/` for an
    open, matching record before re-running the same search from nothing —
@@ -49,8 +50,8 @@ evidence — `knowledge-promotion.md`'s own bar) is a skill candidate, not
 yet a capability. The path from there reuses cycle 4's mechanism rather
 than inventing a new one:
 
-1. Write a `skill-candidate` earned-knowledge record
-   (`New-PmcroConstraint -Kind skill-candidate`) that cites the
+1. Write a `skill-candidate` earned-knowledge record (see
+   `.pmcro/constraints.schema.md`, `kind: skill-candidate`) that cites the
    composition record and the trails proving it.
 2. Scaffold the real skill with `/createskill`
    (`INSTRUCTIONS.md`: "use it instead of hand-rolling SKILL.md

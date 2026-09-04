@@ -55,4 +55,4 @@ Trail Products should retain provenance to their source trails and declare versi
 
 A source trail reconstructed from a historical/third-party export (see `retrospective-trail-reconstruction.md`) carries weaker evidence than a native live trail and that weakness must be declared as part of the product's provenance, not smoothed over.
 
-`New-PmcroTrailProduct` (`plugins/pmcro-loop/scripts/new-trail-product.ps1`) writes a Trail Product manifest deterministically under `.pmcro/products/` — see `.pmcro/products.schema.md`. It derives `evidence_class` (native | reconstructed | mixed) automatically from the source trail ids' own naming convention rather than accepting it as a caller-asserted field, so a product's declared evidence strength cannot silently overstate what its sources actually support.
+A Trail Product manifest lives under `.pmcro/products/` — see `.pmcro/products.schema.md`, including that schema's "Source and adaptation" note: this repo has no `plugins/pmcro-loop` script to derive `evidence_class` automatically, so it is a manual declaration the record's author is accountable for, not a tamper-resistant derived field.
