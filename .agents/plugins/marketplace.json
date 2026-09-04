@@ -10,6 +10,6 @@
     {"name":"pmcro-checker","path":"plugins/pmcro-checker","description":"Independent validation and acceptance verification gate."},
     {"name":"pmcro-reflector","path":"plugins/pmcro-reflector","description":"Evaluation synthesizer, trail disposition sealer, and seed generator."},
     {"name":"pmcro-trail","path":"plugins/pmcro-trail","description":"Class B durable trail materializer and link verifier."},
-    {"name":"pmcro-aspire","path":"plugins/pmcro-aspire","description":"Live evidence source wrapping the .NET Aspire MCP server: resource state, console/structured logs, and traces for Maker and Checker."}
+    {"name":"pmcro-aspire","path":"plugins/pmcro-aspire","description":"Live evidence source wrapping the .NET Aspire CLI's local backchannel: resource state, console/structured logs, and traces for Maker and Checker via aspire describe/logs/otel."}
   ]
 }

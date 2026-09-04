@@ -1,8 +1,8 @@
 ---
 name: gather-evidence
-description: Query the running .NET Aspire AppHost's live resource state, console/structured logs, and traces via the Aspire MCP server, for use as Make/Check evidence. USE FOR -- confirming a resource is actually Running/healthy, or that a claimed runtime behavior really happened, before writing it into a MakeStep or CheckFrame. DO NOT USE FOR -- mutating resources beyond the single resource-scoped command Aspire itself exposes, reading source code/secrets/env values (excluded by the server), or as a replacement for an actual build/test/HTTP round-trip.
+description: Query the running .NET Aspire AppHost's live resource state, console/structured logs, and traces via the Aspire CLI's local backchannel, for use as Make/Check evidence. USE FOR -- confirming a resource is actually Running/healthy, or that a claimed runtime behavior really happened, before writing it into a MakeStep or CheckFrame. Also owns the safe lifecycle commands (aspire start/stop/wait) that avoid the file-lock and orphaned-process problems `dotnet run` + manual process killing cause. DO NOT USE FOR -- mutating resources beyond a resource's own exposed commands, reading source code/secrets/env values, or as a replacement for an actual build/test/HTTP round-trip.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   tier: EVIDENCE
   capability_class: SUPPORT
 ---
@@ -12,34 +12,35 @@ metadata:
 ## Command
 
 No PMCR-O CLI command of its own -- this skill is a recipe for calling the
-Aspire MCP server's own tools once registered, not a new deterministic
-script. See `assets/setup.gather-evidence.asset.md` for one-time
-registration and `assets/tools.gather-evidence.asset.md` for the tool
-catalog.
+Aspire CLI's own commands, not a new deterministic script. See
+`assets/setup.gather-evidence.asset.md` for what `aspire agent init`
+actually installs and `assets/tools.gather-evidence.asset.md` for the
+command catalog.
 
 ## Purpose
 
-Wraps `aspire agent mcp` (the Aspire CLI's built-in MCP server, STDIO
-transport, no auth required) so a Maker or Checker step can attach real,
-live evidence -- resource state, console/structured logs, distributed
-traces -- instead of relying on what the code is merely supposed to do.
-Confirmed current as of the research recorded in trail
-`ba0c2c65-075f-470b-abed-e5647053dc8b` (fetched
-https://aspire.dev/get-started/aspire-mcp-server/, 2026-09-04).
+Wraps the Aspire CLI's local backchannel (a socket at
+`~/.aspire/backchannels/` that the CLI uses to talk to a running AppHost)
+so a Maker or Checker step can attach real, live evidence -- resource
+state, console/structured logs, distributed traces -- instead of relying
+on what the code is merely supposed to do.
 
 ## Setup
 
-Not yet registered as a live MCP connection in this repo's own agent
-runtime -- registering `aspire agent mcp` as an MCP server is a one-time
-infrastructure step outside what a deterministic skill script can do (it
-edits the calling agent's own MCP client config). See
-`assets/setup.gather-evidence.asset.md` for the exact steps and how to
-verify the connection with the `doctor` tool.
+Already done for this repo: `aspire agent init` was run from the repo root
+in trail `d360b692-5014-4267-9018-9b94758e9170`'s follow-on verification.
+It does **not** register an MCP server (`claude mcp list` confirms none
+exist) -- it installs skill files into `.agents/skills/` (`aspire`,
+`aspire-init`, `aspire-monitoring`, `aspire-orchestration`,
+`aspire-deployment`) that teach the agent to call Aspire CLI commands
+directly, plus a `PostToolUse` telemetry hook in this machine's Claude Code
+settings. See `assets/setup.gather-evidence.asset.md` for what to do if
+`aspire` is missing or a fresh machine needs `aspire agent init` re-run.
 
 ## Inputs / Outputs / Boundaries
 
-See `assets/tools.gather-evidence.asset.md` for the full tool catalog and
-`assets/recipe.gather-evidence.asset.md` for how Maker/Checker should fold
+See `assets/tools.gather-evidence.asset.md` for the command catalog and
+`assets/recipe.gather-evidence.asset.md` for how Maker/Checker fold
 results into `Action`/`Result` or `criteria[].evidence`.
 
 ## References

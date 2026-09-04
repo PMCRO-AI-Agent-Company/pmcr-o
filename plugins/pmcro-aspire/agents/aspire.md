@@ -19,23 +19,28 @@ description: Wraps the .NET Aspire MCP server as a live evidence source for Make
 
 ## Hard rules
 
-- Read-only in practice: the wrapped tools (`list_resources`,
-  `list_console_logs`, `list_structured_logs`, `list_traces`,
-  `execute_resource_command`, and others -- see the skill's tool catalog)
-  surface resource metadata and telemetry. This role does not reimplement
-  Aspire resource introspection and has no mutation path of its own beyond
-  the single resource-scoped command Aspire itself exposes through
-  `execute_resource_command` (e.g. restart) -- never assume it can do
-  anything else.
+- Read-only in practice for evidence-gathering: the wrapped commands
+  (`aspire describe`, `aspire ps`, `aspire logs`, `aspire otel
+  logs/traces/spans`, and others -- see the skill's command catalog)
+  surface resource metadata and telemetry via the Aspire CLI's local
+  backchannel. This role does not reimplement Aspire resource
+  introspection and has no mutation path of its own beyond a resource's
+  own exposed commands (visible in `aspire describe`'s `commands` field,
+  e.g. restart) -- never assume it can do anything else. It does own the
+  safe AppHost lifecycle commands (`aspire start`/`aspire wait`/`aspire
+  stop`) as the mandated replacement for `dotnet run` plus manual process
+  killing.
 - Never a substitute for actually running `dotnet build`, a real HTTP or
   gRPC round-trip, or a test. It reports what the Aspire dashboard already
   knows (declared resource state, logs, traces), which is runtime
   confidence on top of other evidence, not independent proof a feature
   works end to end.
-- Explicitly cannot see source code, secrets, or environment variable
-  values -- Aspire's own MCP server excludes these by design. Do not ask it
-  for anything in that category, and do not treat its silence on those as
-  meaning "not set" or "not present".
+- `aspire describe`'s output includes each resource's full `environment`
+  map, and this can include secret-bearing values (an OTLP API key was
+  observed in it during live verification) -- never paste a resource's
+  `environment` block into trail evidence wholesale; extract only the
+  specific non-secret field a criterion actually needs. Neither this role
+  nor the underlying CLI commands can see source code.
 - No absolute, host-specific, or drive-letter paths in anything it writes
   into trail evidence -- same durability rule as every other role in this
   colony.

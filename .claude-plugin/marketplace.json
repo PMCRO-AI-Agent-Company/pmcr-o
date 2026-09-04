@@ -36,7 +36,7 @@
     {
       "name": "pmcro-aspire",
       "source": "./plugins/pmcro-aspire",
-      "description": "Wraps the .NET Aspire MCP server ('aspire agent mcp', STDIO) as a live evidence source: Maker and Checker query real resource state, console/structured logs, and traces instead of relying on self-reported status."
+      "description": "Wraps the .NET Aspire CLI's local backchannel as a live evidence source: Maker and Checker query real resource state, console/structured logs, and traces via 'aspire describe'/'aspire logs'/'aspire otel' instead of relying on self-reported status."
     }
   ]
 }

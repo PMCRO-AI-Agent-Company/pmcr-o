@@ -1,7 +1,7 @@
 {
   "name": "pmcro-aspire",
-  "version": "0.1.0",
-  "description": "Wraps the .NET Aspire MCP server ('aspire agent mcp', STDIO) as a PMCR-O evidence source: Maker and Checker query live Aspire resource state, console/structured logs, and traces instead of relying on self-reported status.",
+  "version": "0.2.0",
+  "description": "Wraps the .NET Aspire CLI's local backchannel as a PMCR-O evidence source: Maker and Checker query live Aspire resource state, console/structured logs, and traces via 'aspire describe'/'aspire logs'/'aspire otel' instead of relying on self-reported status. Also owns the safe 'aspire start/wait/stop' lifecycle commands.",
   "author": { "name": "PMCRO-AI-Agent-Company" },
   "skills": ["./skills/"],
   "agents": ["./agents/aspire.md"],

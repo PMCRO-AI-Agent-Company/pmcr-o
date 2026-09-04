@@ -1,47 +1,81 @@
 # Setup -- pmcro-aspire:gather-evidence
 
-The Aspire MCP server ships with the Aspire CLI; it is not a separate
-install. It runs as a local STDIO child process (no open network port), so
-there is no auth to configure.
+Corrected in trail `d360b692-5014-4267-9018-9b94758e9170`'s live
+verification (2026-09-04) after the version 0.1.0 setup asset -- based on
+reading https://aspire.dev/get-started/aspire-mcp-server/ in trail
+`ba0c2c65` without exercising it -- turned out to describe a different,
+unused integration path. What follows is what actually happened when this
+was run for real.
 
-## One-time registration
+## What `aspire agent init` actually does
 
-From a working directory where an AppHost project (or an
-`aspire.config.json` pointing at one -- this repo's
-`ProjectName.AppHost/aspire.config.json` already does) can be resolved:
+Running `aspire agent init --non-interactive` from the repo root:
+
+- Detects installed agent environments on the machine (this machine has
+  Claude Code installed separately from whatever session is reading this
+  skill).
+- Installs Aspire agent skill files into `.agents/skills/` (repo-local)
+  and `~/.agents/skills/` (user-global): `aspire`, `aspire-init`,
+  `aspire-monitoring`, `aspire-orchestration`, `aspire-deployment`. These
+  are the actual, current documentation for CLI-driven Aspire agent
+  workflows -- read them directly rather than trusting a summary.
+- Adds a `PostToolUse` hook to Claude Code's settings
+  (`~/.claude/settings.json` on Windows) that runs
+  `~/.aspire/hooks/track-telemetry.ps1` after every tool call, to record
+  Aspire skill/CLI/reference-file usage. Opt out with
+  `ASPIRE_CLI_TELEMETRY_OPTOUT=true`.
+- Does **NOT** register an MCP server. `claude mcp list` after running
+  `aspire agent init` reported "No MCP servers configured." The
+  `aspire agent mcp` subcommand exists (confirmed via `aspire agent
+  --help`) but `aspire agent init` does not wire it up for Claude Code --
+  the CLI-driven skill files are the integration, not a registered MCP
+  tool set.
+
+## One-time setup, if not already done
 
 ```
-aspire agent init
+dotnet tool install --global Aspire.Cli --prerelease   # if `aspire` is not on PATH
+aspire agent init --non-interactive                      # from the repo root
 ```
 
-This generates client MCP config for the agent(s) it recognizes on the
-machine (Aspire's docs name VS Code, Claude Code, GitHub Copilot CLI, and
-OpenCode). Per Aspire's own docs the server is not restricted to those
-four -- any MCP-capable STDIO client can add it. For a client not covered
-by `aspire agent init`, register it manually as an MCP server whose command
-is:
-
-```
-aspire agent mcp
-```
-
-run from the repo root (or anywhere `aspire.config.json` / the AppHost
-project can be resolved from).
+If `dotnet tool install` reports the tool already installed but `aspire`
+still isn't found on PATH, the global-tool manifest can be stale --
+`dotnet tool uninstall --global Aspire.Cli` then reinstall fixed exactly
+this on the machine this was verified on.
 
 ## Verifying the connection
 
-Once registered, call the `doctor` tool first. It self-reports whether the
-server can see a running AppHost. If it reports no AppHost found, the
-target AppHost (`ProjectName.AppHost`) must actually be running
-(`dotnet run --project ProjectName.AppHost`, or the Aspire CLI equivalent)
--- this skill observes a running AppHost, it does not start one.
+No `doctor` MCP tool call needed -- just run an actual command:
 
-## Known limitation as of this writing
+```
+aspire ps --format Json
+```
 
-This skill has been scoped and documented from Aspire's own current docs,
-but `aspire agent init` has not yet been run against this repo's own agent
-runtime -- there is no live registered connection to exercise yet. Treat
-`gather-evidence` as scoped-and-documented, not yet live-verified; the
-first real use should record whether `doctor` succeeds as its own MakeStep
-evidence, and any tool-shape drift found against the catalog below should
-be corrected here rather than worked around silently.
+An empty or error result with no AppHost running is expected when nothing
+is started; start one first (see the lifecycle commands below) before
+expecting resource data back.
+
+## Lifecycle commands -- use these, not `dotnet run` / manual process kill
+
+The `aspire-orchestration` skill installed by `aspire agent init`
+documents this as a **mandatory compliance** rule, citing
+[microsoft/aspire#15801](https://github.com/microsoft/aspire/issues/15801):
+`dotnet run --project <AppHost>` plus manually hunting down and
+`Stop-Process`-ing orphaned child processes is exactly what causes the
+`MSB3027`/`MSB3021`/`MSB3491` file-lock errors this repo hit repeatedly
+earlier in this session. The correct pattern:
+
+| Task | Command |
+|------|---------|
+| Start (background, for agents) | `aspire start --non-interactive` |
+| Wait for a resource to be healthy | `aspire wait <resource> --non-interactive` |
+| Inspect state | `aspire ps --format Json` (AppHost-level) / `aspire describe --format Json` (resource-level) |
+| Stop cleanly | `aspire stop --non-interactive` |
+
+Verified directly: `aspire start` detected and cleanly stopped a stray
+prior instance before starting fresh (no manual PID hunting needed),
+`aspire wait projectname-orchestrationapi` returned healthy, `aspire
+describe --format Json` returned live state for all five resources
+(`model-orchestrator`, `ollama-server`, `projectname-orchestrationapi`,
+`projectname-runtime`, `repoRoot`) as `Running`/`Healthy`, and
+`aspire stop` shut everything down with no orphaned processes left behind.
