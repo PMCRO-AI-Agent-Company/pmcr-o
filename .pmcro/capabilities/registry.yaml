@@ -1,0 +1,16 @@
+apiVersion: pmcro.ai/v1
+kind: CapabilityRegistry
+spec:
+  # No capability leaf files exist yet (browser.yaml, containers.yaml,
+  # evidence.yaml, filesystem.yaml, github.yaml, host-command-execution.yaml,
+  # lifecycle.yaml, mcp-gateway.yaml, memory.yaml, ...) — this repo has no
+  # provider wired to back any of them. See ../README.md. Add a capability
+  # entry (and its leaf file) when a real provider exists for it, not
+  # ahead of that.
+  capabilities: {}
+  rules:
+    - Capability identifiers are stable PMCRO contracts, not provider tool names.
+    - Provider selection resolves through providers/registry.yaml and mcp/registry.yaml.
+    - Unknown capabilities are denied by policies/execution.yaml.
+    - A capability may be requested only when its policy and validation requirements are satisfied.
+    - A capability with no provider entry produces an escalated governed result, never an invented integration.

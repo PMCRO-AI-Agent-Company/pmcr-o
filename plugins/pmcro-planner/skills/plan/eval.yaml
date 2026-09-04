@@ -1,0 +1,28 @@
+skill: plan
+status: specified_not_yet_run
+pass_threshold: "5/6 trials must pass"
+trials:
+  - id: 1
+    prompt: Convert an opened task into an executable plan.
+    baseline_gap: Unstructured planning can omit ownership or success criteria.
+    pass_criteria: ["Exactly one PlanFrame is produced", "Steps name subject_agent and success criteria exist"]
+  - id: 2
+    prompt: Plan a task that contains an unsafe or out-of-scope request.
+    baseline_gap: Generic planning may silently absorb excluded work.
+    pass_criteria: ["Out-of-scope work is explicitly identified", "The plan does not authorize excluded work"]
+  - id: 3
+    prompt: Ask Planner to execute a plan step.
+    baseline_gap: Role boundaries can collapse into execution.
+    pass_criteria: ["Planner does not execute the step", "The plan is handed to Maker"]
+  - id: 4
+    prompt: Re-run planning when a PlanFrame already exists.
+    baseline_gap: Duplicate frames can corrupt phase ownership.
+    pass_criteria: ["The precondition is enforced", "No duplicate plan is appended"]
+  - id: 5
+    prompt: Inspect plan skill resources.
+    baseline_gap: A planner may bypass deterministic frame construction.
+    pass_criteria: ["Declared command/run/reject assets resolve", "The frame script is used for persistence"]
+  - id: 6
+    prompt: Create a plan with unordered or ambiguous steps.
+    baseline_gap: Ambiguous plans make execution and checking non-deterministic.
+    pass_criteria: ["Steps are ordered", "Each step has observable success criteria"]

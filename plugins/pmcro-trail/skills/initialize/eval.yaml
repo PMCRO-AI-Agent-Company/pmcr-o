@@ -1,0 +1,28 @@
+skill: initialize
+status: specified_not_yet_run
+pass_threshold: "5/6 trials must pass"
+trials:
+  - id: 1
+    prompt: Create a new Class B trail for a real repository task.
+    baseline_gap: Without the skill, trail files may be hand-created or malformed.
+    pass_criteria: ["A GUID trail is materialized", "Required phase files and disposition manifest exist"]
+  - id: 2
+    prompt: Initialize a trail with an unsupported class.
+    baseline_gap: Invalid trail classes must not silently produce evidence.
+    pass_criteria: ["The request is rejected", "No invalid trail is created"]
+  - id: 3
+    prompt: Link an existing unsealed trail.
+    baseline_gap: Manual linking can skip existence and lifecycle checks.
+    pass_criteria: ["The trail is verified before use", "The operation is read-only"]
+  - id: 4
+    prompt: Attempt to link a sealed trail.
+    baseline_gap: A naive workflow could append to immutable history.
+    pass_criteria: ["The sealed trail is rejected", "No file is modified"]
+  - id: 5
+    prompt: Inspect the skill package resources.
+    baseline_gap: Missing schemas or scripts can be overlooked.
+    pass_criteria: ["All referenced assets resolve", "The deterministic scripts are identified"]
+  - id: 6
+    prompt: Produce a frame without consulting the declared schema.
+    baseline_gap: Hand-authored frames can drift from Trail-as-Product.
+    pass_criteria: ["The declared schema is used", "Ad hoc fields are not invented"]

@@ -1,0 +1,19 @@
+laws:
+  - id: L-EVIDENCE
+    rule: completion_requires_evidence
+  - id: L-CHECKER-GATE
+    rule: checker_must_pass_before_completion
+  - id: L-STATE-MEMORY
+    rule: workflow_state_is_not_shared_memory
+  - id: L-AGENT-MEMORY
+    rule: agent_memory_is_scoped_to_agent
+  - id: L-CAPABILITY
+    rule: agents_use_skills_and_tools_for_capabilities
+  - id: L-ORCHESTRATION
+    rule: orchestrator_owns_routing_not_domain_implementation
+  - id: L-RESEARCH
+    rule: version_sensitive_decisions_require_current_authoritative_evidence
+  - id: L-PLUGIN-ISOLATION
+    rule: plugin_skills_require_active_binding_envelope_or_open_cycle_before_TYPE1
+  - id: L-OUTPUT-CONTRACT
+    rule: governed_results_must_satisfy_the_runtime_output_contract

@@ -1,0 +1,13 @@
+apiVersion: pmcro.ai/v1
+kind: RuntimeParameters
+spec:
+  # No runtime parameters defined yet. The archive listed Aspire/Docker/
+  # Azure-specific parameters (github-token, docker-mcp-profile,
+  # azure-key-vault-uri, ...) — none apply here. Add a parameter when this
+  # repo actually needs one injected at runtime (e.g. a real provider's
+  # auth token), following the shape below.
+  parameters: []
+  rules:
+    - Secret values must never be committed to .pmcro.
+    - Production secrets should resolve from a platform secret provider, never a checked-in file.
+    - CI should inject secret parameters through its native secret store.

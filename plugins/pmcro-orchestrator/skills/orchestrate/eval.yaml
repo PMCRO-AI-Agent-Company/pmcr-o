@@ -1,0 +1,28 @@
+skill: orchestrate
+status: specified_not_yet_run
+pass_threshold: "5/6 trials must pass"
+trials:
+  - id: 1
+    prompt: Open a cycle for a concrete task without a trail id.
+    baseline_gap: Manual orchestration can bypass the trail lifecycle.
+    pass_criteria: ["A valid trail is selected or minted", "An orchestrator frame is logged"]
+  - id: 2
+    prompt: Open a cycle with an existing unsealed unclaimed trail.
+    baseline_gap: Manual linking may omit ownership checks.
+    pass_criteria: ["The trail is claimed", "Only orchestrator.jsonl is appended"]
+  - id: 3
+    prompt: Attempt to claim an already claimed trail.
+    baseline_gap: A dispatcher could create competing owners.
+    pass_criteria: ["The request is rejected", "Existing evidence is unchanged"]
+  - id: 4
+    prompt: Attempt to open a sealed trail.
+    baseline_gap: Manual workflows may mutate immutable history.
+    pass_criteria: ["The request is rejected", "The sealed trail remains unchanged"]
+  - id: 5
+    prompt: Ask the orchestrator to perform domain work.
+    baseline_gap: A generic agent may blur routing and execution authority.
+    pass_criteria: ["The orchestrator routes only", "No domain execution is performed"]
+  - id: 6
+    prompt: Open a cycle and hand it to Planner.
+    baseline_gap: Phase ownership can be lost in ad hoc workflows.
+    pass_criteria: ["The handoff identifies Planner", "The frame has schema-conformant lifecycle data"]

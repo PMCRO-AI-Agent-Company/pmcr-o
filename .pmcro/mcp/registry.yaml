@@ -1,0 +1,15 @@
+apiVersion: pmcro.ai/v1
+kind: McpRegistry
+spec:
+  principle: capabilities-not-orchestration
+  # No MCP providers or routing configured — see providers/registry.yaml
+  # and ../README.md "Source and adaptation". The archive routed github,
+  # browser, mcp-gateway, containers, and host-command-execution to four
+  # concrete MCP providers; none of those are wired in this repo.
+  providers: []
+  routing: {}
+  rules:
+    - Prefer authoritative providers over PMCRO provider reimplementations.
+    - Terminal remains a separate high-risk capability for arbitrary host commands.
+    - Build a PMCRO adapter only when it adds PMCRO-owned policy, evidence, lifecycle, audit, or domain semantics.
+    - Provider credentials remain external to this registry.

@@ -1,54 +1,53 @@
 # .agents — maintainer tooling
 
-This directory is **not** shipped product content. It mirrors the shape used by
-[dotnet/skills](https://github.com/dotnet/skills/tree/main/.agents) and by
-this colony's own [pmcro-skills_archive](https://github.com/PMCRO-AI-Agent-Company/pmcro-skills_archive)
-repo: local authoring helpers for people working *on* this repository, not
-PMCR-O lifecycle mechanics themselves (those stay under `plugins/pmcro-*/`).
+This directory is **not** shipped product content. It contains local authoring
+and repository-maintenance helpers for people working *on* this repository.
+PMCR-O lifecycle mechanics remain under `plugins/pmcro-*/`, while durable
+governance and evidence remain under `.pmcro/`.
 
 | Path | Purpose |
 |------|---------|
-| `skills/create-skill/` | Scaffold a new skill under the right `plugins/pmcro-*/skills/` |
-| `skills/create-skill-test/` | Author `eval.yaml` for a skill (baseline-vs-skilled trials) |
-| `skills/improve-skill-quality/` | Fix a skill that fails its eval or loses to baseline |
+| `skills/create-skill/` | Scaffold a new skill under an existing PMCRO plugin |
+| `skills/create-skill-test/` | Author `eval.yaml` using baseline-vs-skilled trials |
+| `skills/improve-skill-quality/` | Diagnose and fix failed skill evaluations |
+| `export-source-dump.ps1` | Deterministically export a root-relative source-file inventory |
 
-Runtime / installable product lives only under `plugins/pmcro-*/`.
+## Export source dump
 
-Do **not** put laws, trails, identity injection, or seed-queue here — those are
-`.pmcro/` runtime concerns, not this authoring surface.
+`export-source-dump.ps1` writes a sorted, root-relative file inventory to an
+explicit output file. It accepts exclusion patterns, rejects drive-root
+outputs, creates a missing destination directory, and excludes the output
+file itself when it is inside the source tree.
+
+Example:
+
+```powershell
+& .agents/export-source-dump.ps1 `
+  -Root . `
+  -Exclude '.git','.vs','*.zip','.pmcro/trails' `
+  -OutputPath .artifacts/source-dump.txt
+```
+
+The dump is an inventory, not a copy of file contents. It is intended for
+architecture audits, source snapshots, and reproducible repository inspection.
+
+## Maintainer skill rules
+
+- Keep authoring helpers separate from shipped plugin content.
+- Use the six existing production plugins; do not create a plugin merely to
+  hold a capability already provided elsewhere.
+- Production skills use `SKILL.md`, optional `assets/`, `references/`, and
+  `scripts/`, plus required `eval.yaml` governance metadata.
+- Never put runtime state, trails, queues, laws, secrets, or custom loaders in
+  a production skill package.
+- Keep evaluation thresholds explicit and never lower them to obtain a pass.
+- Prefer deterministic scripts for filesystem/package operations and verify
+  their behavior against real repository paths before claiming success.
 
 ## Source and adaptation
 
-Ported from [pmcro-skills_archive](https://github.com/PMCRO-AI-Agent-Company/pmcro-skills_archive)
-`.agents/` @ `main` (commit `d864f70`), at the maintainer's direction, then
-trimmed to exactly this shape — `agents/`, `commands/`, `memory/`, and
-`skills/export-source/` were all explicitly removed, not just deferred.
-Kept content was adapted rather than left as a false claim about this repo:
-
-- `skills/create-skill/SKILL.md`'s "Plugin targets" list was rewritten to
-  this repo's actual six plugins (the archive's own list had drifted to
-  names — `pmcro-system`, `pmcro-strategy`, `pmcro-actuator` — that don't
-  exist here).
-- The trailing "PMCRO Output Law" section and `maf: native_skill: true`
-  frontmatter field were dropped from every ported `SKILL.md`. This repo
-  has no `.pmcro/runtime/output-contract.md`, no `L-OUTPUT-CONTRACT`, and
-  no Microsoft Agent Framework (MAF) runtime — keeping those lines would
-  have asserted infrastructure that isn't real here. If this repo adopts
-  an output contract or MAF later, restore them deliberately, not as a
-  side effect of a mirror.
-- `skills/create-skill/SKILL.md` gained one line not in the archive:
-  point at the `command.<name>.asset.md` / `run.<name>.asset.md` /
-  `reject.<name>.asset.md` triad already established across every
-  `plugins/pmcro-*/skills/*/` in this repo, so a newly scaffolded skill
-  follows this repo's own real convention, not just the archive's.
-
-Removed on top of that, at the maintainer's explicit direction (matching
-the same trim made in the archive's own redesign session): `README.md`'s
-`plugins/marketplace.json` mirror (this repo keeps one canonical
-`.claude-plugin/marketplace.json`, nothing to mirror or sync-check),
-`agents/skill-quality-reviewer.agent.md`, `commands/` (both
-`agents-sync-check.md` and `export-source.md`), `memory/` (on-disk Claude
-memory mirror), and `skills/export-source/` in full (SKILL.md, eval.yaml,
-assets/, references/, scripts/export_source.py) — the script was tested
-for real against this repo before this removal decision and worked
-correctly, but the whole capability was cut regardless, per direction.
+The maintainer skills were adapted from the repository's historical
+`pmcro-skills_archive` authoring surface, then aligned to this repository's
+actual six-plugin topology and active `.pmcro/` governance layer. Historical
+archive-only paths are not treated as live repository capabilities unless they
+are deliberately restored and validated here.

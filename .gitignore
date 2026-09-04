@@ -5,3 +5,6 @@
 /pmcro-maker.zip
 /pmcro-checker.zip
 /pmcro-reflector.zip
+
+# Visual Studio local state
+/.vs/

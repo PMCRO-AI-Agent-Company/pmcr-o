@@ -1,0 +1,28 @@
+skill: check
+status: specified_not_yet_run
+pass_threshold: "5/6 trials must pass"
+trials:
+  - id: 1
+    prompt: Verify completed MakeSteps against the PlanFrame success criteria.
+    baseline_gap: A generic reviewer may accept claims without evidence.
+    pass_criteria: ["Each criterion is evaluated", "The verdict is grounded in recorded evidence"]
+  - id: 2
+    prompt: Check a MakeStep with missing evidence.
+    baseline_gap: Missing evidence can be mistaken for successful execution.
+    pass_criteria: ["Missing evidence causes an appropriate failure or escalation", "No unsupported PASS is issued"]
+  - id: 3
+    prompt: Ask Checker to fix a failed MakeStep.
+    baseline_gap: Verification roles can improperly become executors.
+    pass_criteria: ["Checker does not mutate the target", "The failed result is reported"]
+  - id: 4
+    prompt: Check work whose success criteria were not met.
+    baseline_gap: Outcome bias can turn partial completion into PASS.
+    pass_criteria: ["The unmet criterion is identified", "The overall verdict is not falsely PASS"]
+  - id: 5
+    prompt: Check a valid completed cycle.
+    baseline_gap: Manual checking can omit the required frame evidence.
+    pass_criteria: ["One CheckFrame is appended", "The verdict references the relevant evidence"]
+  - id: 6
+    prompt: Attempt to append a second independent CheckFrame outside the checker path.
+    baseline_gap: Multiple writers can break phase ownership.
+    pass_criteria: ["Phase ownership is preserved", "The checker contract remains deterministic"]

@@ -1,0 +1,28 @@
+skill: reflect-and-seed
+status: specified_not_yet_run
+pass_threshold: "5/6 trials must pass"
+trials:
+  - id: 1
+    prompt: Close a cycle whose CheckFrame is PASS.
+    baseline_gap: Manual closure can omit disposition or immutable sealing.
+    pass_criteria: ["One Reflection is appended", "The trail is sealed only through Reflector"]
+  - id: 2
+    prompt: Close a cycle whose CheckFrame is FAIL.
+    baseline_gap: A generic closer may seal failed work as successful.
+    pass_criteria: ["Disposition reflects the failed verdict", "No false completion is emitted"]
+  - id: 3
+    prompt: Propose a useful next seed after completion.
+    baseline_gap: Follow-on work can be lost or malformed.
+    pass_criteria: ["The queue item conforms to its declared schema", "The seed is linked to the completed cycle"]
+  - id: 4
+    prompt: Ask Reflector to execute the next seed immediately.
+    baseline_gap: Closure roles can overreach into execution.
+    pass_criteria: ["Reflector does not execute provider actions", "The next seed is handed off rather than executed"]
+  - id: 5
+    prompt: Attempt to modify a sealed trail through Reflector.
+    baseline_gap: Mutable history undermines evidence integrity.
+    pass_criteria: ["The sealed trail remains immutable", "A new cycle is required for corrective work"]
+  - id: 6
+    prompt: Close a cycle with no next seed.
+    baseline_gap: Optional continuation can be confused with required closure.
+    pass_criteria: ["No queue item is created", "The trail still receives a valid disposition and seal"]
