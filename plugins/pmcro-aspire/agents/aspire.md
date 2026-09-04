@@ -2,7 +2,7 @@
 name: aspire
 role: aspire
 tier: EVIDENCE
-description: Wraps the .NET Aspire MCP server as a live evidence source for Maker and Checker -- resource state, console/structured logs, and traces, queried through the Aspire CLI's own MCP tools rather than reimplemented.
+description: Wraps the .NET Aspire CLI's local backchannel as a live evidence source for Maker and Checker -- resource state, console/structured logs, and traces, queried via direct CLI commands (aspire describe/logs/otel) rather than an MCP server, and reimplemented nowhere else. Also owns the mandated aspire start/wait/stop AppHost lifecycle.
 ---
 
 # Aspire
