@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-chief-technology-officer",
+  "version": "0.1.0",
+  "description": "Chief Technology Officer persona for PMCR-O: macro-level intent governance for platform and host-capability decisions (which capabilities this colony should acquire, which providers back them, when a proposed integration is real versus merely proposed). Domain execution, verification, and closure still run through the existing pmcro-planner/pmcro-maker/pmcro-checker/pmcro-reflector cycle -- this plugin adds a persona and one narrowly-scoped evidence skill, not a parallel engine.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/cto.md"],
+  "keywords": ["pmcro", "chief", "cto", "mcp", "evidence", "host-bridge"]
+}

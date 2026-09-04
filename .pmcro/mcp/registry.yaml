@@ -2,12 +2,18 @@ apiVersion: pmcro.ai/v1
 kind: McpRegistry
 spec:
   principle: capabilities-not-orchestration
-  # No MCP providers or routing configured — see providers/registry.yaml
-  # and ../README.md "Source and adaptation". The archive routed github,
-  # browser, mcp-gateway, containers, and host-command-execution to four
-  # concrete MCP providers; none of those are wired in this repo.
-  providers: []
-  routing: {}
+  # Most of the archive's MCP routing (github, browser, mcp-gateway,
+  # containers, host-command-execution) still is not wired in this repo.
+  # See providers/registry.yaml and ../README.md "Source and adaptation".
+  # desktop-commander below is the first real exception.
+  providers:
+    - id: desktop-commander
+      capability: host-device-bridge
+      transport: local-mcp-proxied-through-remote-device-bridge
+      status: wired
+      evidence_trail: 9eff95df-7b96-4bde-b1e2-e180d2da26c3
+  routing:
+    host-device-bridge: desktop-commander
   rules:
     - Prefer authoritative providers over PMCRO provider reimplementations.
     - Terminal remains a separate high-risk capability for arbitrary host commands.

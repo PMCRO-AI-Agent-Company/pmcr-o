@@ -1,13 +1,25 @@
 apiVersion: pmcro.ai/v1
 kind: ProviderRegistry
 spec:
-  # No providers configured. The archive's registry listed GitHub MCP,
-  # Playwright MCP, Docker MCP Toolkit, a "maf-native" tooling provider,
-  # and a "pmcro-runtime" provider — none exist in this repo. Rather than
-  # copy entries this repo can't back up, or invent neutral placeholders
-  # that would just be a different fiction, this is left empty on
-  # purpose. See ../README.md "Source and adaptation".
-  providers: {}
+  # Most of the archive's registry entries (GitHub MCP, Playwright MCP,
+  # Docker MCP Toolkit, a "maf-native" tooling provider, a "pmcro-runtime"
+  # provider) still do not exist in this repo, and are deliberately not
+  # copied or invented. See ../README.md "Source and adaptation".
+  # remote-device-bridge below is the first real exception.
+  providers:
+    remote-device-bridge:
+      capability: host-device-bridge
+      description: >-
+        The governed agent session's own remote-device bridge (device
+        link/folder-access queries) plus whatever local MCP server the
+        linked desktop app proxies through it -- this repo's case:
+        "Desktop Commander" (file read/write/search/process tools).
+      status: wired
+      evidence_trail: 9eff95df-7b96-4bde-b1e2-e180d2da26c3
+      caveat: >-
+        A proxied local server's announced state is not proof its tools
+        are loaded; a mid-session disconnect is real and was observed
+        and recovered from live in the evidence trail above.
   rules:
     - Existing authoritative providers remain the implementation boundary.
     - PMCRO owns capability policy, routing, evidence, lifecycle, and governance.

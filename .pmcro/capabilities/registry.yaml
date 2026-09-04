@@ -1,13 +1,28 @@
 apiVersion: pmcro.ai/v1
 kind: CapabilityRegistry
 spec:
-  # No capability leaf files exist yet (browser.yaml, containers.yaml,
-  # evidence.yaml, filesystem.yaml, github.yaml, host-command-execution.yaml,
-  # lifecycle.yaml, mcp-gateway.yaml, memory.yaml, ...) — this repo has no
-  # provider wired to back any of them. See ../README.md. Add a capability
-  # entry (and its leaf file) when a real provider exists for it, not
-  # ahead of that.
-  capabilities: {}
+  # Most capability leaf files still do not exist (browser.yaml,
+  # containers.yaml, evidence.yaml, filesystem.yaml, github.yaml,
+  # lifecycle.yaml, mcp-gateway.yaml, memory.yaml, ...) -- this repo
+  # still has no provider wired to back most of them. See ../README.md.
+  # Add a capability entry (and its leaf file) when a real provider
+  # exists for it, not ahead of that. host-device-bridge below is the
+  # first exception: a real, live-demonstrated capability, not a
+  # placeholder.
+  capabilities:
+    host-device-bridge:
+      description: >-
+        Read a linked local machine's real files and query its live
+        device/link state from a governed agent session, via a
+        remote-device MCP proxy. See providers/registry.yaml and
+        mcp/registry.yaml for the concrete provider.
+      status: wired
+      evidence_trail: 9eff95df-7b96-4bde-b1e2-e180d2da26c3
+      rule: >-
+        A folder must be explicitly granted (a real, non-bypassable
+        consent prompt on the host device) before its contents are
+        reachable; an ungranted path returns a names-only skeleton,
+        never inferred content.
   rules:
     - Capability identifiers are stable PMCRO contracts, not provider tool names.
     - Provider selection resolves through providers/registry.yaml and mcp/registry.yaml.

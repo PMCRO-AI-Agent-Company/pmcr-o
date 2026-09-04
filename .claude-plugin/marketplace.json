@@ -37,6 +37,11 @@
       "name": "pmcro-aspire",
       "source": "./plugins/pmcro-aspire",
       "description": "Wraps the .NET Aspire CLI's local backchannel as a live evidence source: Maker and Checker query real resource state, console/structured logs, and traces via 'aspire describe'/'aspire logs'/'aspire otel' instead of relying on self-reported status."
+    },
+    {
+      "name": "pmcro-chief-technology-officer",
+      "source": "./plugins/pmcro-chief-technology-officer",
+      "description": "Chief Technology Officer persona: macro-level intent governance for platform and host-capability decisions. Domain execution still runs through the existing five-role cycle. Also ships host-bridge-evidence, a narrowly-scoped skill for querying a linked local machine's real device state and files as Make/Check evidence."
     }
   ]
 }
