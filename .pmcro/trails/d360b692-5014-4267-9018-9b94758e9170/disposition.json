@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "d360b692-5014-4267-9018-9b94758e9170",
+    "task_id":  "task-add-orchestrationapi-grpc-integration-test",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T09:13:41.4577255Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T09:13:50.9578477Z"
+}

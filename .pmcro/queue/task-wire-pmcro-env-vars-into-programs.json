@@ -1,0 +1,8 @@
+﻿{
+    "id":  "task-wire-pmcro-env-vars-into-programs",
+    "summary":  "AppHost passes Pmcro__RuntimeRoot/TrailRoot/QueueRoot/SkillsRoot as environment variables into both ProjectName.Runtime and ProjectName.OrchestrationApi, but neither Program.cs reads them yet -- decide what they\u0027re actually meant to enable (e.g. the runtime querying its own trail/queue state) and wire it up, or remove them from AppHost.cs if they were provisional and are not needed.",
+    "proposed_role":  null,
+    "source_trail_id":  "d360b692-5014-4267-9018-9b94758e9170",
+    "created_at":  "2026-09-04T09:13:50.9533224Z",
+    "status":  "open"
+}

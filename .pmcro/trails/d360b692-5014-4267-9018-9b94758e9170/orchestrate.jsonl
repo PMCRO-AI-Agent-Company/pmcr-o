@@ -1,0 +1,1 @@
+﻿{"ts":"2026-09-04T09:13:41.6120180Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"Claiming task-add-orchestrationapi-grpc-integration-test, the older of the two pending items. Goal: an actual live round-trip through GET /api/chat, not just code review."}
