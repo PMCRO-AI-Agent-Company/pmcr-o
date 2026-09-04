@@ -1,0 +1,8 @@
+﻿{
+    "id":  "task-build-pmcro-aspire-mcp-skill",
+    "summary":  "Scope and build a plugins/pmcro-aspire PMCR-O skill that wraps the .NET Aspire MCP server (\u0027aspire agent mcp\u0027, STDIO transport) so PMCR-O cycles can query live Aspire resource state, console/structured logs, and traces (via list_resources/list_console_logs/list_structured_logs/list_traces/execute_resource_command) as part of Make/Check evidence, per the research recorded in trail ba0c2c65-075f-470b-abed-e5647053dc8b step 2.",
+    "proposed_role":  "planner",
+    "source_trail_id":  "ba0c2c65-075f-470b-abed-e5647053dc8b",
+    "created_at":  "2026-09-04T05:29:45.1032637Z",
+    "status":  "open"
+}

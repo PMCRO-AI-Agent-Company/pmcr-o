@@ -9,10 +9,10 @@
 
 ## Reconciled runtime counts
 
-- pending queue items: 0
+- pending queue items: 1 (task-build-pmcro-aspire-mcp-skill)
 - completed queue items: 2 (task-hand-run-full-five-plugin-cycle, task-add-trail-link-path-script)
-- sealed trails: 18
-- last sealed trail: `cff63451-185c-4a61-968a-cc126f5f1481`
+- sealed trails: 19
+- last sealed trail: `ba0c2c65-075f-470b-abed-e5647053dc8b`
 
 ## Lock table
 
