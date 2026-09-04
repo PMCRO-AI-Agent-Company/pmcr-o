@@ -1,0 +1,1 @@
+﻿{"ts":"2026-09-04T09:33:27.2060391Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"Claiming task-wire-pmcro-env-vars-into-programs, the older of the two pending items. Goal: determine with real evidence whether the four Pmcro__* env vars AppHost passes are actually consumed anywhere, then either wire them up or remove them -- not guess."}
