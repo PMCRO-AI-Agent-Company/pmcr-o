@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "0aa1c59d-6941-4692-9d40-4b893eb9fe5d",
+    "task_id":  "task-hand-run-full-five-plugin-cycle",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T17:46:39.0307152Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T17:49:17.9942434Z"
+}

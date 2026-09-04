@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "fdd09c8b-6517-4858-a6d0-be15659aa649",
+    "task_id":  "task-fix-queue-root-path-derivation-in-reflect-and-seed",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T17:53:29.0005753Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T17:57:08.7788446Z"
+}

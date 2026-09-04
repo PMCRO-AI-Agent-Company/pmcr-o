@@ -82,7 +82,7 @@ Add-Content -Path $reflectPath -Value ($frame | ConvertTo-Json -Depth 10 -Compre
 
 $seeded = $false
 if ($nextSeedObj) {
-  if (-not $QueueRoot) { $QueueRoot = Join-Path (Split-Path (Split-Path $PmcroRoot -Parent) -Parent) '.pmcro\queue' }
+  if (-not $QueueRoot) { $QueueRoot = Join-Path (Split-Path (Split-Path $trailDir -Parent) -Parent) 'queue' }
   if (-not (Test-Path $QueueRoot)) { New-Item -ItemType Directory -Path $QueueRoot -Force | Out-Null }
   $queueItem = [ordered]@{
     id               = $NextSeedId

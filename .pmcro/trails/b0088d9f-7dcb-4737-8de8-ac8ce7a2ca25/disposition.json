@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "b0088d9f-7dcb-4737-8de8-ac8ce7a2ca25",
+    "task_id":  "task-add-queue-root-regression-check",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T18:03:00.2437423Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T18:07:20.0452819Z"
+}
