@@ -1,0 +1,7 @@
+# Plugin build artifacts (regenerable via scripts/New-PluginZip.ps1)
+/pmcro-trail.zip
+/pmcro-orchestrator.zip
+/pmcro-planner.zip
+/pmcro-maker.zip
+/pmcro-checker.zip
+/pmcro-reflector.zip
