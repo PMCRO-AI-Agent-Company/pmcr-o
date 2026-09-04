@@ -17,16 +17,20 @@ target_skill: make
 1. **Read the step.** Load the matching `steps[]` entry (`action`,
    `subject_agent`) from the trail's current PlanFrame.
 2. **Do the work.** Perform the action the step describes.
-3. **Compose the MakeStep.** Record `step_index`, the `action` actually
+3. **Compose what actually happened.** Reason out the `action` actually
    taken (which may differ in detail from the plan's description — record
-   what really happened, not a restatement of the plan), and `result`
-   (`ok`, `failed`, or `skipped`), conforming to
-   `schema.trail-frame.asset.json`.
-4. **Append.** Write one line to `make.jsonl`: `role: "maker"`,
-   `type: "MakeStep"`, next monotonic `seq` for that file.
-5. **Hand off.** If a step remains unattempted, hand off to Maker again
-   for that step. Otherwise hand off to Checker.
-6. Return the success result shape from `command.make.asset.md`.
+   what really happened, not a restatement of the plan) and the `result`
+   (`ok`, `failed`, or `skipped`).
+4. **Call `scripts/New-MakeStep.ps1`** with `step_index`, `action`, and
+   `result`, rather than writing to `make.jsonl` directly. The script
+   re-checks every precondition above, computes the next monotonic `seq`,
+   stamps `ts` / `role: "maker"` / `type: "MakeStep"`, appends one
+   correctly schema-shaped line, and works out whether any PlanFrame step
+   is still unattempted.
+5. **Hand off** using the script's returned `handed_off_to` — `maker`
+   (itself, for the next unattempted step) or `checker`.
+6. Return the script's own JSON output — it already matches the success
+   result shape in `command.make.asset.md`.
 
 ## Non-goals
 

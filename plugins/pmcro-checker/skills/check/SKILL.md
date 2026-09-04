@@ -30,4 +30,6 @@ See `assets/command.check.asset.md`, `assets/run.check.asset.md`, and
 - `assets/command.check.asset.md`
 - `assets/run.check.asset.md`
 - `assets/reject.check.asset.md`
+- `scripts/New-CheckFrame.ps1` — the deterministic implementation of the
+  accept path; call this rather than writing `check.jsonl` directly
 - `references/README.md`

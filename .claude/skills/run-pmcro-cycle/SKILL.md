@@ -20,20 +20,35 @@ hand-simulated — one agent writing all five files itself, in character.
 That's no longer necessary: each role is a real plugin with its own
 command.
 
-| Phase | Plugin : skill | Writes to | Ends by |
-|---|---|---|---|
-| Open | `pmcro-orchestrator:orchestrate run` | `orchestrate.jsonl` | handing off to Planner |
-| Plan | `pmcro-planner:plan run` | `plan.jsonl` | handing off to Maker |
-| Make | `pmcro-maker:make step` (once per step) | `make.jsonl` | handing off to itself (next step) or Checker |
-| Check | `pmcro-checker:check run` | `check.jsonl` | handing off to Reflector |
-| Reflect | `pmcro-reflector:reflect-and-seed run` | `reflect.jsonl` | sealing the trail |
+| Phase | Plugin : skill | Deterministic script | Writes to | Ends by |
+|---|---|---|---|---|
+| Open | `pmcro-orchestrator:orchestrate run` | `scripts/New-OrchestrateFrame.ps1` (after minting via `pmcro-trail`'s `New-Trail.ps1`, or directly for the link path) | `orchestrate.jsonl` | handing off to Planner |
+| Plan | `pmcro-planner:plan run` | `scripts/New-PlanFrame.ps1` | `plan.jsonl` | handing off to Maker |
+| Make | `pmcro-maker:make step` (once per step) | `scripts/New-MakeStep.ps1` | `make.jsonl` | handing off to itself (next step) or Checker |
+| Check | `pmcro-checker:check run` | `scripts/New-CheckFrame.ps1` | `check.jsonl` | handing off to Reflector |
+| Reflect | `pmcro-reflector:reflect-and-seed run` | `scripts/Complete-ReflectAndSeed.ps1` | `reflect.jsonl` | sealing the trail |
 
-Whether "running" a command here means literally invoking it or an agent
-following its `run.<name>.asset.md` instructions and writing the file
-directly is an implementation detail of whatever is executing the cycle —
-the contract (preconditions, file ownership, result/reject shapes) is the
-same either way. Every one of these plugins' own `command`/`run`/`reject`
-asset triads is the actual source of truth; this skill only sequences them.
+**"Running" a command means calling its script, not hand-writing the
+phase file.** Every role's `run.<name>.asset.md` describes what the
+caller reasons about (the frame's substantive content: a goal, what
+happened, a verdict, a disposition) — the actual file mechanics
+(precondition checks, computing the next `seq`, producing correctly
+schema-shaped JSON, appending) are a deterministic, zero-reasoning
+PowerShell script, mirroring `pmcro-trail`'s own `New-Trail.ps1`. This
+matters beyond tidiness: this exact split caught real bugs — Windows
+PowerShell 5.1's `ConvertTo-Json` silently corrupts array-valued fields
+written by hand or built carelessly, and PowerShell's `Set-Location`
+doesn't move the process CWD that raw file APIs resolve against. A script
+that's actually run and tested surfaces those; hand-composed JSON typed
+fresh each cycle does not, and re-introduces the exact hand-typed-frame
+problem Trail-as-Product exists to prevent.
+
+All five phases now have one: Orchestrator's own claim/link step is
+`scripts/New-OrchestrateFrame.ps1` — it doesn't mint or link a trail
+itself (minting is still `pmcro-trail`'s `New-Trail.ps1`), but its own
+precondition checks (exists, unsealed, not already claimed) *are* the
+link-path verification for a supplied `--trail-id`, so claiming and
+verifying are one deterministic call, not two.
 
 ## The procedure
 

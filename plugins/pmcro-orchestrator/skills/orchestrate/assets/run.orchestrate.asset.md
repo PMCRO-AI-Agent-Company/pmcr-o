@@ -18,19 +18,23 @@ target_skill: orchestrate
 ## Steps
 
 1. **Mint-or-link.**
-   - No `--trail-id`: call `pmcro-trail:initialize --class <class, default B>`
-     → get back a fresh `trail_id`.
-   - `--trail-id` supplied: call `pmcro-trail:initialize --trail-id <id>`
-     (link path) → verified, same `trail_id` back.
-2. **Log the orchestrator's own frame** — append one line to that trail's
-   own `orchestrate.jsonl` (never `plan.jsonl` — that file belongs to
-   Planner), conforming to `schema.trail-frame.asset.json`
-   (`role: "orchestrator"`, `type: "MessySeedIntent"` or a dispatch-note
-   type as appropriate), recording the task claimed/received and the
-   decision to open this cycle.
+   - No `--trail-id`: call `pmcro-trail`'s `scripts/New-Trail.ps1
+     -PmcroRoot ... -Class <class, default B>` → get back a fresh
+     `trail_id`.
+   - `--trail-id` supplied: skip minting — the link-path verification
+     happens as part of step 2 below, since claiming and verifying an
+     existing trail are the same operation.
+2. **Call `scripts/New-OrchestrateFrame.ps1`** with that `trail_id` and
+   the task, rather than writing to `orchestrate.jsonl` directly. The
+   script re-checks every precondition (trail exists, unsealed, not
+   already claimed by a prior cycle — this check *is* the link-path
+   verification for a supplied `--trail-id`), stamps `ts` /
+   `role: "orchestrator"` / `type: "MessySeedIntent"`, and appends one
+   correctly schema-shaped line recording the task claimed/received.
 3. **Hand off to Planner.** Orchestrator's job for this command ends here —
    it does not continue into Plan/Make/Check/Reflect itself.
-4. Return the success result shape from `command.orchestrate.asset.md`.
+4. Return the script's own JSON output — it already matches the success
+   result shape in `command.orchestrate.asset.md`.
 
 ## Non-goals
 

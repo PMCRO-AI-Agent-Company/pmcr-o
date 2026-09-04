@@ -5,8 +5,9 @@
 | Asset | Purpose |
 |---|---|
 | `assets/command.plan.asset.md` | invocation, parameters, result/error shape |
-| `assets/run.plan.asset.md` | accept-path implementation (read task, compose PlanFrame, append, hand off) |
+| `assets/run.plan.asset.md` | accept-path implementation (read task, compose PlanFrame content, hand off) |
 | `assets/reject.plan.asset.md` | refusal-path implementation |
+| `scripts/New-PlanFrame.ps1` | deterministic, zero-reasoning implementation of the file mechanics: precondition checks, `seq`, append |
 
 ## Source URLs
 

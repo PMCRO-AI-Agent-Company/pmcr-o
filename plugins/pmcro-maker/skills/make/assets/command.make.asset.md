@@ -37,7 +37,8 @@ CLI flag.
   "phase": "make",
   "seq": 1,
   "step_index": 1,
-  "result": "ok"
+  "result": "ok",
+  "handed_off_to": "checker"
 }
 ```
 

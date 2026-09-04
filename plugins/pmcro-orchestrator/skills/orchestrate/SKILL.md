@@ -30,4 +30,7 @@ and `assets/reject.orchestrate.asset.md`.
 - `assets/command.orchestrate.asset.md`
 - `assets/run.orchestrate.asset.md`
 - `assets/reject.orchestrate.asset.md`
+- `scripts/New-OrchestrateFrame.ps1` — the deterministic implementation of
+  the claim/link step; call this rather than writing `orchestrate.jsonl`
+  directly
 - `references/README.md`

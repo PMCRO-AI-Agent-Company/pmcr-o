@@ -31,4 +31,6 @@ See `assets/command.make.asset.md`, `assets/run.make.asset.md`, and
 - `assets/command.make.asset.md`
 - `assets/run.make.asset.md`
 - `assets/reject.make.asset.md`
+- `scripts/New-MakeStep.ps1` — the deterministic implementation of the
+  accept path; call this rather than writing `make.jsonl` directly
 - `references/README.md`

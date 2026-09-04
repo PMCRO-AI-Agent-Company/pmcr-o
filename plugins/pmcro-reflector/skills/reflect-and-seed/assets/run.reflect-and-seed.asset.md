@@ -20,18 +20,22 @@ target_skill: reflect-and-seed
    needed), `blocked` (verdict FAIL and no further Make attempt is
    warranted in this cycle), `superseded` (the goal no longer applies),
    or `informational` (the cycle wasn't pass/fail-shaped work).
-3. **Compose the Reflection.** `content` (a real narrative of what was
-   learned, not a restatement of the CheckFrame), `disposition`, and
-   `next_seed` (an object per `schema.trail-frame.asset.json`'s
-   `next_seed` field, or `null` if nothing follows).
-4. **Append.** Write one line to `reflect.jsonl`: `role: "reflector"`,
-   `type: "Reflection"`, next monotonic `seq` for that file.
-5. **File the seed, if any.** When `next_seed` is non-null, write one file
-   under `.pmcro/queue/` conforming to `schema.queue-item.asset.json`
-   (`status: "open"`, `source_trail_id` set to this trail).
-6. **Seal.** Update this trail's `disposition.json`: `sealed: true`,
-   `disposition` set to the value chosen in step 2, `sealed_at` set.
-7. Return the success result shape from `command.reflect-and-seed.asset.md`.
+3. **Compose the Reflection's content.** `content` (a real narrative of
+   what was learned, not a restatement of the CheckFrame) and, if
+   anything follows, a `next_seed` (`summary`, `proposed_role`) plus an
+   id to file it under.
+4. **Call `scripts/Complete-ReflectAndSeed.ps1`** with `content`,
+   `disposition`, and (when there is one) the `next_seed` and its id,
+   rather than writing `reflect.jsonl`, `.pmcro/queue/`, or
+   `disposition.json` directly. The script re-checks every precondition
+   above, computes the next monotonic `seq`, stamps `ts` /
+   `role: "reflector"` / `type: "Reflection"`, appends the line, files a
+   `schema.queue-item.asset.json`-conformant queue item when a seed was
+   given, and seals the trail — all as one atomic, deterministic
+   operation. Reasoning stays with the caller (was the cycle actually
+   done, what should follow); the file mechanics do not.
+5. Return the script's own JSON output — it already matches the success
+   result shape in `command.reflect-and-seed.asset.md`.
 
 ## Non-goals
 

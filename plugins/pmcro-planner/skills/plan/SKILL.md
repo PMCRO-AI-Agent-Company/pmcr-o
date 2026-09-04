@@ -30,4 +30,6 @@ See `assets/command.plan.asset.md`, `assets/run.plan.asset.md`, and
 - `assets/command.plan.asset.md`
 - `assets/run.plan.asset.md`
 - `assets/reject.plan.asset.md`
+- `scripts/New-PlanFrame.ps1` — the deterministic implementation of the
+  accept path; call this rather than writing `plan.jsonl` directly
 - `references/README.md`

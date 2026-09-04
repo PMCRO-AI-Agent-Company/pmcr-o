@@ -5,8 +5,9 @@
 | Asset | Purpose |
 |---|---|
 | `assets/command.make.asset.md` | invocation, parameters, result/error shape |
-| `assets/run.make.asset.md` | accept-path implementation (read step, do it, log it, hand off) |
+| `assets/run.make.asset.md` | accept-path implementation (read step, do it, hand off) |
 | `assets/reject.make.asset.md` | refusal-path implementation |
+| `scripts/New-MakeStep.ps1` | deterministic, zero-reasoning implementation of the file mechanics: precondition checks, `seq`, append, hand-off decision |
 
 ## Source URLs
 

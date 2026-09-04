@@ -1,0 +1,8 @@
+﻿{
+    "id":  "task-add-trail-link-path-script",
+    "summary":  "pmcro-trail:initialize\u0027s link path (an existing --trail-id supplied to orchestrate run) has no deterministic script of its own -- New-Trail.ps1 only implements mint and explicitly rejects an already-existing trail. Orchestrator\u0027s New-OrchestrateFrame.ps1 covers claiming/verifying a trail is open and unclaimed, but nothing verifies it was actually materialized by pmcro-trail\u0027s own initialize contract. Give pmcro-trail a real link-path script (or an -Link mode on New-Trail.ps1) so that half of its own command contract isn\u0027t still aspirational.",
+    "proposed_role":  "maker",
+    "source_trail_id":  "a594ffd3-a98b-4e76-a7dc-bb8cc5d96e0f",
+    "created_at":  "2026-09-04T00:15:48.6918955Z",
+    "status":  "open"
+}

@@ -21,15 +21,19 @@ target_skill: check
    happened (the MakeStep log, and, where relevant, direct re-inspection
    of the result), not against Maker's own `result` field taken at face
    value.
-3. **Compose the CheckFrame.** For each criterion: `check` (the criterion
-   text), `result` (`PASS`/`FAIL`), `evidence` (what was actually
-   inspected). Then an overall `verdict` (`PASS` only if every criterion
-   passed), conforming to `schema.trail-frame.asset.json`.
-4. **Append.** Write one line to `check.jsonl`: `role: "checker"`,
-   `type: "CheckFrame"`, next monotonic `seq` for that file.
+3. **Compose the criteria and verdict.** For each criterion: `check` (the
+   criterion text), `result` (`PASS`/`FAIL`), `evidence` (what was
+   actually inspected). Then an overall `verdict` (`PASS` only if every
+   criterion passed).
+4. **Call `scripts/New-CheckFrame.ps1`** with `criteria` and `verdict`,
+   rather than writing to `check.jsonl` directly. The script re-checks
+   every precondition above, computes the next monotonic `seq`, stamps
+   `ts` / `role: "checker"` / `type: "CheckFrame"`, and appends one
+   correctly schema-shaped line.
 5. **Hand off to Reflector.** Checker's job for this command ends here —
    it does not act on a FAIL itself.
-6. Return the success result shape from `command.check.asset.md`.
+6. Return the script's own JSON output — it already matches the success
+   result shape in `command.check.asset.md`.
 
 ## Non-goals
 
