@@ -15,6 +15,7 @@ param(
   [string]$PmcroRoot,
   [string]$OutputPath,
   [string]$TrailId,
+  [string]$TaskId,
   [ValidateSet('A', 'B')][string]$Class = 'B'
 )
 
@@ -47,6 +48,7 @@ foreach ($phase in @('orchestrate', 'plan', 'make', 'check', 'reflect')) {
 
 $disposition = [ordered]@{
   trail_id         = $TrailId
+  task_id          = if ($TaskId) { $TaskId } else { $null }
   trail_class      = 'B'
   engine_generated = $true
   opened_at        = (Get-Date).ToUniversalTime().ToString('o')
@@ -64,6 +66,7 @@ $reportedPath = if ($OutputPath) { $OutputPath } else { "trails/$TrailId/" }
 [pscustomobject]@{
   status      = 'ok'
   trail_id    = $TrailId
+  task_id          = if ($TaskId) { $TaskId } else { $null }
   trail_class = 'B'
   path        = $reportedPath
   scratch     = [bool]$OutputPath
