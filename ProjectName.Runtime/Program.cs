@@ -1,7 +1,6 @@
 using Microsoft.Agents.AI;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.AI;
-using Microsoft.Extensions.Http.Resilience;
 using ProjectName.Runtime.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +8,11 @@ builder.WebHost.ConfigureKestrel(options => options.ConfigureEndpointDefaults(en
 builder.AddServiceDefaults();
 builder.AddOllamaApiClient("model-orchestrator")
     .AddChatClient();
-builder.Services.Configure<HttpStandardResilienceOptions>("model-orchestrator", options =>
-{
-    options.TotalRequestTimeout.Timeout = TimeSpan.FromMinutes(5);
-    options.AttemptTimeout.Timeout = TimeSpan.FromMinutes(5);
-    options.CircuitBreaker.SamplingDuration = TimeSpan.FromMinutes(10);
-});
+// The 5-minute resilience timeout this client needs is now set once, for
+// every HttpClient in the process, in ProjectName.ServiceDefaults'
+// AddServiceDefaults() -- a per-client Configure<HttpStandardResilienceOptions>
+// override here previously did not work (named-options key mismatch) and
+// has been removed rather than left as dead, misleading code.
 builder.Services.AddGrpc();
 
 var app = builder.Build();

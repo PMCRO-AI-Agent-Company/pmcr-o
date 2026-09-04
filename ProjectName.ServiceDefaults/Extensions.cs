@@ -28,8 +28,27 @@ namespace Microsoft.Extensions.Hosting
 
             builder.Services.ConfigureHttpClientDefaults(http =>
             {
-                // Turn on resilience by default
-                http.AddStandardResilienceHandler();
+                // Turn on resilience by default. The framework default
+                // (10s attempt / 30s total) is too short for this app: every
+                // HttpClient registered anywhere in the process picks up
+                // this same default, including the gRPC channel
+                // OrchestrationApi opens to Runtime and the Ollama API
+                // client Runtime opens to the local model -- both can
+                // exceed 30s end to end even with the "/no_think" prompt
+                // prefix, especially on a cold model load. A prior attempt
+                // to raise this per-client via
+                // Services.Configure<HttpStandardResilienceOptions>("model-orchestrator", ...)
+                // in ProjectName.Runtime/Program.cs never took effect (the
+                // named-options key it targeted does not match the pipeline
+                // name AddStandardResilienceHandler() actually registers
+                // under) and has been removed; raising the shared default
+                // here instead is what verifiably fixes both hops.
+                http.AddStandardResilienceHandler(options =>
+                {
+                    options.AttemptTimeout.Timeout = TimeSpan.FromMinutes(5);
+                    options.TotalRequestTimeout.Timeout = TimeSpan.FromMinutes(5);
+                    options.CircuitBreaker.SamplingDuration = TimeSpan.FromMinutes(10);
+                });
 
                 // Turn on service discovery by default
                 http.AddServiceDiscovery();
