@@ -1,0 +1,13 @@
+{
+  "Version": 1,
+  "ProjectRoot": "P:\\ProjectName",
+  "Skills": [
+    "aspnet-core",
+    "configuring-opentelemetry-dotnet",
+    "grpc",
+    "microsoft-agent-framework",
+    "microsoft-extensions",
+    "minimal-api-file-upload"
+  ],
+  "UpdatedAt": "2026-09-04T17:30:29.1983397+00:00"
+}
