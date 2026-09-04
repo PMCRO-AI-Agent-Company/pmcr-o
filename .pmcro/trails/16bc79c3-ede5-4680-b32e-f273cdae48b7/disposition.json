@@ -1,0 +1,12 @@
+﻿{
+    "trail_id":  "16bc79c3-ede5-4680-b32e-f273cdae48b7",
+    "task_id":  "task-port-earned-knowledge-schema-from-legacy-repo",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T09:53:12.9084515Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T09:53:24.2077908Z"
+}
