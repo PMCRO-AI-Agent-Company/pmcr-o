@@ -1,0 +1,8 @@
+﻿{
+    "id":  "task-rebuild-orchestrationapi-agent-service",
+    "summary":  "Rebuild ProjectName.OrchestrationApi into the actual orchestration/agent-system service the user described (replacing the deleted gRPC Program.Runtime.cs/greet.proto/GreeterService.cs), since it is currently still the unmodified dotnet new webapi scaffold (WeatherForecastController etc.) despite the user treating it as the gRPC project\u0027s new home.",
+    "proposed_role":  "planner",
+    "source_trail_id":  "59143093-6276-45c1-b25e-bd4134d0f30a",
+    "created_at":  "2026-09-04T06:07:39.9244709Z",
+    "status":  "open"
+}
