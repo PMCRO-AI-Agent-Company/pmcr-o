@@ -1,0 +1,1 @@
+﻿{"ts":"2026-09-04T00:40:31.7920466Z","role":"orchestrator","seq":1,"type":"MessySeedIntent","content":"Human proposed a script that runs New-PluginZip.ps1 incrementally across every project under plugins/, instead of rebuilding each zip by hand. Build it as part of create-plugin."}

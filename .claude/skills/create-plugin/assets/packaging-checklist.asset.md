@@ -70,6 +70,26 @@ resolves against the *process's* real working directory, not wherever
 write) somewhere unexpected. If you ever reimplement zip-building instead
 of reusing the script, keep that resolution step.
 
+### Rebuilding all plugins at once: `scripts/Update-PluginZips.ps1`
+
+Don't loop `New-PluginZip.ps1` by hand over every folder under `plugins/`.
+`scripts/Update-PluginZips.ps1` does it incrementally — it compares each
+plugin's newest source-file timestamp against its zip's timestamp and only
+rebuilds the ones that actually changed (or have no zip yet), reporting
+the rest as `up-to-date` and skipping them:
+
+```powershell
+.\.claude\skills\create-plugin\scripts\Update-PluginZips.ps1          # incremental
+.\.claude\skills\create-plugin\scripts\Update-PluginZips.ps1 -Force   # rebuild every plugin regardless
+.\.claude\skills\create-plugin\scripts\Update-PluginZips.ps1 -Validate # also run `claude plugin validate` on each rebuilt plugin
+```
+
+It's still a thin wrapper — every actual build goes through
+`New-PluginZip.ps1`, so its two gotchas above stay guarded here too. Run
+it after any change that could have touched more than one plugin (a
+repo-wide doc convention change, a shared-pattern fix) instead of trying
+to remember and rebuild each affected zip by hand.
+
 ## 4. Verify before telling anyone to upload
 
 After building, reopen the zip and print its entries — don't assume the

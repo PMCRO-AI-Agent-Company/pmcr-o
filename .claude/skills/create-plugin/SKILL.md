@@ -19,6 +19,8 @@ Cowork's docs ahead of time.
    repackaging — it is the single source of truth, not duplicated here.
 2. Build the zip with `scripts/New-PluginZip.ps1` (never
    `Compress-Archive`, never a one-off script) — see §3 of the checklist.
+   Changed more than one plugin? Use `scripts/Update-PluginZips.ps1`
+   instead — it rebuilds only the plugins whose source actually changed.
 3. Verify the built zip and, if `claude` is available, run
    `claude plugin validate <plugin-dir>` — see §4.
 4. If this was a real fix (not fresh scaffolding), log it as a sealed
@@ -28,6 +30,8 @@ Cowork's docs ahead of time.
 ## References
 
 - `assets/packaging-checklist.asset.md` — the full checklist
-- `scripts/New-PluginZip.ps1` — deterministic zip-build implementation;
-  call this rather than hand-rolling a zip
+- `scripts/New-PluginZip.ps1` — deterministic zip-build implementation for
+  one plugin; call this rather than hand-rolling a zip
+- `scripts/Update-PluginZips.ps1` — incremental batch rebuild across every
+  plugin under `plugins/`; call this instead of looping the above by hand
 - `references/README.md`

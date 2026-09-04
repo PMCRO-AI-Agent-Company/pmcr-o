@@ -1,0 +1,11 @@
+﻿{
+    "trail_id":  "e797155c-d471-4a9e-a083-cf5175a0d460",
+    "trail_class":  "B",
+    "engine_generated":  true,
+    "opened_at":  "2026-09-04T00:40:31.6306300Z",
+    "disposition":  "done",
+    "sealed":  true,
+    "frame_schema":  "plugins/pmcro-trail/skills/initialize/assets/schema.trail-frame.asset.json",
+    "scratch":  false,
+    "sealed_at":  "2026-09-04T00:40:31.9338505Z"
+}

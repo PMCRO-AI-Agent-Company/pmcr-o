@@ -5,7 +5,8 @@
 | Asset | Purpose |
 |---|---|
 | `assets/packaging-checklist.asset.md` | the full checklist: manifest shape, agent filenames, zip-building, verification, logging |
-| `scripts/New-PluginZip.ps1` | deterministic zip-build implementation (zero reasoning) — never hand-roll `Compress-Archive` or a one-off zip script again |
+| `scripts/New-PluginZip.ps1` | deterministic zip-build implementation for one plugin (zero reasoning) — never hand-roll `Compress-Archive` or a one-off zip script again |
+| `scripts/Update-PluginZips.ps1` | incremental batch wrapper: rebuilds every plugin under `plugins/` whose source changed since its zip was last built (or has no zip yet), via `New-PluginZip.ps1` |
 
 ## Source URLs
 
