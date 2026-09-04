@@ -8,3 +8,7 @@
 
 # Visual Studio local state
 /.vs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
