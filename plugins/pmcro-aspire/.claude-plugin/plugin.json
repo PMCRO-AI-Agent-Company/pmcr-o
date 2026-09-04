@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-aspire",
+  "version": "0.1.0",
+  "description": "Wraps the .NET Aspire MCP server ('aspire agent mcp', STDIO) as a PMCR-O evidence source: Maker and Checker query live Aspire resource state, console/structured logs, and traces instead of relying on self-reported status.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/aspire.md"],
+  "keywords": ["pmcro", "aspire", "mcp", "evidence", "telemetry", "resources"]
+}

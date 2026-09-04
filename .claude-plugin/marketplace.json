@@ -32,6 +32,11 @@
       "name": "pmcro-reflector",
       "source": "./plugins/pmcro-reflector",
       "description": "Closes a cycle: reads the CheckFrame verdict, records a Reflection with a disposition, optionally proposes and enqueues a next seed, then seals the trail. Sole role permitted to seal."
+    },
+    {
+      "name": "pmcro-aspire",
+      "source": "./plugins/pmcro-aspire",
+      "description": "Wraps the .NET Aspire MCP server ('aspire agent mcp', STDIO) as a live evidence source: Maker and Checker query real resource state, console/structured logs, and traces instead of relying on self-reported status."
     }
   ]
 }

@@ -9,7 +9,8 @@
     "./plugins/pmcro-maker/agents/",
     "./plugins/pmcro-checker/agents/",
     "./plugins/pmcro-reflector/agents/",
-    "./plugins/pmcro-trail/agents/"
+    "./plugins/pmcro-trail/agents/",
+    "./plugins/pmcro-aspire/agents/"
   ],
   "invocation": {
     "syntax": "/pmcro-skills:<skill-name> [optional arguments]",
