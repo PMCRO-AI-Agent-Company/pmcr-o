@@ -1,0 +1,67 @@
+apiVersion: pmcro.ai/v1
+kind: LifecycleContract
+metadata:
+  name: pmcro-class-b-cycle
+  version: "1.0.0"
+spec:
+  sourceOfTruth:
+    repository: AGENTS.md
+    context: CONTEXT.md
+    laws: laws.md
+    machineLaws: .pmcro/laws/laws.yaml
+  trail:
+    class: B
+    root: .pmcro/trails
+    phases:
+      orchestrate:
+        role: orchestrator
+        frameType: MessySeedIntent
+        successor: planner
+      plan:
+        role: planner
+        frameType: PlanFrame
+        successor: maker
+      make:
+        role: maker
+        frameType: MakeStep
+        successor: checker
+        repetition: allowed
+      check:
+        role: checker
+        frameType: CheckFrame
+        successor: reflector
+      reflect:
+        role: reflector
+        frameType: Reflection
+        successor: orchestrator
+    files:
+      - orchestrate.jsonl
+      - plan.jsonl
+      - make.jsonl
+      - check.jsonl
+      - reflect.jsonl
+      - disposition.json
+  authority:
+    routing: orchestrator
+    planning: planner
+    execution: maker
+    verification: checker
+    sealing: reflector
+  invariants:
+    - Only Orchestrator opens or binds a cycle.
+    - Only the phase owner appends to its phase JSONL file.
+    - Planner emits one bounded PlanFrame per cycle.
+    - Maker executes only declared steps and records each attempt.
+    - Checker verifies declared success criteria against evidence.
+    - Reflector is the only role permitted to seal a trail.
+    - A trail cannot seal without a final Checker PASS and non-empty evidence.
+    - A sealed trail is immutable history; correction requires a new trail.
+    - Raw messy_seed remains immutable; canonical_seed is refinement only.
+    - Durable paths are repository-relative and contain no drive letters.
+    - Runtime mechanics do not replace role reasoning or invent providers.
+  termination:
+    sealedDisposition: [done, blocked, superseded, informational]
+    nextSeed: reflector-only-proposal
+  runtimeResult:
+    contract: .pmcro/runtime/output-contract.md
+    validator: .pmcro/runtime/validate_output_contract.py
