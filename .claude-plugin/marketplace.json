@@ -42,6 +42,11 @@
       "name": "pmcro-chief-technology-officer",
       "source": "./plugins/pmcro-chief-technology-officer",
       "description": "Chief Technology Officer persona: macro-level intent governance for platform and host-capability decisions. Domain execution still runs through the existing five-role cycle. Also ships host-bridge-evidence, a narrowly-scoped skill for querying a linked local machine's real device state and files as Make/Check evidence."
+    },
+    {
+      "name": "pmcro-chief-executive-officer",
+      "source": "./plugins/pmcro-chief-executive-officer",
+      "description": "Chief Executive Officer persona: macro-level intent governance for company-wide direction and cross-Chief prioritization -- the root persona any AI Agent Company instance starts from. Domain execution still runs through the existing five-role cycle. Also ships queue-intake, a narrowly-scoped skill for checking the real .pmcro/queue/ for items already proposed for a Chief before claiming a brand-new ad hoc seed."
     }
   ]
 }

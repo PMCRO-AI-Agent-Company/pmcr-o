@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-chief-executive-officer",
+  "version": "0.1.0",
+  "description": "Chief Executive Officer persona for PMCR-O: macro-level intent governance for company-wide direction and cross-Chief prioritization -- the root persona any AI Agent Company instance starts from. Domain execution, verification, and closure still run through the existing pmcro-planner/pmcro-maker/pmcro-checker/pmcro-reflector cycle -- this plugin adds a persona and one narrowly-scoped queue-intake skill, not a parallel engine.",
+  "author": { "name": "PMCRO-AI-Agent-Company" },
+  "skills": ["./skills/"],
+  "agents": ["./agents/ceo.md"],
+  "keywords": ["pmcro", "chief", "ceo", "queue", "cross-chief", "root"]
+}
