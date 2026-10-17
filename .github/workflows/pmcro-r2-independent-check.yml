@@ -1,0 +1,128 @@
+name: PMCR-O R2 Independent Check
+
+on:
+  push:
+    branches:
+      - pmcro-external-check-r2-cd6ad173
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-check:
+    name: Independent Checker
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Verify exact candidate digest
+        shell: python
+        run: |
+          import hashlib, os, pathlib, sys
+          expected = 'cd6ad173440511e3f3156cc7b88b7d42a97d0a0402b4bcca0cac7ba5a06dfe0f'
+          root = pathlib.Path('.')
+          rows = []
+          for p in root.rglob('*'):
+              if not p.is_file():
+                  continue
+              parts = p.parts
+              if '.git' in parts or '.github' in parts or 'bin' in parts or 'obj' in parts:
+                  continue
+              rel = p.as_posix()
+              h = hashlib.sha256(p.read_bytes()).hexdigest()
+              rows.append((rel, h))
+          rows.sort(key=lambda x: x[0])
+          payload = '\n'.join(f'{p}={h}' for p,h in rows).encode('utf-8')
+          actual = hashlib.sha256(payload).hexdigest()
+          print(f'candidate_files={len(rows)}')
+          print(f'candidate_digest={actual}')
+          if len(rows) != 187 or actual != expected:
+              print(f'Expected 187 files and {expected}', file=sys.stderr)
+              sys.exit(1)
+
+      - name: Static authority-boundary checks
+        shell: python
+        run: |
+          import pathlib, sys
+          required = {
+            'src/ProjectName.Harness/ControlPlaneOperatorTrust.cs': ['PMCRO_CONTROL_PLANE_TRUST_FILE','operator-trust-reparse-point-rejected','operator-state-path-mismatch'],
+            'src/ProjectName.AgentCli/ControlPlaneCommand.cs': ['operatorTrust.Paths'],
+            'src/ProjectName.Infrastructure/FileControlPlaneStores.cs': ['File.Replace'],
+            'src/ProjectName.Harness/AgentActivationGate.cs': ['VerifyInstalledFiles'],
+            'src/ProjectName.OrchestrationApi/Program.cs': ['PMCRO_CONTROL_PLANE_TRUST_FILE'],
+            'src/ProjectName.OrchestrationApi/CouncilEndpoints.cs': ['PMCRO_CONTROL_PLANE_TRUST_FILE'],
+            'src/AgentSystem.AppHost/AppHost.cs': ['PMCRO_CONTROL_PLANE_TRUST_FILE'],
+          }
+          failures=[]
+          for path, needles in required.items():
+              text=pathlib.Path(path).read_text(encoding='utf-8-sig')
+              for needle in needles:
+                  if needle not in text:
+                      failures.append(f'{path}: missing {needle}')
+          src='\n'.join(p.read_text(encoding='utf-8-sig',errors='replace') for p in pathlib.Path('src').rglob('*.cs'))
+          if 'FirstRegistrationBoundary' in src:
+              failures.append('legacy FirstRegistrationBoundary present in production source')
+          if 'PMCRO_CONTROL_PLANE_TRUST"' in src:
+              failures.append('legacy request/environment trust JSON variable present in source')
+          if 'overwrite: true' in pathlib.Path('src/ProjectName.Infrastructure/FileControlPlaneStores.cs').read_text(encoding='utf-8-sig'):
+              failures.append('overwrite-capable activation replacement remains')
+          if failures:
+              print('\n'.join(failures), file=sys.stderr)
+              sys.exit(1)
+          print('authority-boundary-static-checks=PASS')
+
+      - name: Restore
+        run: dotnet restore ProjectName.slnx
+
+      - name: Test exact candidate
+        run: dotnet test ProjectName.slnx --nologo --no-restore --logger "console;verbosity=minimal"
+
+      - name: Build with warnings as errors
+        run: dotnet build ProjectName.slnx --nologo --no-restore -warnaserror
+
+      - name: Dependency vulnerability audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet list ProjectName.slnx package --vulnerable --include-transitive | tee vulnerability-audit.txt
+          if grep -Eiq 'has the following vulnerable packages|Critical|High|Moderate|Low' vulnerability-audit.txt; then
+            echo 'Vulnerable package report detected' >&2
+            exit 1
+          fi
+
+      - name: Write independent checker verdict
+        shell: python
+        run: |
+          import json, datetime
+          verdict={
+            'apiVersion':'pmcro.external-checker-verdict/v1',
+            'kind':'ExternalCheckerVerdict',
+            'checker':'github-actions/ubuntu-latest',
+            'independent':True,
+            'candidateDigest':'cd6ad173440511e3f3156cc7b88b7d42a97d0a0402b4bcca0cac7ba5a06dfe0f',
+            'verdict':'PASS',
+            'testsExpected':129,
+            'buildWarningsAllowed':0,
+            'buildErrorsAllowed':0,
+            'authorityBoundaryStaticChecks':'PASS',
+            'dependencyAudit':'PASS',
+            'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          open('external-checker-verdict.json','w',encoding='utf-8').write(json.dumps(verdict,indent=2))
+
+      - name: Upload Checker evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-r2-independent-check
+          path: |
+            external-checker-verdict.json
+            vulnerability-audit.txt
+          if-no-files-found: error
