@@ -1,0 +1,16 @@
+{
+  "candidateDigest": "f9bc8dd0f963a63c64e956545e02ed845d3acdaea5ae76db60d74cf5a913ca27",
+  "zipSha256": "408888d6674d0a92fab6e8450f65dc84fc895bbe1aa958139bcf6c2ca846d29d",
+  "tests": {
+    "passed": 131,
+    "failed": 0,
+    "skipped": 0
+  },
+  "build": {
+    "warnings": 0,
+    "errors": 0
+  },
+  "vulnerablePackages": 0,
+  "productionMutated": false,
+  "promotionPerformed": false
+}

@@ -1,0 +1,121 @@
+name: PMCR-O AGT Native Governance Independent Check
+
+on:
+  push:
+    branches:
+      - pmcro-external-check-agt-native-f9bc8dd0
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Verify exact candidate bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(sha256sum evidence/agt-native-governance-r1.zip | awk '{print $1}')"
+          test "$ACTUAL" = "408888d6674d0a92fab6e8450f65dc84fc895bbe1aa958139bcf6c2ca846d29d"
+          python - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          manifest=json.loads(pathlib.Path('evidence/candidate-manifest.json').read_text())
+          assert manifest['candidateDigest']=='f9bc8dd0f963a63c64e956545e02ed845d3acdaea5ae76db60d74cf5a913ca27'
+          assert manifest['fileCount']==189
+          with zipfile.ZipFile('evidence/agt-native-governance-r1.zip') as z:
+              z.extractall('candidate')
+          failures=[]
+          for item in manifest['files']:
+              p=pathlib.Path('candidate')/pathlib.PurePosixPath(item['path'])
+              if not p.is_file(): failures.append('missing:'+item['path']); continue
+              actual=hashlib.sha256(p.read_bytes()).hexdigest()
+              if actual!=item['sha256']: failures.append('hash:'+item['path'])
+          canon='\n'.join(f"{x['path']}={x['sha256']}" for x in manifest['files']).encode()
+          digest=hashlib.sha256(canon).hexdigest()
+          assert not failures, failures
+          assert digest==manifest['candidateDigest'], (digest, manifest['candidateDigest'])
+          print('candidate_digest='+digest)
+          PY
+
+      - name: Verify native-first implementation boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib
+          m=json.loads(pathlib.Path('evidence/candidate-manifest.json').read_text())
+          delta=m['productionDelta']
+          expected={
+            'src/ProjectName.Runtime.Maf/AgtNativeCapabilityAuthority.cs':'add',
+            'src/ProjectName.Runtime.Maf/MafGovernanceBoundary.cs':'modify',
+            'tests/ProjectName.Runtime.Tests/AgtNativeGovernanceTests.cs':'add',
+          }
+          assert {x['path']:x['action'] for x in delta}==expected, delta
+          authority=pathlib.Path('candidate/src/ProjectName.Runtime.Maf/AgtNativeCapabilityAuthority.cs').read_text()
+          boundary=pathlib.Path('candidate/src/ProjectName.Runtime.Maf/MafGovernanceBoundary.cs').read_text()
+          tests=pathlib.Path('candidate/tests/ProjectName.Runtime.Tests/AgtNativeGovernanceTests.cs').read_text()
+          for token in ['AgentGovernance.Trust','IdentityRegistry','AgentIdentity.CreateAsymmetric','parent.Delegate','GetEffectiveCapabilities','registry.Revoke']:
+              assert token in authority, token
+          assert 'EnableFunctionMiddleware = true' in boundary
+          assert 'Delegation_is_native_and_monotonic' in tests
+          assert 'Registry_revocation_cascades_to_delegated_identity' in tests
+          print('native_boundary=PASS')
+          PY
+
+      - name: Test candidate
+        run: dotnet test candidate/ProjectName.slnx --nologo --verbosity minimal
+
+      - name: Build candidate
+        run: dotnet build candidate/ProjectName.slnx --no-restore --nologo --verbosity minimal
+
+      - name: Audit vulnerable packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet list candidate/ProjectName.slnx package --vulnerable --include-transitive | tee vulnerable.txt
+          if grep -qi "has the following vulnerable packages" vulnerable.txt; then exit 1; fi
+
+      - name: Write independent checker verdict
+        if: success()
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, datetime
+          verdict={
+            'apiVersion':'pmcro.external-checker-verdict/v1',
+            'kind':'ExternalCheckerVerdict',
+            'checker':'github-actions/ubuntu-latest',
+            'independent':True,
+            'candidate':'agt-native-governance-r1',
+            'candidateDigest':'f9bc8dd0f963a63c64e956545e02ed845d3acdaea5ae76db60d74cf5a913ca27',
+            'exactBytes':'PASS',
+            'nativeAgtCapabilityBoundary':'PASS',
+            'mafFunctionGovernance':'PASS',
+            'tests':'PASS',
+            'build':'PASS',
+            'vulnerabilityAudit':'PASS',
+            'promotionAuthorized':False,
+            'verdict':'PASS',
+            'githubRunId':os.environ['GITHUB_RUN_ID'],
+            'githubHeadSha':os.environ['GITHUB_SHA'],
+            'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+          }
+          pathlib.Path('external-checker-verdict.json').write_text(json.dumps(verdict,indent=2)+'\n')
+          PY
+
+      - name: Upload checker evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-agt-native-governance-r1-check
+          path: external-checker-verdict.json

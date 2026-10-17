@@ -1,0 +1,52 @@
+{
+  "apiVersion": "pmcro.native-governance-map/v1",
+  "kind": "NativeGovernanceMigrationMap",
+  "candidateDigest": "f9bc8dd0f963a63c64e956545e02ed845d3acdaea5ae76db60d74cf5a913ca27",
+  "principle": "NATIVE_FIRST_NEVER_REINVENT",
+  "mappings": [
+    {
+      "pmcroConcern": "Trail/Seed/Cycle/Frame/TrueIntent",
+      "disposition": "KEEP",
+      "native": "PMCR-O semantic law"
+    },
+    {
+      "pmcroConcern": "capability identity and signing",
+      "disposition": "REPLACE",
+      "native": "AgentGovernance.Trust.AgentIdentity"
+    },
+    {
+      "pmcroConcern": "capability delegation/effective authority",
+      "disposition": "REPLACE",
+      "native": "AgentIdentity.Delegate + GetEffectiveCapabilities"
+    },
+    {
+      "pmcroConcern": "identity registry/trust/revocation",
+      "disposition": "REPLACE",
+      "native": "AgentGovernance.Trust.IdentityRegistry"
+    },
+    {
+      "pmcroConcern": "MAF run/tool governance",
+      "disposition": "ADAPT",
+      "native": "AIAgent.WithGovernance + AgentFrameworkGovernanceAdapter"
+    },
+    {
+      "pmcroConcern": "custom ProductionGrantIssuer/Verifier",
+      "disposition": "REMOVE-LATER",
+      "native": "retain compatibility only until a separately checked migration replaces persisted production state"
+    },
+    {
+      "pmcroConcern": "registration/grant/activation/execution distinctions",
+      "disposition": "KEEP",
+      "native": "PMCR-O lifecycle semantics backed by native AGT evidence"
+    }
+  ],
+  "agtEdgeCase": {
+    "finding": "prefix wildcard parent capability delegates exact child capabilities, but GetEffectiveCapabilities raw intersection can produce empty effective set",
+    "r1Rule": "use explicit delegable capabilities for chain-backed PMCR-O grants",
+    "evidence": "local first test failed then corrected without custom algorithm"
+  },
+  "promotion": {
+    "allowed": false,
+    "requiresIndependentCheckerPass": true
+  }
+}
