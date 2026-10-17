@@ -1,0 +1,159 @@
+name: PMCR-O Pinned Source Materializer Independent Check
+
+on:
+  push:
+    branches:
+      - pmcro-external-check-source-materializer-87a877b6
+
+permissions:
+  contents: read
+
+jobs:
+  independent-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+
+      - name: Verify exact candidate bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "982db13d2785331cc2df0079886d8cf8fc166094a91c17197588bb4e93e28654  evidence/materialize-pinned-repository.zip" | sha256sum -c -
+          mkdir candidate
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          manifest=json.loads(Path('evidence/candidate-manifest.json').read_text())
+          assert manifest['candidateDigest']=='87a877b62acd30c412af447ff9e8aa70279095a40963783c313f78301da5fdd3'
+          assert manifest['fileCount']==6
+          with zipfile.ZipFile('evidence/materialize-pinned-repository.zip') as z:
+              z.extractall('candidate')
+          rows=[]
+          for item in manifest['files']:
+              p=Path('candidate')/item['path']
+              assert p.is_file(), item['path']
+              h=hashlib.sha256(p.read_bytes()).hexdigest()
+              assert h==item['sha256'], (item['path'], h, item['sha256'])
+              rows.append(item)
+          canon='\n'.join(f"{x['path']}={x['sha256']}" for x in rows).encode()
+          assert hashlib.sha256(canon).hexdigest()==manifest['candidateDigest']
+          print('exact-candidate=PASS')
+          PY
+
+      - name: Verify static security boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('candidate/scripts/materialize_pinned_repository.py').read_text()
+          required=[
+            'exact-40-hex-commit-required',
+            'credential-free-https-repository-required',
+            'workspace-boundary-required',
+            'destination-must-not-exist',
+            'git","init","--bare',
+            'fetch","--depth=1","--no-tags',
+            'fetched-commit-mismatch',
+            'submodules-not-supported',
+            'archive","--format=zip',
+            'authorityConferred":False',
+          ]
+          for needle in required:
+              assert needle in text, needle
+          forbidden=['git","clone', 'checkout","-f', 'shell=True', 'os.system(']
+          for needle in forbidden:
+              assert needle not in text, needle
+          print('static-security=PASS')
+          PY
+
+      - name: Exercise preflight and adversarial inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          S=candidate/scripts/materialize_pinned_repository.py
+          ROOT="$RUNNER_TEMP/preflight"
+          DEST="$ROOT/source"
+          RECEIPT="$ROOT/evidence/receipt.json"
+          mkdir -p "$ROOT"
+          REPO=https://github.com/dotnet/skills.git
+          COMMIT=1d40f95ed0f2cdedfa4c9b2614b7c2035a4323cb
+          python "$S" --help >/dev/null
+          python "$S" --mode preflight --repository "$REPO" --commit "$COMMIT" --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT"
+          python "$S" --mode simulate --repository "$REPO" --commit "$COMMIT" --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT"
+          if python "$S" --mode preflight --repository "$REPO" --commit main --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT" >bad.txt 2>&1; then exit 1; fi
+          grep -q exact-40-hex-commit-required bad.txt
+          if python "$S" --mode preflight --repository https://user:secret@github.com/dotnet/skills.git --commit "$COMMIT" --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT" >bad.txt 2>&1; then exit 1; fi
+          grep -q credential-free-https-repository-required bad.txt
+          if python "$S" --mode preflight --repository "$REPO" --commit "$COMMIT" --workspace-root "$ROOT" --destination "$RUNNER_TEMP/outside" --receipt "$RECEIPT" >bad.txt 2>&1; then exit 1; fi
+          grep -q workspace-boundary-required bad.txt
+          mkdir -p "$DEST"
+          if python "$S" --mode preflight --repository "$REPO" --commit "$COMMIT" --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT" >bad.txt 2>&1; then exit 1; fi
+          grep -q destination-must-not-exist bad.txt
+          echo adversarial-preflight=PASS
+
+      - name: Execute exact pinned dotnet skills materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          S=candidate/scripts/materialize_pinned_repository.py
+          ROOT="$RUNNER_TEMP/materialize"
+          DEST="$ROOT/.pmcro/upstream/dotnet-skills"
+          RECEIPT="$ROOT/.pmcro/evidence/dotnet-skills-source.json"
+          mkdir -p "$ROOT"
+          REPO=https://github.com/dotnet/skills.git
+          COMMIT=1d40f95ed0f2cdedfa4c9b2614b7c2035a4323cb
+          python "$S" --mode execute --repository "$REPO" --commit "$COMMIT" --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT"
+          python "$S" --mode check --repository "$REPO" --commit "$COMMIT" --workspace-root "$ROOT" --destination "$DEST" --receipt "$RECEIPT"
+          test -f "$DEST/plugins/dotnet/skills/setup-local-sdk/SKILL.md"
+          test -f "$DEST/plugins/dotnet-template-engine/skills/template-instantiation/SKILL.md"
+          if find "$DEST" -type d -name .git | grep -q .; then
+            echo '.git projection found' >&2
+            exit 1
+          fi
+          python - "$RECEIPT" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1],encoding='utf-8'))
+          assert r['repository']=='https://github.com/dotnet/skills.git'
+          assert r['commit']=='1d40f95ed0f2cdedfa4c9b2614b7c2035a4323cb'
+          assert r['fileCount']>0
+          assert len(r['manifestDigest'])==64
+          assert r['authorityConferred'] is False
+          assert r['registered'] is False and r['granted'] is False and r['activated'] is False and r['invoked'] is False
+          print('materialization-receipt=PASS')
+          PY
+
+      - name: Write independent checker verdict
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,datetime
+          verdict={
+            'apiVersion':'pmcro.external-check/v1',
+            'kind':'ExternalCheckerVerdict',
+            'candidate':'software-engineering/materialize-pinned-repository',
+            'candidateDigest':'87a877b62acd30c412af447ff9e8aa70279095a40963783c313f78301da5fdd3',
+            'bundleSha256':'982db13d2785331cc2df0079886d8cf8fc166094a91c17197588bb4e93e28654',
+            'checker':'github-actions/ubuntu-latest',
+            'independent':True,
+            'checks':{
+              'exactCandidateBytes':'PASS',
+              'staticSecurityBoundary':'PASS',
+              'adversarialPreflight':'PASS',
+              'exactPinnedFetch':'PASS',
+              'receiptCheck':'PASS',
+              'expectedDotnetPaths':'PASS'
+            },
+            'verdict':'PASS',
+            'authorityConferred':False,
+            'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          open('external-checker-verdict.json','w').write(json.dumps(verdict,indent=2)+'\n')
+          PY
+
+      - name: Upload checker evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-source-materializer-check
+          path: external-checker-verdict.json

@@ -1,0 +1,46 @@
+{
+  "apiVersion": "pmcro.skill-candidate/v1",
+  "kind": "SkillCandidateManifest",
+  "plugin": "software-engineering",
+  "skill": "materialize-pinned-repository",
+  "candidateDigest": "87a877b62acd30c412af447ff9e8aa70279095a40963783c313f78301da5fdd3",
+  "fileCount": 6,
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "d963d107c40a5e1f52f749f7941150bb7e383f45f6d23988419dda00ce48ab8b",
+      "size": 1929
+    },
+    {
+      "path": "agents/source-materializer.md",
+      "sha256": "734298daf7bfaa6d3cec775d1d8e6be9e9607d4d7a1e47f06117e569a5f62f3c",
+      "size": 814
+    },
+    {
+      "path": "assets/creation-request.json",
+      "sha256": "a59b3a8ad948b751095f9fab0bd818350424ebf610e3882e3cf4003b3a68fd78",
+      "size": 876
+    },
+    {
+      "path": "assets/request.example.json",
+      "sha256": "23a58b00de0575546d207adec4f90c6e5de4d5f54f4f31b27f919624eadafff2",
+      "size": 495
+    },
+    {
+      "path": "references/contract.md",
+      "sha256": "9ec0792e6e3e1b7b4d31aa4b82d4060712d207f70bd3bec684ff5bcb3b37f436",
+      "size": 1572
+    },
+    {
+      "path": "scripts/materialize_pinned_repository.py",
+      "sha256": "476f8b1f8de5ebe82c09b9c79469606dccefe99e0fae34c3ebc72f7ea7b61266",
+      "size": 5427
+    }
+  ],
+  "declaredInPlugin": true,
+  "registered": false,
+  "granted": false,
+  "activated": false,
+  "published": false,
+  "invoked": false
+}
