@@ -1,0 +1,155 @@
+name: PMCRO Marketplace Discovery Independent Check
+on:
+  push:
+    branches:
+      - pmcro-external-check-marketplace-discovery-283796e1
+permissions:
+  contents: read
+jobs:
+  independent-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+
+      - name: Verify exact candidate and dependency bytes
+        shell: python
+        run: |
+          import hashlib, json, pathlib, sys
+          def sha(p): return hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+          cm=json.load(open('evidence/candidate-manifest.json',encoding='utf-8-sig'))
+          root=pathlib.Path('bundle/projects/PMCRO-Marketplace')
+          lines=[]
+          for f in cm['files']:
+              p=root/f['path']
+              assert p.is_file(), f'missing candidate file {f["path"]}'
+              actual=sha(p)
+              assert actual==f['sha256'], (f['path'],actual,f['sha256'])
+              lines.append(f['path']+'\0'+actual)
+          digest=hashlib.sha256(('\n'.join(lines)+'\n').encode()).hexdigest()
+          assert digest==cm['candidateDigest'], (digest,cm['candidateDigest'])
+          dm=json.load(open('evidence/dependency-manifest.json',encoding='utf-8-sig'))
+          droot=pathlib.Path('bundle/projects/AgentSystem')
+          for f in dm['files']:
+              p=droot/f['path']
+              assert p.is_file(), f'missing dependency file {f["path"]}'
+              assert sha(p)==f['sha256'], f'dependency drift {f["path"]}'
+          print('candidate', digest, 'dependency-files', len(dm['files']))
+
+      - name: Verify lifecycle and read-only source boundary
+        shell: python
+        run: |
+          import json, pathlib, re
+          project=json.load(open('context/project.json',encoding='utf-8-sig'))
+          assert project['authority']=={'register':False,'grant':False,'invoke':False}
+          src=pathlib.Path('bundle/projects/PMCRO-Marketplace/src/PMCRO.Marketplace.Discovery/Program.cs').read_text(encoding='utf-8-sig')
+          csproj=pathlib.Path('bundle/projects/PMCRO-Marketplace/src/PMCRO.Marketplace.Discovery/PMCRO.Marketplace.Discovery.csproj').read_text(encoding='utf-8-sig')
+          assert 'ProjectName.Marketplace\\ProjectName.Marketplace.csproj' in csproj
+          forbidden=['File.Write','File.Append','Directory.CreateDirectory','Process.Start','HttpClient','RegistryKey','File.Delete','Directory.Delete','File.Move','File.Copy']
+          for item in forbidden:
+              assert item not in src, f'forbidden mutation/network API {item}'
+          assert 'MarketplaceCatalogLoader.LoadIds' in src
+          assert 'mutation option refused' in src
+          print('read-only static boundary PASS')
+
+      - name: Create independent synthetic marketplace fixture
+        shell: python
+        run: |
+          import json, pathlib
+          root=pathlib.Path('fixture-global')
+          (root/'.agents').mkdir(parents=True)
+          sources={'apiVersion':'agents.marketplaces/v1','kind':'MarketplaceSources','sources':[
+            {'id':'alpha-agent','type':'directory','enabled':True,'path':'marketplaces/alpha-agent'},
+            {'id':'beta-agent','type':'directory','enabled':True,'path':'marketplaces/beta-agent'}]}
+          (root/'.agents/marketplaces.json').write_text(json.dumps(sources),encoding='utf-8')
+          data=[('alpha-agent','1.2.3','alpha','2.0.0',['one','shared']),('beta-agent','4.5.6','beta','3.0.0',['two'])]
+          for mid,mver,pid,pver,skills in data:
+              mr=root/'marketplaces'/mid
+              pr=mr/'plugins'/pid
+              (pr/'skills').mkdir(parents=True)
+              marketplace={'apiVersion':'agents.marketplace/v1','kind':'Marketplace','metadata':{'name':mid,'version':mver},'spec':{'plugins':[pid],'authority':{'discover':True,'register':False,'grant':False,'activate':False,'publish':False}}}
+              plugin={'apiVersion':'agents.marketplace/v1','kind':'Plugin','metadata':{'name':pid,'version':pver},'spec':{'skills':skills},'authority':{'discover':True,'register':False,'grant':False,'activate':False,'publish':False,'train':False}}
+              (mr/'marketplace.json').write_text(json.dumps(marketplace),encoding='utf-8')
+              (pr/'plugin.json').write_text(json.dumps(plugin),encoding='utf-8')
+              for skill in skills:
+                  sr=pr/'skills'/skill
+                  (sr/'agents').mkdir(parents=True)
+                  (sr/'scripts').mkdir(parents=True)
+                  (sr/'SKILL.md').write_text(f'---\nname: {skill}\ndescription: "fixture {skill}"\n---\n',encoding='utf-8')
+                  (sr/'agents'/f'{skill}.md').write_text(f'# {skill}\n',encoding='utf-8')
+                  if skill!='shared': (sr/'scripts'/f'{skill}.ps1').write_text('# fixture\n',encoding='utf-8')
+          print('fixture ready')
+
+      - name: Build frozen candidate against frozen reused dependencies
+        run: dotnet build bundle/projects/PMCRO-Marketplace/src/PMCRO.Marketplace.Discovery/PMCRO.Marketplace.Discovery.csproj -c Release -nologo
+
+      - name: Exercise read-only discovery contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          proj='bundle/projects/PMCRO-Marketplace/src/PMCRO.Marketplace.Discovery/PMCRO.Marketplace.Discovery.csproj'
+          dotnet run -c Release --no-build --project "$proj" -- --global-root "$PWD/fixture-global" --pretty > discovery.json
+          dotnet run -c Release --no-build --project "$proj" -- --global-root "$PWD/fixture-global" --skill two --pretty > filter.json
+          set +e
+          dotnet run -c Release --no-build --project "$proj" -- --global-root "$PWD/fixture-global" --register > mutation.txt 2>&1
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then echo 'mutation option unexpectedly accepted'; exit 1; fi
+          grep -q 'mutation option refused' mutation.txt
+          python - <<'PY'
+          import json
+          d=json.load(open('discovery.json'))
+          assert d['ApiVersion']=='pmcro.marketplace.discovery/v1'
+          assert d['Kind']=='MarketplaceDiscoveryResult'
+          assert d['ReadOnly'] is True
+          assert d['Summary']=={'Marketplaces':2,'Plugins':2,'Skills':3}
+          assert d['Reuse']['Component']=='ProjectName.Marketplace.MarketplaceCatalogLoader'
+          assert d['Reuse']['Binding']=='ProjectReference'
+          assert d['Reuse']['CatalogParity'] is True
+          assert len(d['Records'])==3
+          for r in d['Records']:
+              assert r['Lifecycle']['Discovery'] is True
+              assert r['Lifecycle']['Registration']=='not-evaluated'
+              assert r['Lifecycle']['Grant']=='not-evaluated'
+              assert r['Lifecycle']['Activation']=='not-evaluated'
+              assert r['Lifecycle']['Execution']=='not-evaluated'
+          f=json.load(open('filter.json'))
+          assert f['Summary']['Skills']==1 and f['Records'][0]['SkillId']=='two'
+          print('runtime discovery contract PASS')
+          PY
+
+      - name: Write independent Checker verdict
+        shell: python
+        run: |
+          import json, os, pathlib
+          cm=json.load(open('evidence/candidate-manifest.json',encoding='utf-8-sig'))
+          verdict={
+            'apiVersion':'pmcro.checker-verdict/v1',
+            'kind':'CheckerVerdict',
+            'checker':'GitHub Actions ubuntu-latest',
+            'independent':True,
+            'candidateDigest':cm['candidateDigest'],
+            'verdict':'PASS',
+            'checks':{
+              'exactCandidateBytes':'PASS',
+              'exactDependencyBytes':'PASS',
+              'projectAuthorityEmpty':'PASS',
+              'readOnlyStaticBoundary':'PASS',
+              'build':'PASS',
+              'typedDiscoveryRuntime':'PASS',
+              'filtering':'PASS',
+              'mutationRefusal':'PASS'
+            },
+            'runId':os.environ.get('GITHUB_RUN_ID'),
+            'headSha':os.environ.get('GITHUB_SHA')
+          }
+          pathlib.Path('checker-evidence').mkdir()
+          pathlib.Path('checker-evidence/external-checker-verdict.json').write_text(json.dumps(verdict,indent=2)+'\n')
+          pathlib.Path('checker-evidence/discovery.json').write_bytes(pathlib.Path('discovery.json').read_bytes())
+          pathlib.Path('checker-evidence/mutation.txt').write_bytes(pathlib.Path('mutation.txt').read_bytes())
+
+      - name: Upload Checker evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-marketplace-discovery-independent-check
+          path: checker-evidence

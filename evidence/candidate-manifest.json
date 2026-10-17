@@ -1,0 +1,38 @@
+﻿{
+    "apiVersion":  "pmcro.candidate-manifest/v1",
+    "kind":  "CandidateManifest",
+    "projectId":  "pmcro-marketplace",
+    "trailId":  "pmcro-marketplace-trail-0001",
+    "cycleId":  "cycle-0002",
+    "files":  [
+                  {
+                      "path":  ".agents/application.json",
+                      "sha256":  "2ef679b0f3cd5a854d370a2ec75b7e560d2a454a5ac0350447d3a1ba5e84e3e1",
+                      "size":  1709
+                  },
+                  {
+                      "path":  "README.md",
+                      "sha256":  "c31b7785d79340062139c410fc49b599e56796b1877d6261f4be749813147d29",
+                      "size":  795
+                  },
+                  {
+                      "path":  "src/PMCRO.Marketplace.Discovery/PMCRO.Marketplace.Discovery.csproj",
+                      "sha256":  "0b93cc12ab893369c03f483cb4b9f81a0bff63407c0cff5b29c6bf2d1a48572c",
+                      "size":  438
+                  },
+                  {
+                      "path":  "src/PMCRO.Marketplace.Discovery/Program.cs",
+                      "sha256":  "2fab3695b514244ea3471b4e962ea7b682af58fac33b3551ab8efb3f1d8c6e1c",
+                      "size":  12196
+                  }
+              ],
+    "candidateDigest":  "283796e131335205175b4c738bddbd7a83c6c897b406570f42de5c644c3bf46c",
+    "acceptance":  {
+                       "marketplaces":  17,
+                       "plugins":  17,
+                       "skills":  91,
+                       "catalogParity":  true,
+                       "readOnly":  true,
+                       "mutationRefusal":  true
+                   }
+}

@@ -1,0 +1,138 @@
+﻿{
+    "apiVersion":  "pmcro.dependency-manifest/v1",
+    "kind":  "DependencyManifest",
+    "binding":  "ProjectReference",
+    "component":  "ProjectName.Marketplace",
+    "files":  [
+                  {
+                      "path":  "src/ProjectName.Contracts/AgentExecutionGrant.cs",
+                      "sha256":  "0690e30d9f333779f446335a2dfb17eafcdf0043088ceeb9701cd4e656be4d15",
+                      "size":  934
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/CapabilityInvocation.cs",
+                      "sha256":  "4e2a8eb55bd8eb2896cbd9eda49f63606029a270c8f42c41b93aa97d8b318917",
+                      "size":  515
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/CapabilityRegistration.cs",
+                      "sha256":  "7e798aeb1a5e7d577aa35edcac06ab6bd180b589a0cfaad29f845de78d0290db",
+                      "size":  266
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/CognitiveDialogue.cs",
+                      "sha256":  "2db7330e1fbc6304779060d9bf267be1ccb0ac8581095d74d6cf4a9bfad976a3",
+                      "size":  2150
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/ControlPlaneCommissioningContracts.cs",
+                      "sha256":  "6c3a3b35686b218c979ebcaf0d3243195f6c9efebea7d6bbee5e7a965929c46b",
+                      "size":  1137
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/ExecutiveCouncilContracts.cs",
+                      "sha256":  "067423ab30b13957e48005d0671814371ee8a3f499ef8af55c89e783ee4d1e27",
+                      "size":  3134
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/ExecutiveOrganizationManifest.cs",
+                      "sha256":  "f055c234e64672d9065c2df0bfe928c43a0b25f2d8b127fd1e71836a747b3d6a",
+                      "size":  782
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/GapRecord.cs",
+                      "sha256":  "f08863b3451ce2c3ec67a350c02b25dea697a1b3cd2191487b715b9d02980cae",
+                      "size":  413
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/GrantDerivationRequest.cs",
+                      "sha256":  "0cdb5164f19ebfea3468f73feac525749da4d7f2ff8f3a220eab826d4d19fca3",
+                      "size":  436
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/IngressProtocol.cs",
+                      "sha256":  "cfc33d5d213718f314e4e4ee0d5240b0d8561cb29ec771a2d8232e083d758ae1",
+                      "size":  924
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/IntentPipeline.cs",
+                      "sha256":  "9e6f03404f1116479a95adf1b8ca2517cce074d88a833699e21873b6da1e2a26",
+                      "size":  819
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/OrchestratorProductContracts.cs",
+                      "sha256":  "7bb8d9f796519474e3536882d4bf3a0c4d6b0d003cb6da0e872e56eb1e8112b0",
+                      "size":  2048
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/PmcroConstants.cs",
+                      "sha256":  "cc7cf14c213027928aae610a6afab4009dc6efd8207679c1349c36e1226b86e4",
+                      "size":  1202
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/PmcroFrame.cs",
+                      "sha256":  "98d1360edbcde28dfd0f4477022df7ec7cbb37163672ea6b347b3ffca67f7e4b",
+                      "size":  2373
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/PmcroMessageEnvelope.cs",
+                      "sha256":  "8706ee563a94ed4e0a8ab948fc8b761c4e8401582346260e73358cb5b174799b",
+                      "size":  1659
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/PmcroRequest.cs",
+                      "sha256":  "8ff998497154e14651c972a0ffe9e495f0c2d2dba19a0aa323c5a33d9179f6a2",
+                      "size":  1820
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/ProductionControlPlane.cs",
+                      "sha256":  "75b3a81ee36db35c38fc3ca424df1a93f1a5f968e99d18aa6e2bbb7218c5da04",
+                      "size":  1477
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/ProjectName.Contracts.csproj",
+                      "sha256":  "5088ef40e804a7625e282dd42e62a6a4f80c383d49b6c69363c305ce3de709b8",
+                      "size":  367
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/SeedDecision.cs",
+                      "sha256":  "332ab7fd351895b1ca857e381bed2278924a1d76eca53fca1cdc96cba83bfcb6",
+                      "size":  455
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/TrailAutomationContracts.cs",
+                      "sha256":  "0be23b33c442e716d203c34e6546396196f2bb32bc9b75f446a0f9dc0a15c4d6",
+                      "size":  2281
+                  },
+                  {
+                      "path":  "src/ProjectName.Contracts/TrailModel.cs",
+                      "sha256":  "bc9b6a924cf439ce08eed80defa5316fd1888c73360aaa89d8f9009eeb8bba0c",
+                      "size":  1114
+                  },
+                  {
+                      "path":  "src/ProjectName.Marketplace/CreateSkillRoute.cs",
+                      "sha256":  "564dd5f60fcb95b89658e0fefc42ac49c6bab60c2bf1d1a028825f283907f863",
+                      "size":  853
+                  },
+                  {
+                      "path":  "src/ProjectName.Marketplace/IResourceValidator.cs",
+                      "sha256":  "1d7663508912eb68692cdc30f0af9380b2002e893b49e6b5e894308500960da7",
+                      "size":  466
+                  },
+                  {
+                      "path":  "src/ProjectName.Marketplace/MarketplaceCatalogLoader.cs",
+                      "sha256":  "1f12d890162a30bf9a7403ff3f6c51d52cc975dd4e8bbb80bdde028021ae8eba",
+                      "size":  1097
+                  },
+                  {
+                      "path":  "src/ProjectName.Marketplace/MarketplaceResourceValidator.cs",
+                      "sha256":  "e29cf1a94a61dece1262173f19f447d74cbe93be7628949048ae2e5f19b8a8ff",
+                      "size":  1850
+                  },
+                  {
+                      "path":  "src/ProjectName.Marketplace/ProjectName.Marketplace.csproj",
+                      "sha256":  "0c14fa2d3ce6a79788affe320d32c7589ccef82a6878dbce7973b09b0c22beff",
+                      "size":  291
+                  }
+              ]
+}

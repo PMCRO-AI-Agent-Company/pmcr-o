@@ -1,0 +1,77 @@
+{
+  "apiVersion": "agents.application/v1",
+  "kind": "Application",
+  "metadata": {
+    "name": "PMCRO Marketplace",
+    "version": "0.1.0",
+    "description": "Canonical PMCR-O marketplace platform; Cycle 2 exposes read-only marketplace discovery only."
+  },
+  "spec": {
+    "architecture": {
+      "style": "clean-architecture",
+      "sourceRoot": "src",
+      "testsRoot": "tests"
+    },
+    "marketplaces": [],
+    "plugins": [],
+    "skills": [],
+    "models": [],
+    "runtimes": [],
+    "surfaces": {
+      "web": [],
+      "desktop": [],
+      "mobile": [],
+      "cli": [
+        "PMCRO.Marketplace.Discovery"
+      ],
+      "api": []
+    },
+    "apis": [],
+    "data": {
+      "stores": [],
+      "pipelines": []
+    },
+    "infrastructure": {
+      "containers": [],
+      "mcpServers": [],
+      "cloud": [],
+      "githubActions": []
+    },
+    "workflows": [
+      "read-only-marketplace-discovery"
+    ],
+    "tests": {
+      "required": [
+        "marketplace-discovery-contract",
+        "mutation-refusal",
+        "catalog-loader-parity"
+      ],
+      "acceptance": []
+    },
+    "evals": {
+      "required": []
+    },
+    "deployment": {
+      "targets": [],
+      "approvalRequired": true
+    },
+    "observability": {
+      "telemetry": [],
+      "slos": []
+    },
+    "security": {
+      "scans": [],
+      "secretsPolicy": "external-only"
+    },
+    "governance": {
+      "policyRefs": [],
+      "auditRequired": true,
+      "checkerRequired": true
+    },
+    "pmcro": {
+      "ingress": "@orchestrator /pmcro:init",
+      "trailState": ".pmcro",
+      "messageArrivalIsPhaseTransition": false
+    }
+  }
+}

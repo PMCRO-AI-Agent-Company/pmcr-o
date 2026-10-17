@@ -1,0 +1,20 @@
+{
+  "apiVersion": "agents.project/v1",
+  "kind": "Project",
+  "metadata": {
+    "id": "pmcro-marketplace",
+    "name": "PMCRO Marketplace"
+  },
+  "spec": {
+    "purpose": "Canonical PMCR-O marketplace platform for progressive discovery, checked creation, registration, grant, activation, and governed capability use.",
+    "canonicalSurface": ".agents",
+    "instructions": "AGENTS.md",
+    "marketplaceSources": ".agents/marketplaces.json",
+    "hostProjections": ".agents/hosts.json"
+  },
+  "authority": {
+    "register": false,
+    "grant": false,
+    "invoke": false
+  }
+}
