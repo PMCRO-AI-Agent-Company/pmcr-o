@@ -1,0 +1,236 @@
+{
+  "apiVersion": "pmcro.candidate-manifest/v1",
+  "kind": "CandidateManifest",
+  "projectId": "pmcro-marketplace",
+  "trailId": "pmcro-marketplace-trail-0001",
+  "cycleId": "cycle-0001",
+  "capturedAt": "2026-10-17T05:54:19.055846+00:00",
+  "files": [
+    {
+      "path": ".agents/agent-memory/README.md",
+      "sha256": "a4f46652587489540114bf46ad2b6b6c43a46d7b2ec5435b53e522357fdd7803",
+      "size": 81
+    },
+    {
+      "path": ".agents/agents/checker.md",
+      "sha256": "eb18938865a715b17a4d122739215a9d949710d054f27ac3c7c60977f3bf8606",
+      "size": 1747
+    },
+    {
+      "path": ".agents/agents/maker.md",
+      "sha256": "0139eadf1ae0ed5fd3cbd1eaf2f868c1896d436d2e8432f78e3e30dca0770afe",
+      "size": 1750
+    },
+    {
+      "path": ".agents/agents/orchestrator.md",
+      "sha256": "37ac5d0be96464440cde3474a8a7c5ac071e070ed543bf6952cb496fad1d9bf8",
+      "size": 1816
+    },
+    {
+      "path": ".agents/agents/planner.md",
+      "sha256": "97b9a538d453c45242311de2f788367bf7c24bb8127aae29f2993a8a197db9b2",
+      "size": 1787
+    },
+    {
+      "path": ".agents/agents/project.agent.md",
+      "sha256": "221e2a76bc9b2fddbfb8502a5d22ec073d9af8c92bb9a176a68f123560aa2460",
+      "size": 2380
+    },
+    {
+      "path": ".agents/agents/reflector.md",
+      "sha256": "3315f1b39c5b4f1d34b7d27ec0c7b7df896c7f5549327a0eb35d26e5e0c0bb7b",
+      "size": 1741
+    },
+    {
+      "path": ".agents/application.json",
+      "sha256": "71454780a015c5d316905d14724d433465faa5eac9fc6ee2bf0832baa715437c",
+      "size": 1386
+    },
+    {
+      "path": ".agents/commands/check.md",
+      "sha256": "dc9f7faee6956471318b95acef3cef10cfc433a5de19fea7ad793bf85ac23483",
+      "size": 546
+    },
+    {
+      "path": ".agents/commands/contracts.json",
+      "sha256": "e3d99a0e41ad499347a22dd7edb961a9b13d01445274568078435914840afcf3",
+      "size": 3743
+    },
+    {
+      "path": ".agents/commands/init.md",
+      "sha256": "aed8869139c26401774f23e8060093e36ff46bc5d4ca53620b0cfe5f46d4ea60",
+      "size": 542
+    },
+    {
+      "path": ".agents/commands/make.md",
+      "sha256": "a3f3f6b92dff9943be9603b50ddc9456e8f31b7c6cd7d80faf1acc6a766b49da",
+      "size": 540
+    },
+    {
+      "path": ".agents/commands/orchestrate.md",
+      "sha256": "2bd1dba583df9f8c33fea95f69bef4a3a81df0bc70b0efc22cea37f27ad0940c",
+      "size": 559
+    },
+    {
+      "path": ".agents/commands/plan.md",
+      "sha256": "d6295755020c179d88e74d827154e40b1679a8a8bdfe5bf05969b03ddf059e0d",
+      "size": 550
+    },
+    {
+      "path": ".agents/commands/pmcro-init.md",
+      "sha256": "aed8869139c26401774f23e8060093e36ff46bc5d4ca53620b0cfe5f46d4ea60",
+      "size": 542
+    },
+    {
+      "path": ".agents/commands/pmcro.md",
+      "sha256": "0badffd8a0ffc0c730ca2650702cb053a6cc044f04cd61420effa271748aa91b",
+      "size": 396
+    },
+    {
+      "path": ".agents/commands/reflect.md",
+      "sha256": "b0c8e98dba5336d1349e684b4d22cb8d722f7db0c7466ac5aed970fafcf0b914",
+      "size": 561
+    },
+    {
+      "path": ".agents/commands/request.schema.json",
+      "sha256": "1f8e29bcc8996107b927fcba4a351a08168bd30bf517f49651556869a96cd1ea",
+      "size": 1262
+    },
+    {
+      "path": ".agents/commands/seed.md",
+      "sha256": "808800e19db01fe2214ce1f99866e329a7e7511afb70eb25f8987411ad9b4ec0",
+      "size": 538
+    },
+    {
+      "path": ".agents/hosts.json",
+      "sha256": "0df130de519cfd78540316606eb726009eda7c5d899f2994874e604550df7ead",
+      "size": 53
+    },
+    {
+      "path": ".agents/marketplaces.json",
+      "sha256": "f5fb5a30759982d54747afb0ebd1ac529b0da6c2ffe1331233ff0db32e965f82",
+      "size": 154
+    },
+    {
+      "path": ".agents/output-styles/pmcro-frame.md",
+      "sha256": "b5497a98340c78bb6195cafd4903b2a7233af706dfb763b2cbc2e7861c80f07a",
+      "size": 231
+    },
+    {
+      "path": ".agents/output-styles/pmcro-init.txt",
+      "sha256": "223308674f05b4cb2f08148fc6487402df3c03e06835b055e92811c46cbd5032",
+      "size": 604
+    },
+    {
+      "path": ".agents/output-styles/pmcro.md",
+      "sha256": "6a632517219cdf0e390f7b02ecd4d91349a237d61737b783b49f07bd8534306e",
+      "size": 319
+    },
+    {
+      "path": ".agents/plugins/README.md",
+      "sha256": "ef119a5456c238deb9a29b4df578fd098ba05e5524066334a99ac6f466931c75",
+      "size": 76
+    },
+    {
+      "path": ".agents/project.json",
+      "sha256": "4a61ca0d34f42f0338fae7d2d26994e11b45a997b344b0f3d97d49c5ef3313bf",
+      "size": 577
+    },
+    {
+      "path": ".agents/rules/configuration.md",
+      "sha256": "4341f11a492c3eb85c3ef07112a722ddde4938cbe14441e436ea0dc2a87290dc",
+      "size": 2484
+    },
+    {
+      "path": ".agents/rules/marketplace-law.md",
+      "sha256": "67f683d24130bd42a4bc7d5cdf7d77439928c705f2270ad96bd9df2e79d2641b",
+      "size": 2020
+    },
+    {
+      "path": ".agents/rules/pmcro-laws.md",
+      "sha256": "18f5833174669f902127994287d5f671f599c8e21aeb210b9cd9156b41320003",
+      "size": 2044
+    },
+    {
+      "path": ".agents/settings.json",
+      "sha256": "726e8ac5c59c1179754eebe3cb13fc2d8452b977a287a8c3d6cfa5ac1574b218",
+      "size": 227
+    },
+    {
+      "path": ".agents/settings.local.example.json",
+      "sha256": "28105831ad43362807cff3efab6071278a712a9569c36158325a6bcb9366be2d",
+      "size": 104
+    },
+    {
+      "path": ".agents/skills/README.md",
+      "sha256": "72e7e795e4e77806ed806a9c925c554af5ace6185f10f5cd181939097c4b177b",
+      "size": 75
+    },
+    {
+      "path": ".agents/workflows/pmcro-cycle.md",
+      "sha256": "041adc6c00af4823d34b7385059110f90abfdd98b70756fdb12dda0db203eb40",
+      "size": 1952
+    },
+    {
+      "path": ".agents/workflows/skill-lifecycle.md",
+      "sha256": "ed74110a2e5f62bc9102ae6a3697bb3774b4e8cc1b2e13dfbca4ffe56a91fb9c",
+      "size": 1853
+    },
+    {
+      "path": ".pmcro/cycles/cycle-0001.json",
+      "sha256": "6c761d0c4357dd9fd2d326257749bfe34c4c8e536fa7a2b384e688866c38e524",
+      "size": 395
+    },
+    {
+      "path": ".pmcro/evidence/cycle-1/capability-graph.json",
+      "sha256": "46f15ce67ff92022300ff6c939e86b04c63497bd898548303ec20782b7f0089e",
+      "size": 28811
+    },
+    {
+      "path": ".pmcro/evidence/cycle-1/validated-resources.json",
+      "sha256": "6536bdd3ca6be3f1adaf3012832149d2eb08673995b3c66c4138be354db3d36f",
+      "size": 1304
+    },
+    {
+      "path": ".pmcro/frames/0001-orchestrator.json",
+      "sha256": "5ccf6f391fce2befe29ab3eb1cf0f2e01be1a2d6ba8af54f2a990150f77bf963",
+      "size": 606
+    },
+    {
+      "path": ".pmcro/frames/0002-planner.json",
+      "sha256": "c8ff732028eff302678b886050f1c71f965b796644c0a0fcf098a9644baacc6b",
+      "size": 1057
+    },
+    {
+      "path": ".pmcro/frames/0003-maker.json",
+      "sha256": "0f1df4827a8ed8ff19fcab84eabc11dddecab744fbc231717fe079c54eeb7a15",
+      "size": 854
+    },
+    {
+      "path": ".pmcro/seeds/seed-0001.txt",
+      "sha256": "a20de02485003b5cf9b5fafeeb533e07186fd5af13947f065ac4348ec4c2c09b",
+      "size": 1207
+    },
+    {
+      "path": ".pmcro/state.json",
+      "sha256": "6b9ac55bdf396e9bd25429f8c38b4673806aef42bc690f3a013208f04561428e",
+      "size": 249
+    },
+    {
+      "path": ".pmcro/trails/pmcro-marketplace-trail-0001.json",
+      "sha256": "b325f8907aaeb33ee3723f3d8ca82a3e3efbbab7e58268a5bc15497b63282ff9",
+      "size": 325
+    },
+    {
+      "path": ".project-render-receipt.json",
+      "sha256": "c5a108d603251a8c716ded1f503beb352510075800cf0f78e59c144bf0dee696",
+      "size": 3603
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "79b743054085a3646827ca04fca047c70fe985ca386fe33dd98f92b5ed254c2d",
+      "size": 2183
+    }
+  ],
+  "candidateDigest": "54877ec85b39cb327f1e03616661b91545bba6d012f6cdfa229f924e3a39dbc5"
+}

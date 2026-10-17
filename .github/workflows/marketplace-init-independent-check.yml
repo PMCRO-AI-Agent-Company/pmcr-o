@@ -1,0 +1,24 @@
+name: PMCRO Marketplace Init Independent Check
+on:
+  push:
+    branches:
+      - pmcro-external-check-marketplace-init-54877ec8
+permissions:
+  contents: read
+jobs:
+  independent-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+      - name: Verify exact project candidate
+        run: python3 evidence/check_candidate.py
+      - name: Upload checker evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-marketplace-init-independent-check
+          path: |
+            evidence/external-checker-verdict.json
+            evidence/candidate-manifest.json
+            evidence/zip-sha256.txt
