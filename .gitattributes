@@ -1,0 +1,4 @@
+bundle/** -text
+context/** -text
+evidence/** -text
+.github/** text eol=lf
