@@ -25,7 +25,7 @@ jobs:
               assert p.is_file(), f'missing candidate file {f["path"]}'
               actual=sha(p)
               assert actual==f['sha256'], (f['path'],actual,f['sha256'])
-              lines.append(f['path']+'\0'+actual)
+              lines.append(f['path']+'`0'+actual)
           digest=hashlib.sha256(('\n'.join(lines)+'\n').encode()).hexdigest()
           assert digest==cm['candidateDigest'], (digest,cm['candidateDigest'])
           dm=json.load(open('evidence/dependency-manifest.json',encoding='utf-8-sig'))
