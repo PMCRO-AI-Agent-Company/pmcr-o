@@ -38,7 +38,7 @@ jobs:
               actual = hashlib.sha256(p.read_bytes()).hexdigest()
               if actual != item['sha256']:
                   failures.append(f'hash:{item["path"]}:{actual}')
-          canon = '\n'.join(f"{x['path']}={x['sha256']}" for x in sorted(files, key=lambda x: x['path'])).encode()
+          canon = '\n'.join(f"{x['path']}={x['sha256']}" for x in files).encode()
           actual_digest = hashlib.sha256(canon).hexdigest()
           print(f'candidate_files={len(files)}')
           print(f'candidate_digest={actual_digest}')
