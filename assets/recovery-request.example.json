@@ -1,0 +1,5 @@
+{
+  "mode": "inspect",
+  "repo": "D:\\AgentSystem\\local\\projects\\AgentSystem",
+  "symptom": "Browser sign-in is locked out; preserve any working CLI access and identify the supported recovery path."
+}

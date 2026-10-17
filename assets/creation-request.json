@@ -1,0 +1,18 @@
+{
+  "sourceRequest": "D:\\AgentSystem\\local\\.pmcro\\evidence\\github-account-recovery\\cycle-1\\create-request.json",
+  "plugin": "github",
+  "skill": "recover-account-access",
+  "agent": "account-recovery-agent",
+  "registered": false,
+  "granted": false,
+  "activated": false,
+  "published": false,
+  "invoked": false,
+  "contentSha256": {
+    "SKILL.md": "c14142d5d5c45394f11bc9d196cce5d6fca55b255e3a38972a358800288f3da8",
+    "agents/account-recovery-agent.md": "094e55b271f0d0b31f86ee5e3df74b8a14d89de0f875cc0aa05a0d6e3958976c",
+    "assets/recovery-request.example.json": "95fc644ebf163c5affb37a06c249cdb8d6bce2e2151e771fe4c1e46a8fe467b3",
+    "references/recovery-contract.md": "695d3c5d985369998267e0514689e03ee2dd5e546bfb4880780e5f4b5a9ccdbc",
+    "scripts/github_account_recovery.ps1": "bb634c37611c78694731d3cc514532e7c8f04e47c0a018dcb2d4f9d79466a37f"
+  }
+}

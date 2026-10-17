@@ -1,0 +1,140 @@
+name: PMCR-O GitHub Recovery Independent Check
+
+on:
+  push:
+    branches:
+      - pmcro-external-check-recovery-18db5938
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-check:
+    name: Independent Checker
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+
+      - name: Verify exact six-file candidate
+        shell: python
+        run: |
+          import hashlib, json, pathlib, sys
+          expected_digest = '18db5938bc6134d4186865ddada4c891f97a4d965955b8737ba8620308663e7b'
+          manifest = json.loads(pathlib.Path('evidence/candidate-manifest.json').read_text(encoding='utf-8-sig'))
+          if manifest.get('candidateDigest') != expected_digest:
+              raise SystemExit('manifest candidate digest mismatch')
+          files = manifest.get('files') or []
+          if len(files) != 6:
+              raise SystemExit(f'expected 6 candidate files, got {len(files)}')
+          failures = []
+          for item in files:
+              p = pathlib.Path(item['path'])
+              if not p.is_file():
+                  failures.append(f'missing:{item["path"]}')
+                  continue
+              actual = hashlib.sha256(p.read_bytes()).hexdigest()
+              if actual != item['sha256']:
+                  failures.append(f'hash:{item["path"]}:{actual}')
+          canon = '\n'.join(f"{x['path']}={x['sha256']}" for x in sorted(files, key=lambda x: x['path'])).encode()
+          actual_digest = hashlib.sha256(canon).hexdigest()
+          print(f'candidate_files={len(files)}')
+          print(f'candidate_digest={actual_digest}')
+          if failures or actual_digest != expected_digest:
+              print('\n'.join(failures), file=sys.stderr)
+              raise SystemExit('exact candidate verification failed')
+
+      - name: Verify restored Skill Creator bytes
+        shell: python
+        run: |
+          import hashlib, pathlib
+          expected='d75074f1152750723b73e005bba8c2cc748e6e384eef13072758284e4c45116f'
+          actual=hashlib.sha256(pathlib.Path('evidence/create_skill.py').read_bytes()).hexdigest()
+          print(f'skill_creator_sha256={actual}')
+          if actual != expected:
+              raise SystemExit('Skill Creator digest mismatch')
+
+      - name: Parse recovery PowerShell and reject mutation or secret extraction
+        shell: pwsh
+        run: |
+          $tokens=$null; $errors=$null
+          $ast=[System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'scripts/github_account_recovery.ps1'),[ref]$tokens,[ref]$errors)
+          if($errors.Count -ne 0){$errors | ForEach-Object {Write-Error $_}; exit 1}
+          $dangerous=@('Set-Content','Add-Content','Out-File','Remove-Item','Move-Item','Copy-Item','Invoke-WebRequest','Invoke-RestMethod','Start-Process','ssh','curl','wget')
+          $commands=$ast.FindAll({param($n) $n -is [System.Management.Automation.Language.CommandAst]},$true)
+          foreach($c in $commands){
+            $name=$c.GetCommandName()
+            $text=$c.Extent.Text.Trim()
+            if($name -and ($dangerous -contains $name)){throw "mutation/network command rejected: $text"}
+            if($text -match '(?i)^gh\s+auth\s+(token|logout)\b'){throw "credential command rejected: $text"}
+            if($text -match '(?i)^gh\s+(secret|variable|ssh-key|gpg-key)\b'){throw "sensitive GitHub command rejected: $text"}
+            if($text -match '(?i)hosts\.yml' -and $name -match '^(Get-Content|cat|type|gc)$'){throw "GitHub hosts secret read rejected: $text"}
+          }
+          Write-Output 'powershell_ast=PASS'
+          Write-Output ('command_count='+$commands.Count)
+
+      - name: Verify read-only and official recovery contract
+        shell: python
+        run: |
+          import pathlib, re, urllib.parse
+          skill=pathlib.Path('SKILL.md').read_text(encoding='utf-8-sig')
+          agent=pathlib.Path('agents/account-recovery-agent.md').read_text(encoding='utf-8-sig')
+          script=pathlib.Path('scripts/github_account_recovery.ps1').read_text(encoding='utf-8-sig')
+          contract=pathlib.Path('references/recovery-contract.md').read_text(encoding='utf-8-sig')
+          required=[
+            'https://github.com/login',
+            'https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/troubleshooting-two-factor-authentication-issues',
+            'https://docs.github.com/en/site-policy/other-site-policies/github-account-recovery-policy'
+          ]
+          for url in required:
+              if url not in script:
+                  raise SystemExit(f'missing official recovery route: {url}')
+          urls=re.findall(r'https://[^\s\'\"\)]+', script)
+          for url in urls:
+              host=urllib.parse.urlparse(url.rstrip("',")).hostname
+              if host not in {'github.com','docs.github.com'}:
+                  raise SystemExit(f'non-GitHub recovery URL rejected: {url}')
+          combined='\n'.join([skill,agent,contract])
+          for phrase in ['read-only','credential','2FA','recovery']:
+              if phrase.lower() not in combined.lower():
+                  raise SystemExit(f'missing recovery boundary phrase: {phrase}')
+          if 'I AM the GitHub Account Recovery Agent.' not in agent:
+              raise SystemExit('visible recovery-agent identity missing')
+          print('recovery_contract=PASS')
+
+      - name: Write independent checker verdict
+        shell: python
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          import datetime, json, os
+          verdict={
+            'apiVersion':'pmcro.external-checker-verdict/v1',
+            'kind':'ExternalCheckerVerdict',
+            'checker':'github-actions/ubuntu-latest',
+            'independent':True,
+            'candidateDigest':'18db5938bc6134d4186865ddada4c891f97a4d965955b8737ba8620308663e7b',
+            'packageFileCount':6,
+            'skillCreatorDigest':'d75074f1152750723b73e005bba8c2cc748e6e384eef13072758284e4c45116f',
+            'readOnlyBoundary':'PASS',
+            'secretNondisclosureBoundary':'PASS',
+            'officialRecoveryRouting':'PASS',
+            'credentialBypassAbsent':'PASS',
+            'verdict':'PASS',
+            'githubRunId':os.environ['RUN_ID'],
+            'githubRunAttempt':os.environ['RUN_ATTEMPT'],
+            'githubHeadSha':os.environ['HEAD_SHA'],
+            'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          open('external-checker-verdict.json','w',encoding='utf-8').write(json.dumps(verdict,indent=2)+'\n')
+
+      - name: Upload independent checker evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-github-recovery-independent-check
+          path: external-checker-verdict.json
+          if-no-files-found: error

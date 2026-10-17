@@ -1,0 +1,36 @@
+{
+  "apiVersion": "pmcro.candidate-manifest/v1",
+  "kind": "CandidateManifest",
+  "plugin": "github",
+  "skill": "recover-account-access",
+  "registered": false,
+  "granted": false,
+  "activated": false,
+  "files": [
+    {
+      "path": "agents/account-recovery-agent.md",
+      "sha256": "094e55b271f0d0b31f86ee5e3df74b8a14d89de0f875cc0aa05a0d6e3958976c"
+    },
+    {
+      "path": "assets/creation-request.json",
+      "sha256": "b21cb1fa5d7653f6159b7950db8fc9151d2af5aa1c1de33274016613b6545375"
+    },
+    {
+      "path": "assets/recovery-request.example.json",
+      "sha256": "95fc644ebf163c5affb37a06c249cdb8d6bce2e2151e771fe4c1e46a8fe467b3"
+    },
+    {
+      "path": "references/recovery-contract.md",
+      "sha256": "695d3c5d985369998267e0514689e03ee2dd5e546bfb4880780e5f4b5a9ccdbc"
+    },
+    {
+      "path": "scripts/github_account_recovery.ps1",
+      "sha256": "bb634c37611c78694731d3cc514532e7c8f04e47c0a018dcb2d4f9d79466a37f"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "c14142d5d5c45394f11bc9d196cce5d6fca55b255e3a38972a358800288f3da8"
+    }
+  ],
+  "candidateDigest": "18db5938bc6134d4186865ddada4c891f97a4d965955b8737ba8620308663e7b"
+}
