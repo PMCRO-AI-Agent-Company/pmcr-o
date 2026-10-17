@@ -1,0 +1,90 @@
+name: PMCR-O Registry Projection Check
+
+on:
+  push:
+    branches:
+      - pmcro-external-check-r2-cd6ad173
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  registry-projection-check:
+    name: Registry Projection Checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact projection bundle
+        shell: python
+        run: |
+          import hashlib, json, pathlib, zipfile
+          expected_bundle='cb2accdf44853b4715083228362daa20a78924998d1ceac3994629b52f9eb312'
+          expected_ids=[
+            'control-plane.commissioning@v1',
+            'control-plane.commissioning@v2',
+            'control-plane.commissioning@v3',
+            'csuite.executive-council@v1',
+          ]
+          p=pathlib.Path('external/registry-projection-bundle.zip')
+          actual=hashlib.sha256(p.read_bytes()).hexdigest()
+          if actual != expected_bundle:
+              raise SystemExit(f'bundle SHA mismatch: {actual}')
+          with zipfile.ZipFile(p) as z:
+              names=sorted(i.filename for i in z.infolist() if not i.is_dir())
+              if len(names) != 5 or 'index.json' not in names:
+                  raise SystemExit(f'unexpected bundle contents: {names}')
+              index=json.loads(z.read('index.json').decode('utf-8-sig'))
+              if index.get('apiVersion') != 'pmcro.registry-index/v1' or index.get('kind') != 'RegistryIndex':
+                  raise SystemExit('registry index contract mismatch')
+              if set(index) != {'apiVersion','kind','resources','note'}:
+                  raise SystemExit('registry index contains authority-bearing/unexpected fields')
+              if 'non-authoritative' not in index.get('note','').lower():
+                  raise SystemExit('projection does not explicitly disclaim authority')
+              ids=sorted(index.get('resources',[]))
+              if ids != sorted(expected_ids) or len(ids) != len(set(ids)):
+                  raise SystemExit(f'index resource mismatch: {ids}')
+              record_ids=[]
+              for name in names:
+                  if not name.startswith('records/'):
+                      continue
+                  raw=z.read(name)
+                  rec=json.loads(raw.decode('utf-8-sig'))
+                  rid=rec.get('RegistrationId')
+                  expected_name='records/'+hashlib.sha256(rid.encode()).hexdigest()+'.json'
+                  if name != expected_name:
+                      raise SystemExit(f'filename binding mismatch: {name} != {expected_name}')
+                  if rec.get('Status') != 'registered':
+                      raise SystemExit(f'non-registered record projected: {rid}')
+                  for key in ('CapabilityId','CandidateDigest','FileManifestDigest','CheckerVerdictRef','ProvenanceRef'):
+                      if not rec.get(key):
+                          raise SystemExit(f'missing {key} for {rid}')
+                  record_ids.append(rid)
+              if sorted(record_ids) != ids:
+                  raise SystemExit('index is not an exact projection of record files')
+          print('registry-projection=PASS')
+          print('authority-conferred=false')
+          print('resource-count=4')
+      - name: Write independent projection verdict
+        shell: python
+        run: |
+          import json, datetime
+          verdict={
+            'apiVersion':'pmcro.external-registry-check/v1',
+            'kind':'ExternalRegistryProjectionVerdict',
+            'checker':'github-actions/ubuntu-latest',
+            'independent':True,
+            'bundleSha256':'cb2accdf44853b4715083228362daa20a78924998d1ceac3994629b52f9eb312',
+            'resourceCount':4,
+            'authorityConferred':False,
+            'verdict':'PASS',
+            'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          pathlib=__import__('pathlib')
+          pathlib.Path('registry-projection-verdict.json').write_text(json.dumps(verdict,indent=2),encoding='utf-8')
+      - name: Upload projection evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-registry-projection-check
+          path: registry-projection-verdict.json
+          if-no-files-found: error
