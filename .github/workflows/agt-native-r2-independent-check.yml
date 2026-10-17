@@ -1,0 +1,146 @@
+name: PMCR-O AGT Native Governance R2 Independent Check
+
+on:
+  push:
+    branches:
+      - pmcro-external-check-agt-native-r2-5554a87b
+
+permissions:
+  contents: read
+
+jobs:
+  independent-checker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout verification branch
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Verify exact candidate bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "ab3c543e6857b8b74b6015c9b03dc07b85bdc4bc88b0830603ce07ea8982c9aa  evidence/agt-native-governance-r2.zip" | sha256sum -c -
+          rm -rf candidate
+          mkdir candidate
+          python - <<'PY'
+          import hashlib, json, pathlib, zipfile
+          bundle = pathlib.Path('evidence/agt-native-governance-r2.zip')
+          manifest = json.loads(pathlib.Path('evidence/candidate-manifest.json').read_text())
+          assert manifest['candidateDigest'] == '5554a87bafead8b8a849d28b1538e1d8f5bf578ba99a7d407e8a98e717853e06'
+          assert manifest['fileCount'] == 191
+          with zipfile.ZipFile(bundle) as z:
+              z.extractall('candidate')
+          root = pathlib.Path('candidate')
+          actual = []
+          for item in manifest['files']:
+              path = root / pathlib.PurePosixPath(item['path'])
+              assert path.is_file(), f"missing:{item['path']}"
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert digest == item['sha256'], f"hash:{item['path']}:{digest}"
+              actual.append(item['path'])
+          discovered = sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file())
+          assert discovered == sorted(actual), 'candidate-file-set-mismatch'
+          canon = '\n'.join(f"{x['path']}={x['sha256']}" for x in manifest['files']).encode()
+          digest = hashlib.sha256(canon).hexdigest()
+          assert digest == manifest['candidateDigest'], digest
+          print('EXACT_CANDIDATE_BYTES=PASS')
+          PY
+
+      - name: Verify native MCP governance boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          root = Path('candidate')
+          packages = (root/'Directory.Packages.props').read_text()
+          project = (root/'src/ProjectName.McpServer/ProjectName.McpServer.csproj').read_text()
+          program = (root/'src/ProjectName.McpServer/Program.cs').read_text()
+          policy = (root/'src/ProjectName.McpServer/policies/mcp.yaml').read_text()
+          test = (root/'tests/ProjectName.Runtime.Tests/McpNativeGovernanceTests.cs').read_text()
+          assert 'Microsoft.AgentGovernance.Extensions.ModelContextProtocol' in packages
+          assert 'Version="5.0.0"' in packages
+          assert 'Microsoft.AgentGovernance.Extensions.ModelContextProtocol' in project
+          assert '.WithGovernance(options =>' in program
+          assert 'ConflictResolutionStrategy.DenyOverrides' in program
+          assert 'EnableAudit = true' in program
+          assert 'RequireAuthenticatedAgentId = false' in program
+          assert 'DefaultAgentId = "did:mcp:pmcro-local-stdio"' in program
+          assert 'FailOnUnsafeTools = true' in program
+          assert 'SanitizeResponses = true' in program
+          assert 'GovernFallbackHandlers = true' in program
+          assert 'default_action: deny' in policy
+          assert "tool_name == 'pmcro_commands'" in policy
+          assert 'action: allow' in policy
+          assert 'EvaluateToolCall' not in program
+          assert 'Native_mcp_policy_is_deny_by_default_and_emits_audit_events' in test
+          print('NATIVE_MCP_BOUNDARY=PASS')
+          PY
+
+      - name: Test candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd candidate
+          dotnet test ProjectName.slnx --nologo --logger "trx;LogFileName=r2-tests.trx"
+
+      - name: Build candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd candidate
+          dotnet build ProjectName.slnx --no-restore --nologo
+          test -f src/ProjectName.McpServer/bin/Debug/net10.0/policies/mcp.yaml
+
+      - name: Audit vulnerable packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd candidate
+          dotnet list ProjectName.slnx package --vulnerable --include-transitive | tee vulnerability-audit.txt
+          if grep -Eiq 'has the following vulnerable packages|Top-level Package.*Resolved.*Severity|Transitive Package.*Resolved.*Severity' vulnerability-audit.txt; then
+            echo 'Vulnerable packages detected'
+            exit 1
+          fi
+
+      - name: Write independent checker verdict
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p checker-evidence
+          python - <<'PY'
+          import datetime, json, pathlib
+          verdict = {
+            'apiVersion':'pmcro.external-check/v1',
+            'kind':'ExternalCheckerVerdict',
+            'candidate':'AGT-NATIVE-GOVERNANCE-R2',
+            'candidateDigest':'5554a87bafead8b8a849d28b1538e1d8f5bf578ba99a7d407e8a98e717853e06',
+            'bundleSha256':'ab3c543e6857b8b74b6015c9b03dc07b85bdc4bc88b0830603ce07ea8982c9aa',
+            'checker':'github-actions/ubuntu-latest',
+            'independent':True,
+            'checks':{
+              'exactCandidateBytes':'PASS',
+              'nativeMcpGovernance':'PASS',
+              'tests':'PASS',
+              'build':'PASS',
+              'vulnerabilityAudit':'PASS'
+            },
+            'verdict':'PASS',
+            'authorityConferred':False,
+            'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()
+          }
+          pathlib.Path('checker-evidence/external-checker-verdict.json').write_text(json.dumps(verdict,indent=2)+'\n')
+          PY
+
+      - name: Upload checker evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmcro-agt-native-governance-r2-check
+          path: checker-evidence/external-checker-verdict.json
+          if-no-files-found: error

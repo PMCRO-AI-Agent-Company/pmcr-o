@@ -1,0 +1,55 @@
+{
+  "apiVersion": "pmcro.native-governance-map/v1",
+  "kind": "NativeGovernanceMigrationMap",
+  "candidateDigest": "5554a87bafead8b8a849d28b1538e1d8f5bf578ba99a7d407e8a98e717853e06",
+  "principle": "NATIVE_FIRST_NEVER_REINVENT",
+  "increment": "official AGT MCP governance + native policy/audit",
+  "mappings": [
+    {
+      "pmcroConcern": "MCP policy/enforcement",
+      "disposition": "ADAPT",
+      "native": "Microsoft.AgentGovernance.Extensions.ModelContextProtocol IMcpServerBuilder.WithGovernance"
+    },
+    {
+      "pmcroConcern": "MCP allow/deny decisions",
+      "disposition": "REPLACE",
+      "native": "GovernanceKernel + governance.toolkit/v1 policy"
+    },
+    {
+      "pmcroConcern": "MCP response sanitization/tool scanning",
+      "disposition": "REPLACE",
+      "native": "AGT ModelContextProtocol extension"
+    },
+    {
+      "pmcroConcern": "MCP audit observation",
+      "disposition": "ADAPT",
+      "native": "GovernanceKernel audit/events; correlate to PMCR-O evidence, never substitute for Trail phase"
+    },
+    {
+      "pmcroConcern": "stdio identity",
+      "disposition": "TEMPORARY-BRIDGE",
+      "native": "RequireAuthenticatedAgentId=false + fixed DefaultAgentId did:mcp:pmcro-local-stdio until authenticated identity transport exists"
+    },
+    {
+      "pmcroConcern": "Seed/Trail/Cycle/Frame/TrueIntent/registration/activation/CHECK/REFLECT",
+      "disposition": "KEEP",
+      "native": "PMCR-O semantic law"
+    },
+    {
+      "pmcroConcern": "ProductionGrantIssuer/ProductionGrantVerifier persisted state",
+      "disposition": "REMOVE-LATER",
+      "native": "unchanged compatibility state pending separately checked equivalence migration"
+    }
+  ],
+  "policy": {
+    "defaultAction": "deny",
+    "allowedTools": [
+      "pmcro_commands"
+    ],
+    "newToolRule": "requires explicit policy review; discovery does not widen policy"
+  },
+  "promotion": {
+    "allowed": false,
+    "requiresIndependentCheckerPass": true
+  }
+}

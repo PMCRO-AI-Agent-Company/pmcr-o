@@ -1,0 +1,17 @@
+{
+  "candidateDigest": "5554a87bafead8b8a849d28b1538e1d8f5bf578ba99a7d407e8a98e717853e06",
+  "zipSha256": "ab3c543e6857b8b74b6015c9b03dc07b85bdc4bc88b0830603ce07ea8982c9aa",
+  "tests": {
+    "passed": 133,
+    "failed": 0,
+    "skipped": 0
+  },
+  "build": {
+    "warnings": 0,
+    "errors": 0
+  },
+  "vulnerablePackages": 0,
+  "mcpPolicyCopiedToOutput": true,
+  "productionMutated": false,
+  "promotionPerformed": false
+}

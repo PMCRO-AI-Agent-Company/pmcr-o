@@ -1,0 +1,992 @@
+{
+  "apiVersion": "pmcro.candidate-manifest/v1",
+  "kind": "CandidateManifest",
+  "candidate": "agt-native-governance-r2",
+  "candidateDigest": "5554a87bafead8b8a849d28b1538e1d8f5bf578ba99a7d407e8a98e717853e06",
+  "fileCount": 191,
+  "files": [
+    {
+      "path": ".agents/application.json",
+      "sha256": "8c9e921be58fd5ac17a7eb01097a0db9e54c5abb2ab1b14edc3aef6b246ca87a",
+      "size": 4221
+    },
+    {
+      "path": ".agents/marketplaces.json",
+      "sha256": "1eff79caa8fc9f7efc9c881531d479c10446b456f4d75a5756e1ecf9582bce49",
+      "size": 163
+    },
+    {
+      "path": ".agents/project.json",
+      "sha256": "98a7b34117a15691d84f593442af797a443c918d520805a31d871c6c08f9a89f",
+      "size": 881
+    },
+    {
+      "path": ".agents/session-bootstrap.json",
+      "sha256": "82a0446b7caa6d78cd838ca9e520854a384885dab94783d0ee3bc44c403f1d77",
+      "size": 2038
+    },
+    {
+      "path": ".agents/settings.json",
+      "sha256": "f54204fdfec3a2e364732b07a55489f0df26526768406c73936d53db7203d35b",
+      "size": 272
+    },
+    {
+      "path": ".agents/skills/README.md",
+      "sha256": "933e8e1133a6121a800cbde4bbd015dfe76874dbd2af446026e17cd1c02ec635",
+      "size": 473
+    },
+    {
+      "path": ".template.config/template.json",
+      "sha256": "e75ff3661278ef0abc96898fb5a0d2e73f4c852e8882566f088f9c7431ec9912",
+      "size": 594
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "7df8a4086ff1064de28fe94fcfb93191f8ea3bd60b2df3707f1c067f87f6f29a",
+      "size": 1755
+    },
+    {
+      "path": "Directory.Build.props",
+      "sha256": "9d787d46da5384b70ab568762d5cba5f90abd9f47c77c3215330570c275524df",
+      "size": 222
+    },
+    {
+      "path": "Directory.Packages.props",
+      "sha256": "d5c0f3e1f9b8d5439f386b0091f9adc6d85f9790d4f28906236f37354a470648",
+      "size": 2318
+    },
+    {
+      "path": "ProjectName.Contracts-Runtime.slnx.fragment",
+      "sha256": "16adc36bca5466f110025644dab3f9d060266d8145e16f802efe967622c13496",
+      "size": 327
+    },
+    {
+      "path": "ProjectName.slnx",
+      "sha256": "7fc0b16e43863a91f777d3e9ffe1ebf729f9a6474cb3d55a0be91a7e3ba0d39a",
+      "size": 1657
+    },
+    {
+      "path": "README.md",
+      "sha256": "64954b4a63bee51f06b1b183fededdd9ce40f2c7d87f590154866d7d269ded6f",
+      "size": 2863
+    },
+    {
+      "path": "docs/AUTO_RUN.md",
+      "sha256": "cb5c02700073bae7f36577aba4c3bdb2460df635fc409bc961009303a9a2be74",
+      "size": 803
+    },
+    {
+      "path": "docs/CROSS_LLM.md",
+      "sha256": "cf013a28140f5e283b0e3cda7dc5e6521a5ba51c8763253e5c2678e5a0c47f61",
+      "size": 494
+    },
+    {
+      "path": "docs/CROSS_PLATFORM_MAF_AGENTS.md",
+      "sha256": "fa027eee046b32a8023958a2ef2a38f1b576cabef120fab822995bf498aa0ded",
+      "size": 713
+    },
+    {
+      "path": "docs/CYCLE1_ACCEPTANCE.json",
+      "sha256": "a550eef87597e845e498439d500eb313b940e49efb5df255999da3d30420d6b0",
+      "size": 324
+    },
+    {
+      "path": "docs/CYCLE1_CHECK.json",
+      "sha256": "1b5d7aaeeaa54881685d79a2f2b39c5ef1d0571050698ed2c8632cc6e2214059",
+      "size": 342
+    },
+    {
+      "path": "docs/CYCLE1_LEDGER.json",
+      "sha256": "072906eae4b175804df6bb116c5a6dd174488605313848b05e58d84140cd287b",
+      "size": 8087
+    },
+    {
+      "path": "docs/CYCLE1_NEXT_SEED.json",
+      "sha256": "18ffdeed0850e8884e2201bc8a76c1d45b5d10c9bc30d66379306beed8311bf6",
+      "size": 453
+    },
+    {
+      "path": "docs/CYCLE2_CHECK.json",
+      "sha256": "e17f3a2f58058c1ce28d00a783be7ade8c53cfe718a0c8d48f80407aa4b91dd8",
+      "size": 282
+    },
+    {
+      "path": "docs/CYCLE2_LEDGER.json",
+      "sha256": "a517a40e1d2e977bf2f03ebdc301344a530232995885ceb60783e55c94a24572",
+      "size": 7676
+    },
+    {
+      "path": "docs/CYCLE2_MERGE_CHECKLIST.md",
+      "sha256": "17b6afb5ca559ce52bb6ef40a8df754b3409f4a4f17be0767890322e3afcbebf",
+      "size": 460
+    },
+    {
+      "path": "docs/CYCLE2_NEXT_SEED.json",
+      "sha256": "fcabaa42576395772fdca6fc51ee05715be401b688229a4eda93b98138741687",
+      "size": 475
+    },
+    {
+      "path": "docs/CYCLE3_ACCEPTANCE.json",
+      "sha256": "b8e24af6fc84b29999e7bcf3632ab02fb7061d703e1daea4e65f0a1a32ac9661",
+      "size": 379
+    },
+    {
+      "path": "docs/CYCLE3_CHECK.json",
+      "sha256": "a6697444f8f82b7cbfb86c1d9d503890771bd6d84751a5ccc77517764fcf2bb6",
+      "size": 361
+    },
+    {
+      "path": "docs/CYCLE3_GOALS.json",
+      "sha256": "4eac632abf2797f1894aa5cfa28087579ad8f245002fb82a402acf43c3823137",
+      "size": 493
+    },
+    {
+      "path": "docs/CYCLE3_LEDGER.json",
+      "sha256": "669d2ab52f533ad8a9a24a19c8f1a54ab273b7b6a948633320506500282e5fb3",
+      "size": 8738
+    },
+    {
+      "path": "docs/CYCLE3_NEXT_SEED.json",
+      "sha256": "4f90cd8f843f430228bef8c1424d03b5825e44d4ce5515daf5506d4a74e8c549",
+      "size": 519
+    },
+    {
+      "path": "docs/CYCLE3_VALIDATED_RESOURCES.json",
+      "sha256": "c11e85c638334bdabd21c8d2738542bd7be5c81a1a58d883c8cee58e943381c4",
+      "size": 381
+    },
+    {
+      "path": "docs/CYCLE4_CHECK.json",
+      "sha256": "8bea357dac00669b89870422e13b53c74ab12b1864b6339fda51a203c39fa059",
+      "size": 326
+    },
+    {
+      "path": "docs/CYCLE4_LEDGER.json",
+      "sha256": "4a6b2d31d0ede0460547ad461a8609a3f567fe4342a5e37afb21d1894f60d651",
+      "size": 2560
+    },
+    {
+      "path": "docs/CYCLE4_NEXT_SEED.json",
+      "sha256": "312f11a950ddf74b48113600089c2f2a73fdb77d1d8e892b8037e4f9ac7ed269",
+      "size": 443
+    },
+    {
+      "path": "docs/CYCLE5_ACCEPTANCE.json",
+      "sha256": "6a6d1de2d346278b5b466c6fa508d839e338c7d4063b1119e4205bd8b5bc0d99",
+      "size": 442
+    },
+    {
+      "path": "docs/CYCLE5_CHECK.json",
+      "sha256": "363b3f6e444b29b2ac87d8dafcfa670c37c27d4bb65542acbee13c24ffaee58f",
+      "size": 1287
+    },
+    {
+      "path": "docs/CYCLE5_LEDGER.json",
+      "sha256": "6c5864b092ed92d92403f47a991b3a06c726788874911d5a89bd96d4af62a9a4",
+      "size": 5290
+    },
+    {
+      "path": "docs/CYCLE5_NEXT_SEED.json",
+      "sha256": "12cdd32aafac95347ad4bfdebb38de365884afe26ac3797ac8df0cbd377ea9d0",
+      "size": 443
+    },
+    {
+      "path": "docs/CYCLE6_CHECK.json",
+      "sha256": "122dcd17e2f4fa72f08c38793cebbc6f80ed45376b150a89dff433e9770f73a8",
+      "size": 325
+    },
+    {
+      "path": "docs/CYCLE6_LEDGER.json",
+      "sha256": "a5a776e2ff2c4e294e67eeecd0c2c34716d0ad121b682ae5bb6dbda5f0b26868",
+      "size": 4172
+    },
+    {
+      "path": "docs/CYCLE6_NEXT_SEED.json",
+      "sha256": "80c804a68cd9c37d89ea74ced9ab9285ede8e78c63b7d99c2057f15803a2cb8b",
+      "size": 257
+    },
+    {
+      "path": "docs/LIFECYCLE_CHECK.json",
+      "sha256": "2dd2a60b5515f5ea8cf19c0369aab1e67a021255a7439dcbf02544283532cd91",
+      "size": 739
+    },
+    {
+      "path": "docs/LIFECYCLE_LEDGER.json",
+      "sha256": "b1229490c410e8c6e046cdc8f8ea961e2568536cbb646d01caaa80444065d6d6",
+      "size": 1183
+    },
+    {
+      "path": "docs/LIFECYCLE_TRUE_INTENT.json",
+      "sha256": "eaa5875270d00e0189b981c1cb080c29a2c3603f6e4359d8b79a52b30d4c77b5",
+      "size": 1068
+    },
+    {
+      "path": "docs/MERGE_INTO_SOLUTION.md",
+      "sha256": "1bbd32fe40da33dc67c1a5ea8090423b38f670af1c33c6f7e3ad8fe2b1968c90",
+      "size": 2897
+    },
+    {
+      "path": "docs/NAMING.md",
+      "sha256": "645af9f2ad4bc5922e874fe3e687e7df08050e8483c1d7d17dd5b378da23be9e",
+      "size": 726
+    },
+    {
+      "path": "docs/SEED_QUEUE_DRAIN.json",
+      "sha256": "8837a4904c45747690a21747b95ad9594b02f551d36cbd1caeca18e61d1365f1",
+      "size": 2143
+    },
+    {
+      "path": "docs/TRAIL_MODEL.md",
+      "sha256": "78a7601972a8fd6e3037835b144c559645f634f56750817f2a35d83c4679aa90",
+      "size": 276
+    },
+    {
+      "path": "global.json",
+      "sha256": "2e2617a7e771b04a485a5b28f2ba6fd90d5eb1ead1366519af186a25f4b8ba51",
+      "size": 84
+    },
+    {
+      "path": "src/AgentSystem.AppHost/AgentSystem.AppHost.csproj",
+      "sha256": "ed9995c27179185dfe68d29e39761b7a3751d919631bc6137e49c115b7eacf8d",
+      "size": 623
+    },
+    {
+      "path": "src/AgentSystem.AppHost/AppHost.cs",
+      "sha256": "b8978e4bacfc050d4abb4c92f004468b8ecd9930134c023316aaba521e95a02d",
+      "size": 1350
+    },
+    {
+      "path": "src/AgentSystem.AppHost/Properties/launchSettings.json",
+      "sha256": "9d742b4d0cafa41e2eb3ac9405af61129c6847743806e7e8fe54b2b339a689e9",
+      "size": 417
+    },
+    {
+      "path": "src/ProjectName.Adapters/HostFrameworkAdapters.cs",
+      "sha256": "6bce2ac4c063b4901465a6b0aa7831ecab68640045254a97540c331d712f92b5",
+      "size": 2156
+    },
+    {
+      "path": "src/ProjectName.Adapters/ProjectName.Adapters.csproj",
+      "sha256": "ed4054fbca6ad9fc6489e00709e8054b17d7e38d1917345c11c3e37728a8fcba",
+      "size": 397
+    },
+    {
+      "path": "src/ProjectName.AgentCli/ControlPlaneCommand.cs",
+      "sha256": "5ab6243a695785324fd3f70dbea05ef217b803df3fbee14b5fbc36c1e3ded1fc",
+      "size": 7578
+    },
+    {
+      "path": "src/ProjectName.AgentCli/Program.cs",
+      "sha256": "f41d8874d56eb2822988179c54b46ba39c5c96ccdd266c8e7ea5ceb5a754084c",
+      "size": 1933
+    },
+    {
+      "path": "src/ProjectName.AgentCli/ProjectName.AgentCli.csproj",
+      "sha256": "cbfef92e93c9d675ea5ae5d139e23508362442336cf327195b93546e18de4637",
+      "size": 853
+    },
+    {
+      "path": "src/ProjectName.AgentCli/TerminalUi.cs",
+      "sha256": "d9b5f1ec5e662846c45bf18e3a49181746ba60df5a42851735529b7610fe0dbe",
+      "size": 1128
+    },
+    {
+      "path": "src/ProjectName.AppHost/PmcroRuntimeRegistration.cs",
+      "sha256": "8f0d63c4f03217f972954c1adbef3fa6932bf001aeac635ed56e9a8f624dce19",
+      "size": 579
+    },
+    {
+      "path": "src/ProjectName.Application.Abstractions/Operations.cs",
+      "sha256": "6ce94c9cadc5556a603bf6741c63c10a80eda77f3bb537a92cb31d8f75e55ec0",
+      "size": 437
+    },
+    {
+      "path": "src/ProjectName.Application.Abstractions/Persistence.cs",
+      "sha256": "433fa0b0374fd6f98c69c6cd1a4d201976c977b7e16471848c4492ac91c19c3e",
+      "size": 696
+    },
+    {
+      "path": "src/ProjectName.Application.Abstractions/PmcroOperations.cs",
+      "sha256": "79560b6245cb7ff11f5a7452f9a7a76123b5a0afdfc19b4b498b315d13f444e3",
+      "size": 338
+    },
+    {
+      "path": "src/ProjectName.Application.Abstractions/ProjectName.Application.Abstractions.csproj",
+      "sha256": "5d8d11578b6de62cac7dac2e4170bd870200e13ddf3875f7e0afe29fa0562127",
+      "size": 406
+    },
+    {
+      "path": "src/ProjectName.Capabilities/ICapabilityResolver.cs",
+      "sha256": "279d21a2beb1d237d3688081af3e920a7c5277a6d4c07fe6dc5de16e3cff76b7",
+      "size": 341
+    },
+    {
+      "path": "src/ProjectName.Capabilities/McpCapabilityResolver.cs",
+      "sha256": "3c9552928f2e8987b2c1dfc324f767cadd2d67f98f5e68aec2f5bc56892a6af4",
+      "size": 1334
+    },
+    {
+      "path": "src/ProjectName.Capabilities/McpSdkBoundary.cs",
+      "sha256": "6237a97f001709384de574689c4394d7049c70ad52c21a1ce7e12a3c53668562",
+      "size": 299
+    },
+    {
+      "path": "src/ProjectName.Capabilities/ProjectName.Capabilities.csproj",
+      "sha256": "bd49c674fd1f5a6e223149416e7dd0f95944d86094242cbd4b68f1587bec05ad",
+      "size": 379
+    },
+    {
+      "path": "src/ProjectName.Contracts/AgentActivationReceipt.schema.json",
+      "sha256": "fadec0db125f091814d763f15b67c64c73615c67036f15490cbe4002239b1cef",
+      "size": 735
+    },
+    {
+      "path": "src/ProjectName.Contracts/AgentExecutionGrant.cs",
+      "sha256": "0690e30d9f333779f446335a2dfb17eafcdf0043088ceeb9701cd4e656be4d15",
+      "size": 934
+    },
+    {
+      "path": "src/ProjectName.Contracts/AgentExecutionGrant.schema.json",
+      "sha256": "e9b3129e23569b4597f80cd628db20a271b842839170006dc39f5eabb5ea5fd6",
+      "size": 1253
+    },
+    {
+      "path": "src/ProjectName.Contracts/CapabilityInvocation.cs",
+      "sha256": "4e2a8eb55bd8eb2896cbd9eda49f63606029a270c8f42c41b93aa97d8b318917",
+      "size": 515
+    },
+    {
+      "path": "src/ProjectName.Contracts/CapabilityRegistration.cs",
+      "sha256": "7e798aeb1a5e7d577aa35edcac06ab6bd180b589a0cfaad29f845de78d0290db",
+      "size": 266
+    },
+    {
+      "path": "src/ProjectName.Contracts/CapabilityRegistration.schema.json",
+      "sha256": "5d0fc933bc7b9348bd090b6b8fdeb5a57e20d540911202498510ea105e7e4fdd",
+      "size": 776
+    },
+    {
+      "path": "src/ProjectName.Contracts/CognitiveDialogue.cs",
+      "sha256": "2db7330e1fbc6304779060d9bf267be1ccb0ac8581095d74d6cf4a9bfad976a3",
+      "size": 2150
+    },
+    {
+      "path": "src/ProjectName.Contracts/ControlPlaneCommissioningContracts.cs",
+      "sha256": "6c3a3b35686b218c979ebcaf0d3243195f6c9efebea7d6bbee5e7a965929c46b",
+      "size": 1137
+    },
+    {
+      "path": "src/ProjectName.Contracts/ExecutiveCouncilContracts.cs",
+      "sha256": "067423ab30b13957e48005d0671814371ee8a3f499ef8af55c89e783ee4d1e27",
+      "size": 3134
+    },
+    {
+      "path": "src/ProjectName.Contracts/ExecutiveOrganizationManifest.cs",
+      "sha256": "f055c234e64672d9065c2df0bfe928c43a0b25f2d8b127fd1e71836a747b3d6a",
+      "size": 782
+    },
+    {
+      "path": "src/ProjectName.Contracts/GapRecord.cs",
+      "sha256": "f08863b3451ce2c3ec67a350c02b25dea697a1b3cd2191487b715b9d02980cae",
+      "size": 413
+    },
+    {
+      "path": "src/ProjectName.Contracts/GrantDerivationRequest.cs",
+      "sha256": "0cdb5164f19ebfea3468f73feac525749da4d7f2ff8f3a220eab826d4d19fca3",
+      "size": 436
+    },
+    {
+      "path": "src/ProjectName.Contracts/GrantDerivationRequest.schema.json",
+      "sha256": "31d183f49db923422de2a41facdb8b42b34e160c992c130ccdd618bc3eec2d90",
+      "size": 1046
+    },
+    {
+      "path": "src/ProjectName.Contracts/IngressProtocol.cs",
+      "sha256": "cfc33d5d213718f314e4e4ee0d5240b0d8561cb29ec771a2d8232e083d758ae1",
+      "size": 924
+    },
+    {
+      "path": "src/ProjectName.Contracts/IntentPipeline.cs",
+      "sha256": "9e6f03404f1116479a95adf1b8ca2517cce074d88a833699e21873b6da1e2a26",
+      "size": 819
+    },
+    {
+      "path": "src/ProjectName.Contracts/PmcroConstants.cs",
+      "sha256": "cc7cf14c213027928aae610a6afab4009dc6efd8207679c1349c36e1226b86e4",
+      "size": 1202
+    },
+    {
+      "path": "src/ProjectName.Contracts/PmcroFrame.cs",
+      "sha256": "98d1360edbcde28dfd0f4477022df7ec7cbb37163672ea6b347b3ffca67f7e4b",
+      "size": 2373
+    },
+    {
+      "path": "src/ProjectName.Contracts/PmcroMessageEnvelope.cs",
+      "sha256": "8706ee563a94ed4e0a8ab948fc8b761c4e8401582346260e73358cb5b174799b",
+      "size": 1659
+    },
+    {
+      "path": "src/ProjectName.Contracts/PmcroRequest.cs",
+      "sha256": "8ff998497154e14651c972a0ffe9e495f0c2d2dba19a0aa323c5a33d9179f6a2",
+      "size": 1820
+    },
+    {
+      "path": "src/ProjectName.Contracts/PmcroRequest.schema.json",
+      "sha256": "a7b5b737e913388e0c1acc1127a73e27fae5f1ceb6998d21a538fb470fe5d718",
+      "size": 2234
+    },
+    {
+      "path": "src/ProjectName.Contracts/ProductionControlPlane.cs",
+      "sha256": "75b3a81ee36db35c38fc3ca424df1a93f1a5f968e99d18aa6e2bbb7218c5da04",
+      "size": 1477
+    },
+    {
+      "path": "src/ProjectName.Contracts/ProductionControlPlane.schema.json",
+      "sha256": "52207c9dcb7557209681cf5e5ed81ce5259c8d5e1bdd1153d79a5ebde166d21f",
+      "size": 951
+    },
+    {
+      "path": "src/ProjectName.Contracts/ProjectName.Contracts.csproj",
+      "sha256": "5088ef40e804a7625e282dd42e62a6a4f80c383d49b6c69363c305ce3de709b8",
+      "size": 367
+    },
+    {
+      "path": "src/ProjectName.Contracts/SeedDecision.cs",
+      "sha256": "332ab7fd351895b1ca857e381bed2278924a1d76eca53fca1cdc96cba83bfcb6",
+      "size": 455
+    },
+    {
+      "path": "src/ProjectName.Contracts/TrailAutomationContracts.cs",
+      "sha256": "0be23b33c442e716d203c34e6546396196f2bb32bc9b75f446a0f9dc0a15c4d6",
+      "size": 2281
+    },
+    {
+      "path": "src/ProjectName.Contracts/TrailModel.cs",
+      "sha256": "bc9b6a924cf439ce08eed80defa5316fd1888c73360aaa89d8f9009eeb8bba0c",
+      "size": 1114
+    },
+    {
+      "path": "src/ProjectName.Contracts/frames.json",
+      "sha256": "aa19c905adcf95a165249915aef3ee421784cd908e80d2fa66b272c02980ebea",
+      "size": 4293
+    },
+    {
+      "path": "src/ProjectName.Core/CapabilityRegistrationService.cs",
+      "sha256": "6b6961cc38f46f3f9704c0dfe6f076c6320745ce20b08c7d57ae0b9b17126db0",
+      "size": 674
+    },
+    {
+      "path": "src/ProjectName.Core/FrameSequencer.cs",
+      "sha256": "e4a915ec822ebefdf0912f8aee4f7f1ea6ba55e5052503a8b8a5e9652bc97db5",
+      "size": 1668
+    },
+    {
+      "path": "src/ProjectName.Core/GrantDerivationService.cs",
+      "sha256": "1b34cd8442f8b5280ed0e5dd289411ccf78a624fb3f43bb17567c1afef0cc5f1",
+      "size": 5276
+    },
+    {
+      "path": "src/ProjectName.Core/IFrameSequencer.cs",
+      "sha256": "ad816fac8a8a7cf52a4427b2a191216f477da7287c7ec18407b24b011b057862",
+      "size": 756
+    },
+    {
+      "path": "src/ProjectName.Core/IMessageBus.cs",
+      "sha256": "2b61aba992ea8de89f5f769fb9cd0c36a01abdcaa22d03e0b77bbc4079de193f",
+      "size": 458
+    },
+    {
+      "path": "src/ProjectName.Core/ISeedController.cs",
+      "sha256": "b0ce3592b28becf302a2cb038d667deacc33f79a3223f504f255372b6b40de7b",
+      "size": 357
+    },
+    {
+      "path": "src/ProjectName.Core/ISeedQueue.cs",
+      "sha256": "858ca29fb0dbd767c4c92d2cce320ba8c4e76d92b8d3c60005932895eb0d1a20",
+      "size": 856
+    },
+    {
+      "path": "src/ProjectName.Core/MessageBusSeedQueue.cs",
+      "sha256": "b196bdd76040d879ac980da98f99c51cefec7df187440e370c2c94a81ed779e5",
+      "size": 2411
+    },
+    {
+      "path": "src/ProjectName.Core/PmcroIngressProtocol.cs",
+      "sha256": "6cf3dbb966456eaf6a0a809ca2bedafcc52218e93d980ab4580d033c61276e81",
+      "size": 4507
+    },
+    {
+      "path": "src/ProjectName.Core/ProductionGrantIssuer.cs",
+      "sha256": "9020e9bd7e2be7bb4877e1b00ef0717a746670f3c8da279a7b0591d4616a7fcf",
+      "size": 1968
+    },
+    {
+      "path": "src/ProjectName.Core/ProductionGrantVerifier.cs",
+      "sha256": "fbd3393c27e71a079b4bc2082544c765daf127265b9291d0e11b65fa95f086ff",
+      "size": 2438
+    },
+    {
+      "path": "src/ProjectName.Core/ProjectName.Core.csproj",
+      "sha256": "0c14fa2d3ce6a79788affe320d32c7589ccef82a6878dbce7973b09b0c22beff",
+      "size": 291
+    },
+    {
+      "path": "src/ProjectName.Core/SeedController.cs",
+      "sha256": "91d73c0a86ab75d673f99d6052313df546f7584baabec247e31a5e0114e271f5",
+      "size": 2198
+    },
+    {
+      "path": "src/ProjectName.Core/TrailAutomationGuard.cs",
+      "sha256": "741d378937f7a61037cbca5e8df72d72c438a7c7edc2354e41449451fadecc89",
+      "size": 3259
+    },
+    {
+      "path": "src/ProjectName.Core/TrailAutomationService.cs",
+      "sha256": "8c6a72edc83fb880150eefa9ecd7c78570f01eef35b5b1ca39d39e01522fe834",
+      "size": 5182
+    },
+    {
+      "path": "src/ProjectName.Domain/Entity.cs",
+      "sha256": "ff7e779b8307b12d2e5d3903e6c5bf010bea7d7e801da27ad39506792f02ea7c",
+      "size": 329
+    },
+    {
+      "path": "src/ProjectName.Domain/ProjectName.Domain.csproj",
+      "sha256": "3472fccce5613343d3b55f6c2bbc48cbfd3de01f9cf32fd8607b8ac3a7e26395",
+      "size": 205
+    },
+    {
+      "path": "src/ProjectName.Harness/AgentActivationGate.cs",
+      "sha256": "33a9fc57eca7b0a99f0437d97e43150fe84f07fdda44a543535d7488493b3f5a",
+      "size": 8170
+    },
+    {
+      "path": "src/ProjectName.Harness/AutoRunOptions.cs",
+      "sha256": "95f02fd76a0bd3f9f05ac05a6baf0fe105de9fdc8c6ad49dd538a36041db5a4b",
+      "size": 1061
+    },
+    {
+      "path": "src/ProjectName.Harness/CommissioningEvidenceValidator.cs",
+      "sha256": "19921e9ff1c453d7d0751badb92015a9fb12dd21d2e699be7a502441e3d8d338",
+      "size": 6688
+    },
+    {
+      "path": "src/ProjectName.Harness/CommissioningGrantBoundary.cs",
+      "sha256": "d8a7cade5030c8ab8d50352d7c06f3628d47340b0ea0d21816feb3cbf50645f5",
+      "size": 3262
+    },
+    {
+      "path": "src/ProjectName.Harness/ControlPlaneCommissioningService.cs",
+      "sha256": "544c6873a9b53bf23bae26fdefd1b2d9b23290f6aba6e8920f2ba2f96460a163",
+      "size": 12501
+    },
+    {
+      "path": "src/ProjectName.Harness/ControlPlaneOperatorTrust.cs",
+      "sha256": "65d2b3ef37cc5b64245f5d66d9411ebb83a336016b8acc53c89ec1fa102d673c",
+      "size": 3367
+    },
+    {
+      "path": "src/ProjectName.Harness/DisabledProductionActivation.cs",
+      "sha256": "cd29513b70c5875ed5946e1123e22f00069739bd9a1ee827eb58d0bad02e4d23",
+      "size": 555
+    },
+    {
+      "path": "src/ProjectName.Harness/FirstOperationalGrantBootstrap.cs",
+      "sha256": "6e18bdafbb64c8bf57ebb3d3c74db3f5131e58a7d92e8f65732b5f920e57fa24",
+      "size": 8073
+    },
+    {
+      "path": "src/ProjectName.Harness/FrameworkActivationStub.cs",
+      "sha256": "c6d5214cc446c5bf142ec0513ca02ad25ded0ca22c42454cd38c63a95d8c99cf",
+      "size": 1890
+    },
+    {
+      "path": "src/ProjectName.Harness/IFrameworkActivation.cs",
+      "sha256": "0e93fd1629e84f5cba0cf9afbf0c60e4311a096128d159e18eb925b0b00372cf",
+      "size": 533
+    },
+    {
+      "path": "src/ProjectName.Harness/IPhaseHandler.cs",
+      "sha256": "8fbe00b3e1c7045af53bbc75badc33abe7e3544763450ec2ce4401bf808bbefe",
+      "size": 859
+    },
+    {
+      "path": "src/ProjectName.Harness/IPhaseRouter.cs",
+      "sha256": "78637a26d09462f9027803212106da90dc9d89eb9ce2a31ab4d55ddbf4b5e682",
+      "size": 340
+    },
+    {
+      "path": "src/ProjectName.Harness/PhaseRouter.cs",
+      "sha256": "d5017f9e46a62e2a21e12a70651e8ca4f76a56555de2aacb1a2458d2be9899e2",
+      "size": 3698
+    },
+    {
+      "path": "src/ProjectName.Harness/PmcroOperations.cs",
+      "sha256": "09017eceeae9ccc63b75fcd541404cce886ce1746348204b8f91885553c3a0a9",
+      "size": 594
+    },
+    {
+      "path": "src/ProjectName.Harness/ProjectName.Harness.csproj",
+      "sha256": "6803fe0eb41f0793987b775efea5cc9fb3febaae4a89e582300a378558f38d79",
+      "size": 1101
+    },
+    {
+      "path": "src/ProjectName.Harness/ServiceCollectionExtensions.cs",
+      "sha256": "6f05cabbdaf40971eedbf9781930ae40d299287a7062cace433b6e80b7ee4091",
+      "size": 3931
+    },
+    {
+      "path": "src/ProjectName.Harness/cycle-ledger.schema.json",
+      "sha256": "9b32d34104e398cf072e98697d62878f0d44a36d6624aaf2da2c2ab359bc4039",
+      "size": 151
+    },
+    {
+      "path": "src/ProjectName.Infrastructure/FileControlPlaneStores.cs",
+      "sha256": "a0a06ed2eaf9c016d8ed983da7e658fddb93c0c5a96adf3e3a431cc680bdecf1",
+      "size": 4421
+    },
+    {
+      "path": "src/ProjectName.Infrastructure/FilePmcroMessageBus.cs",
+      "sha256": "5ed7b75bd694b60565ea31f3b74ec0a5c6e1b86bea79c3259af48ac345a68d07",
+      "size": 4371
+    },
+    {
+      "path": "src/ProjectName.Infrastructure/InMemoryPersistence.cs",
+      "sha256": "59937c6566d83a24fd2d1e222dbbf95b955289411de5f601947bdca9d882bc83",
+      "size": 1922
+    },
+    {
+      "path": "src/ProjectName.Infrastructure/ProjectName.Infrastructure.csproj",
+      "sha256": "b0d8f0c7677da75968796d77ccb04f610b0ac4ef9ffd6d188a3e8cf4ff9bcafd",
+      "size": 699
+    },
+    {
+      "path": "src/ProjectName.Infrastructure/ScriptCapabilityInvoker.cs",
+      "sha256": "6c2712b6859d0b798ba88c698822d2c60dbd74a191dddfa5b5755c3cb8d962cc",
+      "size": 3802
+    },
+    {
+      "path": "src/ProjectName.Infrastructure/WindowsDpapiSecretProvider.cs",
+      "sha256": "f45d8104f87b12147ba18106f42a3aaf3ff4b31d87d43ae35d765206496c857b",
+      "size": 5169
+    },
+    {
+      "path": "src/ProjectName.Marketplace/CreateSkillRoute.cs",
+      "sha256": "564dd5f60fcb95b89658e0fefc42ac49c6bab60c2bf1d1a028825f283907f863",
+      "size": 853
+    },
+    {
+      "path": "src/ProjectName.Marketplace/IResourceValidator.cs",
+      "sha256": "1d7663508912eb68692cdc30f0af9380b2002e893b49e6b5e894308500960da7",
+      "size": 466
+    },
+    {
+      "path": "src/ProjectName.Marketplace/MarketplaceCatalogLoader.cs",
+      "sha256": "1f12d890162a30bf9a7403ff3f6c51d52cc975dd4e8bbb80bdde028021ae8eba",
+      "size": 1097
+    },
+    {
+      "path": "src/ProjectName.Marketplace/MarketplaceResourceValidator.cs",
+      "sha256": "e29cf1a94a61dece1262173f19f447d74cbe93be7628949048ae2e5f19b8a8ff",
+      "size": 1850
+    },
+    {
+      "path": "src/ProjectName.Marketplace/ProjectName.Marketplace.csproj",
+      "sha256": "0c14fa2d3ce6a79788affe320d32c7589ccef82a6878dbce7973b09b0c22beff",
+      "size": 291
+    },
+    {
+      "path": "src/ProjectName.McpServer/Program.cs",
+      "sha256": "2d87012213bf4d9495f5feaf8fc4574b20891c5dd6dc2ceb5a6229704bed300a",
+      "size": 1948
+    },
+    {
+      "path": "src/ProjectName.McpServer/ProjectName.McpServer.csproj",
+      "sha256": "79f57f9eb10ce3ca58746ce883d0ef5b9b4a99d668d94749d4363454989ec93b",
+      "size": 765
+    },
+    {
+      "path": "src/ProjectName.McpServer/policies/mcp.yaml",
+      "sha256": "70f9123344a7609ce3c56e5ed6aea89e6014d5d618a800e29aaff559eafef2db",
+      "size": 226
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/CouncilEndpoints.cs",
+      "sha256": "45413b714a111277a4b7255e7b7b85ce701422632e0925547f61cbf7bec9aeab",
+      "size": 7081
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/CycleBody.cs",
+      "sha256": "674391220e148634660319946aee738690ca58b71ab93a0fdaf71e0d11e78aed",
+      "size": 195
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/PmcroEndpoints.cs",
+      "sha256": "169fffaca8facec4140f9cab314b7c760e07826efcd5061dd9c1641ee3b470af",
+      "size": 2920
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/PmcroRequestEnvelope.cs",
+      "sha256": "23e6504ce7815b97570e37f7990f4323922aa483629ead439b5b7b411f82b251",
+      "size": 1024
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/Program.cs",
+      "sha256": "811ccc3fbad6bb00150b45982c84a4ef928731b27ef3a16680a976f30d78a282",
+      "size": 1913
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/Program.merge-snippet.cs",
+      "sha256": "b66b6e1eef39bcb3b2aa2a5aaf28c4958e88856dd1210e1f1ce7d526c5ca0d18",
+      "size": 630
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/ProjectName.OrchestrationApi.csproj",
+      "sha256": "0b44248a6e317ffce444204b63786675acdd9a7d46465657b2d26cb613b15fa9",
+      "size": 723
+    },
+    {
+      "path": "src/ProjectName.OrchestrationApi/ProjectName.OrchestrationApi.csproj.fragment",
+      "sha256": "1096fe3374dc2544a4ad9fdcd07ff3538ce5dbff5f7b09930a443a996aff75fd",
+      "size": 229
+    },
+    {
+      "path": "src/ProjectName.Runtime.Abstractions/IAgentRuntime.cs",
+      "sha256": "783c55d47fb1f0b8ff2c94cd4511395d294ae29e06edb67ac8fa89105cfb0c93",
+      "size": 531
+    },
+    {
+      "path": "src/ProjectName.Runtime.Abstractions/IHostFrameworkAdapter.cs",
+      "sha256": "a620114eac9fbfb708d4c24fe3f94cd3adf88d39082e3d08f83fe0cdda2be5bd",
+      "size": 816
+    },
+    {
+      "path": "src/ProjectName.Runtime.Abstractions/ProjectName.Runtime.Abstractions.csproj",
+      "sha256": "0c14fa2d3ce6a79788affe320d32c7589ccef82a6878dbce7973b09b0c22beff",
+      "size": 291
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/AgtNativeCapabilityAuthority.cs",
+      "sha256": "70e6acbb39df0d61469908a0cb9d8c6edaa775d881904cce513eb091c96c7edd",
+      "size": 2680
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/ExecutiveOrganizationManifestLoader.cs",
+      "sha256": "93f58435aaee6189f6af3793fc8dee31c4df884e9b56cf073bef0ba7c3997c18",
+      "size": 2512
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/MafAgentRuntime.cs",
+      "sha256": "2f547e98fb2aceb0aa43407b3bf7fa5194632318c7bc1f454b29592e66deba7c",
+      "size": 1918
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/MafExecutiveCouncil.cs",
+      "sha256": "69e15a6d7845d2fa81954fc76538c0b88e7b410707597fb5eb8fe463591647b3",
+      "size": 6405
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/MafExecutiveCouncilRuntime.cs",
+      "sha256": "2de6ed70fdc81d5aabb582e54ccdaece25773f7e54621c18817a07fca4103d24",
+      "size": 3450
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/MafGovernanceBoundary.cs",
+      "sha256": "1cd690777dd54aa7e57c87dc7addca8d776c970b2ff89ce865e5a414cc72e515",
+      "size": 1790
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/MafHostAdapter.cs",
+      "sha256": "128eecc31b600e8bb11a57f68335a0c0676c56637b208f0376155f5697d94323",
+      "size": 782
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/MafMcpToolProvider.cs",
+      "sha256": "2b887cc26a078d855e3b572de56000ff94faea79fee300acd001544147b9c5b0",
+      "size": 2153
+    },
+    {
+      "path": "src/ProjectName.Runtime.Maf/ProjectName.Runtime.Maf.csproj",
+      "sha256": "b2c00d1bba8f8634c4aa38a2b8c6c4a3b819677ef36bf4ea0627bf8fee27a9c0",
+      "size": 888
+    },
+    {
+      "path": "src/ProjectName.Runtime/ProjectName.Runtime.csproj",
+      "sha256": "250e424276801badefac58df8b048e7bd432a2b5febdbfe70865b681d2032159",
+      "size": 369
+    },
+    {
+      "path": "src/ProjectName.ServiceDefaults/Extensions.cs",
+      "sha256": "18494cab54cedbb4221f8e982f3fe9cfbd620ce518d05e1d810ae98458be4605",
+      "size": 2054
+    },
+    {
+      "path": "src/ProjectName.ServiceDefaults/ProjectName.ServiceDefaults.csproj",
+      "sha256": "bb089c715ed7fb60cba2a3641721397eafcca0ab492b3cb79cf10f420e58a550",
+      "size": 864
+    },
+    {
+      "path": "src/ProjectName.Tooling/DynamicMcpProjection.cs",
+      "sha256": "3b2d951a23604f99d9eaed571c2fe83546468fe5f75347a642386105f6feb118",
+      "size": 2536
+    },
+    {
+      "path": "src/ProjectName.Tooling/McpCapabilityIds.cs",
+      "sha256": "7da7aa4e7c9fa0ce0e77e4aed927aa12a97e4b9ad76c84aba1a661e4b73ba66d",
+      "size": 364
+    },
+    {
+      "path": "src/ProjectName.Tooling/ProjectName.Tooling.csproj",
+      "sha256": "7e007abf1f6c8f56c784a3d00b868a865af3b8e82126fca598f36ac12c686bda",
+      "size": 408
+    },
+    {
+      "path": "templates/README.md",
+      "sha256": "6e80d3cf94340439403216a02d0a3fcdf28ea106f25ac9137865a8cb52e572f1",
+      "size": 409
+    },
+    {
+      "path": "templates/organizations/bank.json",
+      "sha256": "aededce446fd0adb4308e4fe138df9d66b8d36602037ed8f5a7f020bed2b9faf",
+      "size": 3480
+    },
+    {
+      "path": "templates/organizations/startup.json",
+      "sha256": "041b1c2b74fc88c31cce2baa901f9f4e8c73fdca1552be546224d7623a32d45c",
+      "size": 1347
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/AgtNativeGovernanceTests.cs",
+      "sha256": "f7978678de147039fec1488bb515a387598b4be453233a5b78da8432f82be83a",
+      "size": 2022
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/AllFramesTests.cs",
+      "sha256": "38c62382c99adaea3ff5aa013adfd90f7949c6bd92cc3067bf92a5ee2da22ada",
+      "size": 1568
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/AuthorityBootstrapTests.cs",
+      "sha256": "8190157c89ee07c1ded91ff4c303c6cf754e5a6c81250a7baafb4c1284d8622f",
+      "size": 5393
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/CleanArchitectureTests.cs",
+      "sha256": "f7c9df7d06db4fa296132eaaecbce61e04eb0050f75c5199c602c5b85ec91e93",
+      "size": 2259
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/CognitiveTrailTests.cs",
+      "sha256": "e13706de620b730d182b0d6fd96865b26ecffe552890677ee7f1b3061ee0b506",
+      "size": 5036
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ControlPlaneCommissioningTests.cs",
+      "sha256": "dfb2010b7985c4a53d8c1f8ab16ede0e0187f9bd8aca166b965e109445507d0c",
+      "size": 20260
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ControlPlaneHardeningTests.cs",
+      "sha256": "41a6aacd4412099f69834f8a606de7a1f6056525cfefffe4e0afc7f9ab3cf3da",
+      "size": 5569
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ConventionAlignmentTests.cs",
+      "sha256": "573bf4774560759470e64b8027100c10bfb78a6fb793a0c09f6d4aa510d10e5e",
+      "size": 1627
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/DynamicMcpProjectionTests.cs",
+      "sha256": "982dacc111c05dd5122b3ebb4ec7adfbf5dbe343ffc14137c0a519f84cc13131",
+      "size": 1269
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ExecutiveCouncilRuntimeTests.cs",
+      "sha256": "0562921d488e050433f3768cede4b178255cae5b32d5dcfe301ae8b0923cb138",
+      "size": 3133
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ExecutiveCouncilTests.cs",
+      "sha256": "2974b606040331aae61693a925e66f4edef88c22d80a71e98e3d42a6bcafcb20",
+      "size": 8341
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/FirstOperationalGrantBootstrapTests.cs",
+      "sha256": "fb3e393e01b3c550137339699e8305f1c3a178df3ac9d0384b4f915cc7b37635",
+      "size": 6913
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/FrameSequencerTests.cs",
+      "sha256": "4c51e99cffd2110a20d569700e8801c13a529131ac69642e69d6d19fc3a5ec90",
+      "size": 1555
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/IngressProtocolTests.cs",
+      "sha256": "ce1ff8389b79b913365bc4be60810ae71221d37a2a6fb7539ccaab5a4f1a04f2",
+      "size": 4036
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/McpNativeGovernanceTests.cs",
+      "sha256": "96564eca90d7e18aa73763473f4a402c6fcff1614d2ee9444517bf8607074830",
+      "size": 2269
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/PhaseRouterTests.cs",
+      "sha256": "4b9d60369c0ae2bf143e0126f7554f493661882c0d89c74087335e085f06b49a",
+      "size": 3866
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ProductionControlPlaneTests.cs",
+      "sha256": "b5c418aa26e5b9d4c73d7e362ca2cb928ef03b627b62bf87d6408d4c699b5896",
+      "size": 15541
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ProjectName.Runtime.Tests.csproj",
+      "sha256": "e2e4e660bb0b5ecd0b8ade5743a1c8539c64f237c0fbeac292153fdc99742778",
+      "size": 1646
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/ResourceValidatorTests.cs",
+      "sha256": "5f747845bc63b69801631e4a5ff989aa17f6873d5d68de91d7af38277baf98bb",
+      "size": 1878
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/TrailAutomationIntegrationTests.cs",
+      "sha256": "5f43a962868519f823edf63f7d96a28e46f30f2b30470028caa55111aa0eb283",
+      "size": 5126
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/TrailAutomationTests.cs",
+      "sha256": "8b061906ee50890911e3d3c7fa0de358cf9d925ff4a3a2f70a6cb4f8159e9feb",
+      "size": 4959
+    }
+  ],
+  "productionDelta": [
+    {
+      "path": "Directory.Packages.props",
+      "action": "modify",
+      "sha256": "d5c0f3e1f9b8d5439f386b0091f9adc6d85f9790d4f28906236f37354a470648"
+    },
+    {
+      "path": "src/ProjectName.McpServer/Program.cs",
+      "action": "modify",
+      "sha256": "2d87012213bf4d9495f5feaf8fc4574b20891c5dd6dc2ceb5a6229704bed300a"
+    },
+    {
+      "path": "src/ProjectName.McpServer/ProjectName.McpServer.csproj",
+      "action": "modify",
+      "sha256": "79f57f9eb10ce3ca58746ce883d0ef5b9b4a99d668d94749d4363454989ec93b"
+    },
+    {
+      "path": "src/ProjectName.McpServer/policies/mcp.yaml",
+      "action": "add",
+      "sha256": "70f9123344a7609ce3c56e5ed6aea89e6014d5d618a800e29aaff559eafef2db"
+    },
+    {
+      "path": "tests/ProjectName.Runtime.Tests/McpNativeGovernanceTests.cs",
+      "action": "add",
+      "sha256": "96564eca90d7e18aa73763473f4a402c6fcff1614d2ee9444517bf8607074830"
+    }
+  ],
+  "createdAt": "2026-10-17T05:26:05.087568+00:00"
+}
