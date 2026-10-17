@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectName.Contracts.PmcroRequest",
+  "description": "Role and Phase are independent. All 25 @role /pmcro:phase frames are ordered inside one Cycle. Errors: CHECK catches \u2192 REFLECT emits NextSeed \u2192 next Cycle begins at ORCHESTRATE.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "command",
+    "intent",
+    "agentRef"
+  ],
+  "properties": {
+    "command": {
+      "enum": [
+        "init",
+        "seed",
+        "orchestrate",
+        "plan",
+        "make",
+        "check",
+        "reflect"
+      ]
+    },
+    "route": {
+      "type": "string",
+      "pattern": "^@[a-z]+ /pmcro:(init|seed|orchestrate|plan|make|check|reflect)$"
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agentRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "notes": {
+      "type": "string"
+    },
+    "contextRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "trailRef": {
+      "type": "string"
+    },
+    "seedRef": {
+      "type": "string"
+    },
+    "cycleRef": {
+      "type": "string"
+    },
+    "parent_tool_use_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "agent_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "framework": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "capabilityRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "role": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "orchestrator",
+        "planner",
+        "maker",
+        "checker",
+        "reflector",
+        null
+      ]
+    },
+    "phase": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "ORCHESTRATE",
+        "PLAN",
+        "MAKE",
+        "CHECK",
+        "REFLECT",
+        null
+      ]
+    },
+    "frameOrdinal": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 24
+    },
+    "frameId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "role:PHASE e.g. maker:CHECK"
+    }
+  }
+}

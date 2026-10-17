@@ -1,0 +1,12 @@
+{
+  "cycleRef": "cycle-20261016-5",
+  "agentRef": "pmcro-planner",
+  "acceptance": [
+    ".claude/agents matches .agents/agents role files",
+    ".claude/commands includes contracts, frames, request.schema, phase md",
+    ".claude/rules, workflows, output-styles, skills, agent-memory mirrored",
+    ".cursor/skills/pmcro mirrored from .agents/skills/pmcro",
+    "project authority still all false",
+    "no __pycache__ in projections"
+  ]
+}

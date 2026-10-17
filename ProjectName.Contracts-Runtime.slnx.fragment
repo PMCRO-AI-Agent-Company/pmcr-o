@@ -1,0 +1,5 @@
+<!-- Merge into ProjectName.slnx under Folder Name="/src/" -->
+    <Project Path="src/ProjectName.Contracts/ProjectName.Contracts.csproj" />
+    <Project Path="src/ProjectName.Runtime/ProjectName.Runtime.csproj" />
+<!-- Optional tests -->
+    <Project Path="tests/ProjectName.Runtime.Tests/ProjectName.Runtime.Tests.csproj" />

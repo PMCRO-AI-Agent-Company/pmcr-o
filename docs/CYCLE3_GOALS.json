@@ -1,0 +1,22 @@
+{
+  "cycleRef": "cycle-20261016-3",
+  "agentRef": "pmcro-orchestrator",
+  "goals": [
+    {
+      "id": "G1",
+      "text": "Planner uses only validated marketplace resources"
+    },
+    {
+      "id": "G2",
+      "text": "Missing capability cannot be used; route to create-skill"
+    },
+    {
+      "id": "G3",
+      "text": "create-skill is authoring only until REGISTER/grant"
+    },
+    {
+      "id": "G4",
+      "text": "Merge path remains authoring; no REGISTER in this cycle"
+    }
+  ]
+}

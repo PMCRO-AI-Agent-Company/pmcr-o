@@ -1,0 +1,10 @@
+{
+  "intent": "Projection parity pass: ensure .claude/.cursor agents and commands mirror .agents after STRUCTURE freeze; still no REGISTER",
+  "sourceCycleRef": "cycle-20261016-4",
+  "suggestedRole": "orchestrator",
+  "agentRef": "pmcro-orchestrator",
+  "executed": false,
+  "notes": "Do not auto-execute REGISTER. | accepted into queue cycle-6; product side still false",
+  "acknowledgedInCycle": "cycle-20261016-6",
+  "decision": "accept"
+}

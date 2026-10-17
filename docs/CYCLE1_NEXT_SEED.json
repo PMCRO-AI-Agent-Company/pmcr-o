@@ -1,0 +1,10 @@
+{
+  "intent": "Merge ProjectName.Contracts/Runtime into live Aspire solution and run Runtime.Tests",
+  "sourceCycleRef": "cycle-20261016-1",
+  "sourceFrameId": "reflector:MAKE",
+  "suggestedRole": "orchestrator",
+  "notes": "Do not auto-execute. Admit on next cycle via @orchestrator /pmcro:orchestrate. | accepted into queue cycle-6; product side still false",
+  "executed": false,
+  "acknowledgedInCycle": "cycle-20261016-6",
+  "decision": "accept"
+}

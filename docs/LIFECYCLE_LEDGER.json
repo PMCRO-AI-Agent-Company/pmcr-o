@@ -1,0 +1,36 @@
+{
+  "cycleRef": "cycle-20261016-lifecycle",
+  "messySeed": "Run the lifecycle",
+  "trueIntent": "Ship a production-ready PMCR-O template: .agents canonical surface, Claude design patterns implemented via MAF-native ProjectName runtime, multi-host projections, messy-seed\u2192true-intent pipeline, marketplace resource gate, seed controls accept/reject/resume/defer, without REGISTER until explicit lifecycle.",
+  "frames": [
+    {
+      "role": "orchestrator",
+      "phase": "ORCHESTRATE",
+      "agentRef": "pmcro-orchestrator",
+      "status": "PASS",
+      "evidence": "admitted cycle-20261016-lifecycle; messySeed='Run the lifecycle'"
+    },
+    {
+      "role": "planner",
+      "phase": "PLAN",
+      "agentRef": "pmcro-planner",
+      "status": "PASS",
+      "evidence": "resources=12 acceptance=8"
+    },
+    {
+      "role": "maker",
+      "phase": "MAKE",
+      "agentRef": "pmcro-maker",
+      "status": "PASS",
+      "evidence": "fixes=['messy-to-true-intent workflow']"
+    },
+    {
+      "role": "checker",
+      "phase": "CHECK",
+      "agentRef": "pmcro-checker",
+      "status": "PASS",
+      "evidence": "verdict=PASS fail_keys=[]"
+    }
+  ],
+  "verdict": "PASS"
+}

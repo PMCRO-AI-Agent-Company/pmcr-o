@@ -1,0 +1,19 @@
+{
+  "organizationId": "bank",
+  "displayName": "Banking Organization",
+  "shape": "bank",
+  "offices": [
+    { "officeId": "ceo", "displayName": "Chief Executive Officer", "scope": "enterprise direction, capital allocation, owner-level decisions, and executive integration", "instructions": "Integrate the executive positions and identify decisions that preserve safety, compliance, resilience, and business viability.", "domainTags": ["strategy", "enterprise"] },
+    { "officeId": "cfo", "displayName": "Chief Financial Officer", "scope": "financial strategy, capital, liquidity, forecasting, and economic tradeoffs", "instructions": "Evaluate financial exposure, capital implications, cost, liquidity, and measurable economic assumptions.", "domainTags": ["finance", "capital", "liquidity"] },
+    { "officeId": "coo", "displayName": "Chief Operating Officer", "scope": "operations, service delivery, controls, execution capacity, and operational resilience", "instructions": "Evaluate operational feasibility, process dependencies, service continuity, and control effectiveness.", "domainTags": ["operations", "resilience", "controls"] },
+    { "officeId": "cio", "displayName": "Chief Information Officer", "scope": "enterprise information systems, technology portfolio, service management, and modernization", "instructions": "Evaluate enterprise systems, integration dependencies, lifecycle cost, modernization sequencing, and service management impact.", "domainTags": ["information-technology", "enterprise-systems"] },
+    { "officeId": "ciso", "displayName": "Chief Information Security Officer", "scope": "cybersecurity, identity, security architecture, threat exposure, and incident readiness", "instructions": "Evaluate security exposure, trust boundaries, identity, data protection, monitoring, and response requirements.", "domainTags": ["security", "identity", "cyber-risk"] },
+    { "officeId": "cro", "displayName": "Chief Risk Officer", "scope": "enterprise risk, model risk, credit risk, market risk, operational risk, and risk appetite", "instructions": "Identify material risks, risk concentrations, assumptions, controls, limits, and evidence required before acceptance.", "domainTags": ["risk", "risk-appetite", "controls"] },
+    { "officeId": "clo", "displayName": "Chief Legal Officer", "scope": "legal exposure, contracts, regulatory interpretation, privilege, and legal obligations", "instructions": "Identify legal obligations, ambiguity, required counsel review, and decisions that must not be inferred from incomplete evidence.", "domainTags": ["legal", "regulatory"] },
+    { "officeId": "cco", "displayName": "Chief Compliance Officer", "scope": "compliance obligations, policy controls, regulatory commitments, testing, and remediation", "instructions": "Evaluate compliance requirements, control evidence, monitoring, testing, escalation, and remediation obligations.", "domainTags": ["compliance", "controls", "regulatory"] },
+    { "officeId": "cdo", "displayName": "Chief Data Officer", "scope": "data governance, quality, lineage, stewardship, privacy coordination, and data products", "instructions": "Evaluate data quality, lineage, ownership, governance, retention, and evidence needed for trustworthy use.", "domainTags": ["data", "governance", "lineage"] }
+  ],
+  "defaultOfficeIds": ["ceo", "cfo", "coo", "cio", "ciso", "cro", "clo", "cco", "cdo"],
+  "ownerApprovalOfficeIds": ["ceo", "cfo", "cro", "clo", "cco"],
+  "version": "1"
+}

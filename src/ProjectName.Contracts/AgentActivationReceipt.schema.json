@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectName.Contracts.AgentActivationReceipt",
+  "type": "object",
+  "required": [
+    "Verdict",
+    "MakerIdentity",
+    "CheckerIdentity",
+    "CandidateDigest",
+    "Files",
+    "Grant"
+  ],
+  "properties": {
+    "Verdict": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED"
+      ]
+    },
+    "MakerIdentity": {
+      "type": "string"
+    },
+    "CheckerIdentity": {
+      "type": "string"
+    },
+    "CandidateDigest": {
+      "type": "string"
+    },
+    "Files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Grant": {
+      "$ref": "AgentExecutionGrant.schema.json"
+    }
+  }
+}

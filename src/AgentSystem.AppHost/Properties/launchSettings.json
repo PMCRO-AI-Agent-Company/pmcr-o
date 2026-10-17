@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "https": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:17443;http://localhost:17444",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:17445",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:17446"
+      }
+    }
+  }
+}

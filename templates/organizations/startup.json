@@ -1,0 +1,31 @@
+{
+  "organizationId": "startup",
+  "displayName": "Startup Company",
+  "shape": "startup",
+  "offices": [
+    {
+      "officeId": "ceo",
+      "displayName": "Chief Executive Officer",
+      "scope": "company direction, priorities, capital allocation, and owner-level tradeoffs",
+      "instructions": "Integrate the executive positions and identify the smallest decision that advances the company without bypassing governance.",
+      "domainTags": ["strategy", "company", "capital"]
+    },
+    {
+      "officeId": "cto",
+      "displayName": "Chief Technology Officer",
+      "scope": "technical strategy, architecture, engineering leverage, and platform risk",
+      "instructions": "Evaluate technical feasibility, architecture tradeoffs, dependencies, and irreversible engineering risks.",
+      "domainTags": ["technology", "architecture", "engineering"]
+    },
+    {
+      "officeId": "cpo",
+      "displayName": "Chief Product Officer",
+      "scope": "product strategy, customer value, product-market fit, and product sequencing",
+      "instructions": "Evaluate customer value, product scope, sequencing, adoption risk, and evidence needed before product commitments.",
+      "domainTags": ["product", "customer", "roadmap"]
+    }
+  ],
+  "defaultOfficeIds": ["ceo", "cto", "cpo"],
+  "ownerApprovalOfficeIds": ["ceo"],
+  "version": "1"
+}

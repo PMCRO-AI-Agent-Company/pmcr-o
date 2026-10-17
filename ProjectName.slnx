@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AgentSystem.AppHost/AgentSystem.AppHost.csproj" />
+    <Project Path="src/ProjectName.Adapters/ProjectName.Adapters.csproj" />
+    <Project Path="src/ProjectName.AgentCli/ProjectName.AgentCli.csproj" />
+    <Project Path="src/ProjectName.Application.Abstractions/ProjectName.Application.Abstractions.csproj" />
+    <Project Path="src/ProjectName.Capabilities/ProjectName.Capabilities.csproj" />
+    <Project Path="src/ProjectName.Contracts/ProjectName.Contracts.csproj" />
+    <Project Path="src/ProjectName.Core/ProjectName.Core.csproj" />
+    <Project Path="src/ProjectName.Domain/ProjectName.Domain.csproj" />
+    <Project Path="src/ProjectName.Harness/ProjectName.Harness.csproj" />
+    <Project Path="src/ProjectName.Infrastructure/ProjectName.Infrastructure.csproj" />
+    <Project Path="src/ProjectName.Marketplace/ProjectName.Marketplace.csproj" />
+    <Project Path="src/ProjectName.McpServer/ProjectName.McpServer.csproj" />
+    <Project Path="src/ProjectName.OrchestrationApi/ProjectName.OrchestrationApi.csproj" />
+    <Project Path="src/ProjectName.Runtime/ProjectName.Runtime.csproj" />
+    <Project Path="src/ProjectName.Runtime.Abstractions/ProjectName.Runtime.Abstractions.csproj" />
+    <Project Path="src/ProjectName.Runtime.Maf/ProjectName.Runtime.Maf.csproj" />
+    <Project Path="src/ProjectName.ServiceDefaults/ProjectName.ServiceDefaults.csproj" />
+    <Project Path="src/ProjectName.Tooling/ProjectName.Tooling.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ProjectName.Runtime.Tests/ProjectName.Runtime.Tests.csproj" />
+  </Folder>
+</Solution>

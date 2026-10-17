@@ -1,0 +1,15 @@
+{
+  "cycleRef": "cycle-20261016-1",
+  "checkerIdentity": "pmcro-checker",
+  "makerIdentity": "pmcro-maker",
+  "results": {
+    "json_valid": true,
+    "frame_count": true,
+    "role_phase_fields": true,
+    "sequencer_exists": true,
+    "authority_false": true,
+    "no_jump_policy": true,
+    "sample_frame": true
+  },
+  "verdict": "PASS"
+}

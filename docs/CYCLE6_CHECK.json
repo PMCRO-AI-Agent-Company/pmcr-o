@@ -1,0 +1,15 @@
+{
+  "cycleRef": "cycle-20261016-6",
+  "checkerIdentity": "pmcro-checker",
+  "makerIdentity": "pmcro-maker",
+  "results": {
+    "accept_md": true,
+    "reject_md": true,
+    "resume_md": true,
+    "defer_md": true,
+    "contracts_has_accept": true,
+    "seed_controller": true,
+    "drain_count": 5
+  },
+  "verdict": "PASS"
+}

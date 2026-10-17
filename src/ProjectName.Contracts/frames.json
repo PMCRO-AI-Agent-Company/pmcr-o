@@ -1,0 +1,188 @@
+{
+  "apiVersion": "agents.frames/v1",
+  "kind": "FrameCatalog",
+  "order": "role-major then phase O-P-M-C-R",
+  "count": 25,
+  "frames": [
+    {
+      "ordinal": 0,
+      "role": "orchestrator",
+      "phase": "ORCHESTRATE",
+      "route": "@orchestrator /pmcro:orchestrate",
+      "frameId": "orchestrator:ORCHESTRATE"
+    },
+    {
+      "ordinal": 1,
+      "role": "orchestrator",
+      "phase": "PLAN",
+      "route": "@orchestrator /pmcro:plan",
+      "frameId": "orchestrator:PLAN"
+    },
+    {
+      "ordinal": 2,
+      "role": "orchestrator",
+      "phase": "MAKE",
+      "route": "@orchestrator /pmcro:make",
+      "frameId": "orchestrator:MAKE"
+    },
+    {
+      "ordinal": 3,
+      "role": "orchestrator",
+      "phase": "CHECK",
+      "route": "@orchestrator /pmcro:check",
+      "frameId": "orchestrator:CHECK"
+    },
+    {
+      "ordinal": 4,
+      "role": "orchestrator",
+      "phase": "REFLECT",
+      "route": "@orchestrator /pmcro:reflect",
+      "frameId": "orchestrator:REFLECT"
+    },
+    {
+      "ordinal": 5,
+      "role": "planner",
+      "phase": "ORCHESTRATE",
+      "route": "@planner /pmcro:orchestrate",
+      "frameId": "planner:ORCHESTRATE"
+    },
+    {
+      "ordinal": 6,
+      "role": "planner",
+      "phase": "PLAN",
+      "route": "@planner /pmcro:plan",
+      "frameId": "planner:PLAN"
+    },
+    {
+      "ordinal": 7,
+      "role": "planner",
+      "phase": "MAKE",
+      "route": "@planner /pmcro:make",
+      "frameId": "planner:MAKE"
+    },
+    {
+      "ordinal": 8,
+      "role": "planner",
+      "phase": "CHECK",
+      "route": "@planner /pmcro:check",
+      "frameId": "planner:CHECK"
+    },
+    {
+      "ordinal": 9,
+      "role": "planner",
+      "phase": "REFLECT",
+      "route": "@planner /pmcro:reflect",
+      "frameId": "planner:REFLECT"
+    },
+    {
+      "ordinal": 10,
+      "role": "maker",
+      "phase": "ORCHESTRATE",
+      "route": "@maker /pmcro:orchestrate",
+      "frameId": "maker:ORCHESTRATE"
+    },
+    {
+      "ordinal": 11,
+      "role": "maker",
+      "phase": "PLAN",
+      "route": "@maker /pmcro:plan",
+      "frameId": "maker:PLAN"
+    },
+    {
+      "ordinal": 12,
+      "role": "maker",
+      "phase": "MAKE",
+      "route": "@maker /pmcro:make",
+      "frameId": "maker:MAKE"
+    },
+    {
+      "ordinal": 13,
+      "role": "maker",
+      "phase": "CHECK",
+      "route": "@maker /pmcro:check",
+      "frameId": "maker:CHECK"
+    },
+    {
+      "ordinal": 14,
+      "role": "maker",
+      "phase": "REFLECT",
+      "route": "@maker /pmcro:reflect",
+      "frameId": "maker:REFLECT"
+    },
+    {
+      "ordinal": 15,
+      "role": "checker",
+      "phase": "ORCHESTRATE",
+      "route": "@checker /pmcro:orchestrate",
+      "frameId": "checker:ORCHESTRATE"
+    },
+    {
+      "ordinal": 16,
+      "role": "checker",
+      "phase": "PLAN",
+      "route": "@checker /pmcro:plan",
+      "frameId": "checker:PLAN"
+    },
+    {
+      "ordinal": 17,
+      "role": "checker",
+      "phase": "MAKE",
+      "route": "@checker /pmcro:make",
+      "frameId": "checker:MAKE"
+    },
+    {
+      "ordinal": 18,
+      "role": "checker",
+      "phase": "CHECK",
+      "route": "@checker /pmcro:check",
+      "frameId": "checker:CHECK"
+    },
+    {
+      "ordinal": 19,
+      "role": "checker",
+      "phase": "REFLECT",
+      "route": "@checker /pmcro:reflect",
+      "frameId": "checker:REFLECT"
+    },
+    {
+      "ordinal": 20,
+      "role": "reflector",
+      "phase": "ORCHESTRATE",
+      "route": "@reflector /pmcro:orchestrate",
+      "frameId": "reflector:ORCHESTRATE"
+    },
+    {
+      "ordinal": 21,
+      "role": "reflector",
+      "phase": "PLAN",
+      "route": "@reflector /pmcro:plan",
+      "frameId": "reflector:PLAN"
+    },
+    {
+      "ordinal": 22,
+      "role": "reflector",
+      "phase": "MAKE",
+      "route": "@reflector /pmcro:make",
+      "frameId": "reflector:MAKE"
+    },
+    {
+      "ordinal": 23,
+      "role": "reflector",
+      "phase": "CHECK",
+      "route": "@reflector /pmcro:check",
+      "frameId": "reflector:CHECK"
+    },
+    {
+      "ordinal": 24,
+      "role": "reflector",
+      "phase": "REFLECT",
+      "route": "@reflector /pmcro:reflect",
+      "frameId": "reflector:REFLECT"
+    }
+  ],
+  "errorPath": [
+    "CHECK",
+    "REFLECT:NextSeedIntent",
+    "next Cycle ORCHESTRATE"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "apiVersion": "agents.marketplaces/v1",
+  "kind": "ProjectMarketplaceSources",
+  "inherits": "../../../../global/.agents/marketplaces.json",
+  "sources": []
+}

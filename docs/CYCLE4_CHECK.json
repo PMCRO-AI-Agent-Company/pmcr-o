@@ -1,0 +1,15 @@
+{
+  "cycleRef": "cycle-20261016-4",
+  "checkerIdentity": "pmcro-checker",
+  "makerIdentity": "pmcro-maker",
+  "results": {
+    "no_pycache_bom": true,
+    "issues": [],
+    "missing_required": [],
+    "file_count": 57,
+    "project_name_ok": true,
+    "authority_false": true,
+    "frames_25": true
+  },
+  "verdict": "PASS"
+}

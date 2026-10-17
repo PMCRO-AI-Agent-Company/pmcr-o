@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectName.Contracts.CapabilityRegistration",
+  "type": "object",
+  "required": ["RegistrationId","CapabilityId","CandidateDigest","FileManifestDigest","CheckerVerdictRef","ProvenanceRef","Status"],
+  "properties": {
+    "RegistrationId": {"type":"string","minLength":1},
+    "CapabilityId": {"type":"string","minLength":1},
+    "CandidateDigest": {"type":"string","pattern":"^[A-Fa-f0-9]{64}$"},
+    "FileManifestDigest": {"type":"string","pattern":"^[A-Fa-f0-9]{64}$"},
+    "CheckerVerdictRef": {"type":"string","minLength":1},
+    "ProvenanceRef": {"type":"string","minLength":1},
+    "Status": {"type":"string","enum":["registered","revoked","superseded"]}
+  },
+  "additionalProperties": false
+}

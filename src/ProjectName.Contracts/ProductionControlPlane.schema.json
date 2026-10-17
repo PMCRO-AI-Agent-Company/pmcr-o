@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectName Production Control Plane",
+  "$defs": {
+    "secretKeyReference": {
+      "type": "object",
+      "required": ["KeyId", "Generation", "Provider", "LocationRef"],
+      "properties": {
+        "KeyId": {"type":"string","minLength":1},
+        "Generation": {"type":"integer","minimum":1},
+        "Provider": {"type":"string","minLength":1},
+        "LocationRef": {"type":"string","minLength":1}
+      }
+    },
+    "revocationRecord": {
+      "type": "object",
+      "required": ["TargetType", "TargetId", "Reason", "Sequence", "ProvenanceRef"],
+      "properties": {
+        "TargetType": {"enum":["grant","registration","key"]},
+        "TargetId": {"type":"string","minLength":1},
+        "Reason": {"type":"string","minLength":1},
+        "Sequence": {"type":"integer","minimum":1},
+        "ProvenanceRef": {"type":"string","minLength":1}
+      }
+    }
+  }
+}

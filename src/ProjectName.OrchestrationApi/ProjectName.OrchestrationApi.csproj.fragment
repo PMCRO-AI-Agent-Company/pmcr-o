@@ -1,0 +1,3 @@
+<!-- Add to ProjectName.OrchestrationApi.csproj ItemGroup -->
+    <ProjectReference Include="..\ProjectName.Runtime\ProjectName.Runtime.csproj" />
+    <!-- Contracts already referenced in live solution; keep single reference -->

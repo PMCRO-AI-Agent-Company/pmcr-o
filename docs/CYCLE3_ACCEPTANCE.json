@@ -1,0 +1,11 @@
+{
+  "cycleRef": "cycle-20261016-3",
+  "agentRef": "pmcro-planner",
+  "acceptance": [
+    "IResourceValidator rejects unknown capability ids",
+    "Missing capability yields GapRecord with create-skill recommendation",
+    "Planner plan steps only reference validated ids",
+    "create-skill does not imply REGISTER or grant",
+    "MCP ids from catalog still require grant"
+  ]
+}

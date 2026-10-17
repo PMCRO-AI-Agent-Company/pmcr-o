@@ -1,0 +1,10 @@
+{
+  "intent": "On a machine with dotnet SDK: merge into ProjectName.slnx, restore, test, then REGISTER lifecycle separately",
+  "sourceCycleRef": "cycle-20261016-2",
+  "sourceFrameId": "reflector:MAKE",
+  "suggestedRole": "orchestrator",
+  "notes": "Do not auto-execute REGISTER. Authoring cycles complete for template slice. | accepted into queue cycle-6; product side still false",
+  "executed": false,
+  "acknowledgedInCycle": "cycle-20261016-6",
+  "decision": "accept"
+}

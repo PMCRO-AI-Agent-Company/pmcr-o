@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "AgentSystem",
+  "classifications": ["AI", "Agents", "Multi-Agent", "PMCR-O", "MAF"],
+  "identity": "AgentSystem.Templates.AgentSystem",
+  "name": "AgentSystem modular agent application",
+  "shortName": "agentsystem",
+  "sourceName": "ProjectName",
+  "preferNameDirectory": true,
+  "description": "Creates a modular agent application with contracts, core, harness, marketplace, capabilities, runtime abstractions, MAF runtime, adapters, API, tooling, and tests.",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  }
+}

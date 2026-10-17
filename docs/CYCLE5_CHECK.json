@@ -1,0 +1,73 @@
+{
+  "cycleRef": "cycle-20261016-5",
+  "checkerIdentity": "pmcro-checker",
+  "makerIdentity": "pmcro-maker",
+  "results": {
+    "agents": {
+      "source": 7,
+      "dest": 7,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "commands": {
+      "source": 14,
+      "dest": 14,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "rules": {
+      "source": 4,
+      "dest": 4,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "workflows": {
+      "source": 2,
+      "dest": 2,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "output-styles": {
+      "source": 3,
+      "dest": 3,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "skills": {
+      "source": 14,
+      "dest": 14,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "agent-memory": {
+      "source": 1,
+      "dest": 1,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "capabilities": {
+      "source": 1,
+      "dest": 1,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "cursor-pmcro": {
+      "source": 1,
+      "dest": 1,
+      "missing": [],
+      "differ": [],
+      "ok": true
+    },
+    "authority_false": true,
+    "claude_md": true
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,7 @@
+{
+  "intent": "Host with dotnet: accept merge seed and run tests; use /pmcro:resume if interrupted",
+  "agentRef": "pmcro-orchestrator",
+  "decision": "defer",
+  "executed": false,
+  "notes": "Product merge requires dotnet host. REGISTER still separate."
+}

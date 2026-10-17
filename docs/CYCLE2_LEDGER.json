@@ -1,0 +1,264 @@
+{
+  "cycleRef": "cycle-20261016-2",
+  "frames": [
+    {
+      "ordinal": 0,
+      "role": "orchestrator",
+      "phase": "ORCHESTRATE",
+      "frameId": "orchestrator:ORCHESTRATE",
+      "route": "@orchestrator /pmcro:orchestrate",
+      "status": "PASS",
+      "evidence": "admitted seed into cycle-20261016-2: Merge ProjectName.Contracts/Runtime into live Aspire solution and run Runtime.Te",
+      "ts": "2026-10-16T20:56:30.686729+00:00"
+    },
+    {
+      "ordinal": 1,
+      "role": "orchestrator",
+      "phase": "PLAN",
+      "frameId": "orchestrator:PLAN",
+      "route": "@orchestrator /pmcro:plan",
+      "status": "PASS",
+      "evidence": "author merge guides + AppHost DI snippet + Tooling MCP stub paths",
+      "ts": "2026-10-16T20:56:30.686752+00:00"
+    },
+    {
+      "ordinal": 2,
+      "role": "orchestrator",
+      "phase": "MAKE",
+      "frameId": "orchestrator:MAKE",
+      "route": "@orchestrator /pmcro:make",
+      "status": "PASS",
+      "evidence": "AppHost registration snippet; merge checklist; McpCapabilityIds",
+      "ts": "2026-10-16T20:56:30.687327+00:00"
+    },
+    {
+      "ordinal": 3,
+      "role": "orchestrator",
+      "phase": "CHECK",
+      "frameId": "orchestrator:CHECK",
+      "route": "@orchestrator /pmcro:check",
+      "status": "PASS",
+      "evidence": "merge artifacts present",
+      "ts": "2026-10-16T20:56:30.687400+00:00"
+    },
+    {
+      "ordinal": 4,
+      "role": "orchestrator",
+      "phase": "REFLECT",
+      "frameId": "orchestrator:REFLECT",
+      "route": "@orchestrator /pmcro:reflect",
+      "status": "PASS",
+      "evidence": "orchestrator block done; planner scopes merge plan",
+      "ts": "2026-10-16T20:56:30.687407+00:00"
+    },
+    {
+      "ordinal": 5,
+      "role": "planner",
+      "phase": "ORCHESTRATE",
+      "frameId": "planner:ORCHESTRATE",
+      "route": "@planner /pmcro:orchestrate",
+      "status": "PASS",
+      "evidence": "scope=merge authoring only not live solution edit",
+      "ts": "2026-10-16T20:56:30.687411+00:00"
+    },
+    {
+      "ordinal": 6,
+      "role": "planner",
+      "phase": "PLAN",
+      "frameId": "planner:PLAN",
+      "route": "@planner /pmcro:plan",
+      "status": "PASS",
+      "evidence": "acceptance=slnx fragment+DI+MCP ids+tests project present",
+      "ts": "2026-10-16T20:56:30.687415+00:00"
+    },
+    {
+      "ordinal": 7,
+      "role": "planner",
+      "phase": "MAKE",
+      "frameId": "planner:MAKE",
+      "route": "@planner /pmcro:make",
+      "status": "PASS",
+      "evidence": "paths ok=True",
+      "ts": "2026-10-16T20:56:30.687485+00:00"
+    },
+    {
+      "ordinal": 8,
+      "role": "planner",
+      "phase": "CHECK",
+      "frameId": "planner:CHECK",
+      "route": "@planner /pmcro:check",
+      "status": "PASS",
+      "evidence": "planner verify",
+      "ts": "2026-10-16T20:56:30.687490+00:00"
+    },
+    {
+      "ordinal": 9,
+      "role": "planner",
+      "phase": "REFLECT",
+      "frameId": "planner:REFLECT",
+      "route": "@planner /pmcro:reflect",
+      "status": "PASS",
+      "evidence": "continue maker",
+      "ts": "2026-10-16T20:56:30.687493+00:00"
+    },
+    {
+      "ordinal": 10,
+      "role": "maker",
+      "phase": "ORCHESTRATE",
+      "frameId": "maker:ORCHESTRATE",
+      "route": "@maker /pmcro:orchestrate",
+      "status": "PASS",
+      "evidence": "maker implements test coverage for 25 routes",
+      "ts": "2026-10-16T20:56:30.687542+00:00"
+    },
+    {
+      "ordinal": 11,
+      "role": "maker",
+      "phase": "PLAN",
+      "frameId": "maker:PLAN",
+      "route": "@maker /pmcro:plan",
+      "status": "PASS",
+      "evidence": "AllFramesTests",
+      "ts": "2026-10-16T20:56:30.687546+00:00"
+    },
+    {
+      "ordinal": 12,
+      "role": "maker",
+      "phase": "MAKE",
+      "frameId": "maker:MAKE",
+      "route": "@maker /pmcro:make",
+      "status": "PASS",
+      "evidence": "AllFramesTests.cs written",
+      "ts": "2026-10-16T20:56:30.687549+00:00"
+    },
+    {
+      "ordinal": 13,
+      "role": "maker",
+      "phase": "CHECK",
+      "frameId": "maker:CHECK",
+      "route": "@maker /pmcro:check",
+      "status": "PASS",
+      "evidence": "maker-local file exists",
+      "ts": "2026-10-16T20:56:30.687552+00:00"
+    },
+    {
+      "ordinal": 14,
+      "role": "maker",
+      "phase": "REFLECT",
+      "frameId": "maker:REFLECT",
+      "route": "@maker /pmcro:reflect",
+      "status": "PASS",
+      "evidence": "hand to checker",
+      "ts": "2026-10-16T20:56:30.687555+00:00"
+    },
+    {
+      "ordinal": 15,
+      "role": "checker",
+      "phase": "ORCHESTRATE",
+      "frameId": "checker:ORCHESTRATE",
+      "route": "@checker /pmcro:orchestrate",
+      "status": "PASS",
+      "evidence": "independent check cycle-2",
+      "ts": "2026-10-16T20:56:30.687783+00:00"
+    },
+    {
+      "ordinal": 16,
+      "role": "checker",
+      "phase": "PLAN",
+      "frameId": "checker:PLAN",
+      "route": "@checker /pmcro:plan",
+      "status": "PASS",
+      "evidence": "['slnx_fragment', 'apphost_snippet', 'mcp_ids', 'all_frames_test', 'cycle1_ledger']",
+      "ts": "2026-10-16T20:56:30.687794+00:00"
+    },
+    {
+      "ordinal": 17,
+      "role": "checker",
+      "phase": "MAKE",
+      "frameId": "checker:MAKE",
+      "route": "@checker /pmcro:make",
+      "status": "PASS",
+      "evidence": "verdict=PASS",
+      "ts": "2026-10-16T20:56:30.687799+00:00"
+    },
+    {
+      "ordinal": 18,
+      "role": "checker",
+      "phase": "CHECK",
+      "frameId": "checker:CHECK",
+      "route": "@checker /pmcro:check",
+      "status": "PASS",
+      "evidence": "identities differ; report sealed",
+      "ts": "2026-10-16T20:56:30.687802+00:00"
+    },
+    {
+      "ordinal": 19,
+      "role": "checker",
+      "phase": "REFLECT",
+      "frameId": "checker:REFLECT",
+      "route": "@checker /pmcro:reflect",
+      "status": "PASS",
+      "evidence": "no defects",
+      "ts": "2026-10-16T20:56:30.687805+00:00"
+    },
+    {
+      "ordinal": 20,
+      "role": "reflector",
+      "phase": "ORCHESTRATE",
+      "frameId": "reflector:ORCHESTRATE",
+      "route": "@reflector /pmcro:orchestrate",
+      "status": "PASS",
+      "evidence": "emit only",
+      "ts": "2026-10-16T20:56:30.687958+00:00"
+    },
+    {
+      "ordinal": 21,
+      "role": "reflector",
+      "phase": "PLAN",
+      "frameId": "reflector:PLAN",
+      "route": "@reflector /pmcro:plan",
+      "status": "PASS",
+      "evidence": "one seed",
+      "ts": "2026-10-16T20:56:30.687962+00:00"
+    },
+    {
+      "ordinal": 22,
+      "role": "reflector",
+      "phase": "MAKE",
+      "frameId": "reflector:MAKE",
+      "route": "@reflector /pmcro:make",
+      "status": "PASS",
+      "evidence": "CYCLE2_NEXT_SEED.json",
+      "ts": "2026-10-16T20:56:30.687965+00:00"
+    },
+    {
+      "ordinal": 23,
+      "role": "reflector",
+      "phase": "CHECK",
+      "frameId": "reflector:CHECK",
+      "route": "@reflector /pmcro:check",
+      "status": "PASS",
+      "evidence": "executed=false",
+      "ts": "2026-10-16T20:56:30.687968+00:00"
+    },
+    {
+      "ordinal": 24,
+      "role": "reflector",
+      "phase": "REFLECT",
+      "frameId": "reflector:REFLECT",
+      "route": "@reflector /pmcro:reflect",
+      "status": "PASS",
+      "evidence": "cycle-2 complete",
+      "ts": "2026-10-16T20:56:30.687970+00:00"
+    }
+  ],
+  "verdict": "PASS",
+  "nextSeed": {
+    "intent": "On a machine with dotnet SDK: merge into ProjectName.slnx, restore, test, then REGISTER lifecycle separately",
+    "sourceCycleRef": "cycle-20261016-2",
+    "sourceFrameId": "reflector:MAKE",
+    "suggestedRole": "orchestrator",
+    "notes": "Do not auto-execute REGISTER. Authoring cycles complete for template slice.",
+    "executed": false
+  }
+}

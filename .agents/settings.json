@@ -1,0 +1,11 @@
+{
+  "apiVersion": "agents.settings/v1",
+  "kind": "ProjectSettings",
+  "scope": "project",
+  "inherits": "../../../../global/.agents/settings.json",
+  "overrides": {},
+  "authority": {
+    "mayNarrowInheritedAuthority": true,
+    "mayWidenInheritedAuthority": false
+  }
+}

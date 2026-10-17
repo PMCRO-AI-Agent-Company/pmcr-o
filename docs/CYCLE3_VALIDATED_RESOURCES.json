@@ -1,0 +1,14 @@
+{
+  "marketplaceRuntimeSkills": [
+    "sync-projections",
+    "add-project",
+    "add-marketplace"
+  ],
+  "bootstrapSkills": [
+    "create-skill",
+    "pmcro"
+  ],
+  "mcpCatalog": "/tmp/pmcro_c3r/pmcro-skills/.agents/capabilities/mcp-catalog.json",
+  "createSkillPath": ".agents/skills/create-skill",
+  "note": "Only listed skills/MCP after grant are invokable; others are gaps"
+}

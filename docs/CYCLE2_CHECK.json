@@ -1,0 +1,13 @@
+{
+  "cycleRef": "cycle-20261016-2",
+  "checkerIdentity": "pmcro-checker",
+  "makerIdentity": "pmcro-maker",
+  "results": {
+    "slnx_fragment": true,
+    "apphost_snippet": true,
+    "mcp_ids": true,
+    "all_frames_test": true,
+    "cycle1_ledger": true
+  },
+  "verdict": "PASS"
+}

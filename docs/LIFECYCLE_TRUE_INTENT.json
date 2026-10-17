@@ -1,0 +1,27 @@
+{
+  "trueIntent": "Ship a production-ready PMCR-O template: .agents canonical surface, Claude design patterns implemented via MAF-native ProjectName runtime, multi-host projections, messy-seed\u2192true-intent pipeline, marketplace resource gate, seed controls accept/reject/resume/defer, without REGISTER until explicit lifecycle.",
+  "sourceMessyIntent": "Run the lifecycle",
+  "cycleRef": "cycle-20261016-lifecycle",
+  "frameId": "reflector:REFLECT",
+  "validatedResourceIds": [
+    "pmcro",
+    "create-skill",
+    "sync-projections",
+    "add-marketplace",
+    "add-project",
+    "mcp.terminal",
+    "mcp.playwright",
+    "mcp.filesystem",
+    "mcp.git",
+    "agent.messaging",
+    "agent.discovery",
+    "create-skill"
+  ],
+  "gapsAddressedOrOpen": [],
+  "nextSeedIntent": {
+    "intent": "On dotnet host: merge ProjectName.Contracts/Runtime into Aspire solution, run tests, then optional REGISTER as separate admit",
+    "agentRef": "pmcro-orchestrator",
+    "executed": false,
+    "notes": "True intent does not auto-execute. Use /pmcro:accept on host."
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "apiVersion": "agents.session-bootstrap/v1",
+  "kind": "SessionBootstrap",
+  "canonicalRoot": "D:/AgentSystem",
+  "globalRoot": "D:/AgentSystem/global",
+  "projectRootPattern": "D:/AgentSystem/local/projects/<ProjectName>",
+  "legacyRootsAreCanonical": false,
+  "loadOrder": [
+    "../AGENTS.md",
+    "project.json",
+    "application.json",
+    "settings.json",
+    "../../../../global/.agents/commands/MESSAGE_STRUCTURE.md",
+    "../../../../global/.agents/commands/contracts.json",
+    "../../../../global/.agents/rules/trail-seed-cycle-frame.md",
+    "../../../../global/.agents/schemas/true-intent.schema.json",
+    "skills/.projection-receipt.json"
+  ],
+  "pmcro": {
+    "initOpensTrail": true,
+    "initOpensCycleOne": true,
+    "firstFrame": "ORCHESTRATE",
+    "messySeedAllowed": true,
+    "rawOperationalText": "reject-with-corrected-route",
+    "messageArrivalIsPhaseTransition": false
+  },
+  "trueIntent": {
+    "producedAt": "REFLECT",
+    "sourceMessyIntentPreserved": true,
+    "evidenceBacked": true,
+    "grantsAuthority": false
+  },
+  "activation": {
+    "projectionIsActivation": false,
+    "grantRequiredBeforeActivation": true,
+    "explicitPerFramework": true,
+    "effectiveAuthority": "ParentAuthority INTERSECT HostMaximum INTERSECT EnvironmentMaximum INTERSECT DelegatedGrant MINUS Denies"
+  },
+  "requestIngress": {
+    "externalTransportMayBeMessy": true,
+    "messageArrivalIsAdmission": false,
+    "firstResponseNoTrail": "@orchestrator /pmcro:init \"<intent>\"",
+    "firstResponseActiveTrail": "@orchestrator /pmcro:seed \"<intent>\"",
+    "denyResponses": [
+      "@orchestrator /pmcro:reject",
+      "@orchestrator /pmcro:defer"
+    ],
+    "malformedOperationalMessage": "reject-with-corrected-route",
+    "preferredVisibleRoute": "@<role> /pmcro:<command>",
+    "shortRouteRequiresValidatedAgentRef": true
+  },
+  "responseIdentity": {
+    "required": true,
+    "format": "I AM the <Role> Agent.",
+    "hostSubagentIsRoleIdentity": false
+  }
+}

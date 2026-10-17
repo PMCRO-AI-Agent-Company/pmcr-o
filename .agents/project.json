@@ -1,0 +1,30 @@
+{
+  "apiVersion": "agents.project/v1",
+  "kind": "Project",
+  "metadata": {
+    "name": "ProjectName"
+  },
+  "spec": {
+    "scope": "project",
+    "inherits": "../../../../global/.agents/project.json",
+    "globalSettings": "../../../../global/.agents/settings.json",
+    "globalMarketplaces": "../../../../global/.agents/marketplaces.json",
+    "canonicalSurface": ".agents",
+    "localPmcroState": "../.pmcro",
+    "sourceRoot": "../src",
+    "testsRoot": "../tests",
+    "application": "application.json",
+    "applicationSchema": "../../../../global/.agents/schemas/application.schema.json",
+    "skillProjection": "skills/.projection-receipt.json",
+    "sessionBootstrap": "session-bootstrap.json"
+  },
+  "authority": {
+    "discover": true,
+    "register": false,
+    "grant": false,
+    "activate": false,
+    "publish": false,
+    "install": false,
+    "train": false
+  }
+}

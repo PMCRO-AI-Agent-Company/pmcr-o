@@ -1,0 +1,48 @@
+{
+  "cycleRef": "cycle-20261016-6",
+  "decision": "accept",
+  "count": 5,
+  "items": [
+    {
+      "decision": "accept",
+      "source": "CYCLE3_NEXT_SEED.json",
+      "intent": "On host with dotnet: merge Contracts/Runtime, run ResourceValidatorTests; optional create-skill for any real gaps found in product",
+      "agentRef": "pmcro-orchestrator",
+      "notes": "Autonomous drain: recorded acceptance of authoring seed; host merge/REGISTER still manual",
+      "executedProductSide": false
+    },
+    {
+      "decision": "accept",
+      "source": "CYCLE5_NEXT_SEED.json",
+      "intent": "Optional: sync .codex-plugin / marketplace manifests with STRUCTURE freeze; still no REGISTER",
+      "agentRef": "pmcro-orchestrator",
+      "notes": "Autonomous drain: recorded acceptance of authoring seed; host merge/REGISTER still manual",
+      "executedProductSide": false
+    },
+    {
+      "decision": "accept",
+      "source": "CYCLE1_NEXT_SEED.json",
+      "intent": "Merge ProjectName.Contracts/Runtime into live Aspire solution and run Runtime.Tests",
+      "agentRef": "pmcro-orchestrator",
+      "notes": "Autonomous drain: recorded acceptance of authoring seed; host merge/REGISTER still manual",
+      "executedProductSide": false
+    },
+    {
+      "decision": "accept",
+      "source": "CYCLE4_NEXT_SEED.json",
+      "intent": "Projection parity pass: ensure .claude/.cursor agents and commands mirror .agents after STRUCTURE freeze; still no REGISTER",
+      "agentRef": "pmcro-orchestrator",
+      "notes": "Autonomous drain: recorded acceptance of authoring seed; host merge/REGISTER still manual",
+      "executedProductSide": false
+    },
+    {
+      "decision": "accept",
+      "source": "CYCLE2_NEXT_SEED.json",
+      "intent": "On a machine with dotnet SDK: merge into ProjectName.slnx, restore, test, then REGISTER lifecycle separately",
+      "agentRef": "pmcro-orchestrator",
+      "notes": "Autonomous drain: recorded acceptance of authoring seed; host merge/REGISTER still manual",
+      "executedProductSide": false
+    }
+  ],
+  "policy": "accept records intent; does not REGISTER or run dotnet merge on this host"
+}

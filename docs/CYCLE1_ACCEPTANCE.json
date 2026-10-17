@@ -1,0 +1,11 @@
+{
+  "cycleRef": "cycle-20261016-1",
+  "acceptance": [
+    "25 frames in frames.json and PmcroFrameCatalog",
+    "Role and Phase separate on PmcroRequest",
+    "FrameSequencer linear only",
+    "CHECK fail \u2192 NextSeedIntent not auto-executed",
+    "ProjectName naming preserved",
+    "authority flags remain false"
+  ]
+}

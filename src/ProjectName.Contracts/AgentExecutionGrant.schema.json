@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectName.Contracts.AgentExecutionGrant",
+  "type": "object",
+  "required": ["DelegatedGrant","HostMaximum","EnvironmentMaximum","Denies","Source"],
+  "properties": {
+    "DelegatedGrant": {"type":"array","items":{"type":"string"}},
+    "HostMaximum": {"type":"array","items":{"type":"string"}},
+    "EnvironmentMaximum": {"type":"array","items":{"type":"string"}},
+    "Denies": {"type":"array","items":{"type":"string"}},
+    "Source": {"type":"string"},
+    "GrantId": {"type":["string","null"]},
+    "Subject": {"type":["string","null"]},
+    "RegistrationRef": {"type":["string","null"]},
+    "CapabilityId": {"type":["string","null"]},
+    "CandidateDigest": {"type":["string","null"]},
+    "ParentAuthority": {"type":["array","null"],"items":{"type":"string"}},
+    "EffectiveGrant": {"type":["array","null"],"items":{"type":"string"}},
+    "Issuer": {"type":["string","null"]},
+    "IssuerProof": {"type":["string","null"]},
+    "CheckerVerdictRef": {"type":["string","null"]},
+    "ProvenanceRef": {"type":["string","null"]},
+    "KeyId": {"type":["string","null"]},
+    "KeyGeneration": {"type":["integer","null"],"minimum":1}
+  },
+  "additionalProperties": false
+}

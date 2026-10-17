@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectName.Contracts.GrantDerivationRequest",
+  "type": "object",
+  "required": ["Subject","RegistrationRef","CapabilityId","CandidateDigest","Requested","ParentAuthority","HostMaximum","EnvironmentMaximum","Denies","CheckerVerdictRef","ProvenanceRef"],
+  "properties": {
+    "Subject": {"type":"string","minLength":1},
+    "RegistrationRef": {"type":"string","minLength":1},
+    "CapabilityId": {"type":"string","minLength":1},
+    "CandidateDigest": {"type":"string","pattern":"^[A-Fa-f0-9]{64}$"},
+    "Requested": {"type":"array","items":{"type":"string"}},
+    "ParentAuthority": {"type":"array","items":{"type":"string"}},
+    "HostMaximum": {"type":"array","items":{"type":"string"}},
+    "EnvironmentMaximum": {"type":"array","items":{"type":"string"}},
+    "Denies": {"type":"array","items":{"type":"string"}},
+    "CheckerVerdictRef": {"type":"string","minLength":1},
+    "ProvenanceRef": {"type":"string","minLength":1}
+  },
+  "additionalProperties": false
+}

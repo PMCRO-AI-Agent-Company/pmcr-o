@@ -1,0 +1,10 @@
+{
+  "intent": "Optional: sync .codex-plugin / marketplace manifests with STRUCTURE freeze; still no REGISTER",
+  "sourceCycleRef": "cycle-20261016-5",
+  "agentRef": "pmcro-orchestrator",
+  "suggestedRole": "orchestrator",
+  "executed": false,
+  "notes": "Projection is not activation. Do not auto-execute REGISTER. | accepted into queue cycle-6; product side still false",
+  "acknowledgedInCycle": "cycle-20261016-6",
+  "decision": "accept"
+}

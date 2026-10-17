@@ -1,0 +1,122 @@
+﻿{
+    "apiVersion":  "agents.application/v1",
+    "kind":  "Application",
+    "metadata":  {
+                     "name":  "ProjectName",
+                     "version":  "0.1.0",
+                     "description":  "Declarative AgentSystem application definition.",
+                     "lifecycleStatus":  "active"
+                 },
+    "spec":  {
+                 "architecture":  {
+                                      "style":  "clean-architecture",
+                                      "sourceRoot":  "src",
+                                      "testsRoot":  "tests"
+                                  },
+                 "marketplaces":  [
+
+                                  ],
+                 "plugins":  [
+
+                             ],
+                 "skills":  [
+
+                            ],
+                 "models":  [
+
+                            ],
+                 "runtimes":  [
+
+                              ],
+                 "surfaces":  {
+                                  "web":  [
+
+                                          ],
+                                  "desktop":  [
+
+                                              ],
+                                  "mobile":  [
+
+                                             ],
+                                  "cli":  [
+
+                                          ],
+                                  "api":  [
+
+                                          ]
+                              },
+                 "apis":  [
+
+                          ],
+                 "data":  {
+                              "stores":  [
+
+                                         ],
+                              "pipelines":  [
+
+                                            ]
+                          },
+                 "infrastructure":  {
+                                        "containers":  [
+
+                                                       ],
+                                        "mcpServers":  [
+
+                                                       ],
+                                        "cloud":  [
+
+                                                  ],
+                                        "githubActions":  [
+
+                                                          ]
+                                    },
+                 "workflows":  [
+
+                               ],
+                 "tests":  {
+                               "required":  [
+
+                                            ],
+                               "acceptance":  [
+
+                                              ]
+                           },
+                 "evals":  {
+                               "required":  [
+
+                                            ]
+                           },
+                 "deployment":  {
+                                    "targets":  [
+
+                                                ],
+                                    "approvalRequired":  true
+                                },
+                 "observability":  {
+                                       "telemetry":  [
+
+                                                     ],
+                                       "slos":  [
+
+                                                ]
+                                   },
+                 "security":  {
+                                  "scans":  [
+
+                                            ],
+                                  "secretsPolicy":  "external-only"
+                              },
+                 "governance":  {
+                                    "policyRefs":  [
+
+                                                   ],
+                                    "auditRequired":  true,
+                                    "checkerRequired":  true
+                                },
+                 "pmcro":  {
+                               "ingress":  "@orchestrator /pmcro:init",
+                               "trailState":  ".pmcro",
+                               "messageArrivalIsPhaseTransition":  false
+                           }
+             }
+}
