@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout exact candidate
+      - name: Checkout verification bundle
         uses: actions/checkout@v4
 
       - name: Setup .NET 10
@@ -23,35 +23,58 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Verify exact candidate digest
+      - name: Verify exact frozen R2 bytes
         shell: python
         run: |
-          import hashlib, os, pathlib, sys
-          expected = 'cd6ad173440511e3f3156cc7b88b7d42a97d0a0402b4bcca0cac7ba5a06dfe0f'
-          root = pathlib.Path('.')
-          rows = []
-          for p in root.rglob('*'):
-              if not p.is_file():
-                  continue
-              parts = p.parts
-              if '.git' in parts or '.github' in parts or 'bin' in parts or 'obj' in parts:
-                  continue
-              rel = p.as_posix()
-              h = hashlib.sha256(p.read_bytes()).hexdigest()
-              rows.append((rel, h))
-          rows.sort(key=lambda x: x[0])
-          payload = '\n'.join(f'{p}={h}' for p,h in rows).encode('utf-8')
-          actual = hashlib.sha256(payload).hexdigest()
-          print(f'candidate_files={len(rows)}')
-          print(f'candidate_digest={actual}')
-          if len(rows) != 187 or actual != expected:
-              print(f'Expected 187 files and {expected}', file=sys.stderr)
-              sys.exit(1)
+          import hashlib, json, pathlib, sys, zipfile
+          expected_candidate = 'cd6ad173440511e3f3156cc7b88b7d42a97d0a0402b4bcca0cac7ba5a06dfe0f'
+          expected_zip = '03cee8cf05627dfd9a886b921027cbcc2d24fd83783578b8039513ed286b3d72'
+          expected_manifest_sha = '86bdd295916dd91597a93854c0e8cca106e224d47cff100751126b11a5c0e166'
+          zip_path = pathlib.Path('external/r2-candidate-external.zip')
+          manifest_path = pathlib.Path('external/candidate-manifest-r2.json')
+          digest_path = pathlib.Path('external/candidate-digest-r2.txt')
+          actual_zip = hashlib.sha256(zip_path.read_bytes()).hexdigest()
+          actual_manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+          declared_candidate = digest_path.read_text(encoding='utf-8-sig').strip()
+          if actual_zip != expected_zip:
+              raise SystemExit(f'ZIP SHA mismatch: {actual_zip}')
+          if actual_manifest_sha != expected_manifest_sha:
+              raise SystemExit(f'manifest SHA mismatch: {actual_manifest_sha}')
+          if declared_candidate != expected_candidate:
+              raise SystemExit(f'candidate ID mismatch: {declared_candidate}')
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8-sig'))
+          expected = {x['path'].replace('\\','/'): x['sha256'].lower() for x in manifest}
+          out = pathlib.Path('candidate')
+          out.mkdir()
+          with zipfile.ZipFile(zip_path) as z:
+              files = [i for i in z.infolist() if not i.is_dir()]
+              names = {i.filename.replace('\\','/') for i in files}
+              if any(n.startswith('/') or '..' in pathlib.PurePosixPath(n).parts for n in names):
+                  raise SystemExit('unsafe ZIP entry')
+              if names != set(expected):
+                  raise SystemExit(f'ZIP/manifest path mismatch expected={len(expected)} actual={len(names)}')
+              mismatches=[]
+              for i in files:
+                  rel=i.filename.replace('\\','/')
+                  actual=hashlib.sha256(z.read(i)).hexdigest()
+                  if actual != expected[rel]:
+                      mismatches.append(rel)
+              if mismatches:
+                  raise SystemExit('file hash mismatch: ' + ', '.join(mismatches[:10]))
+              z.extractall(out)
+          if len(expected) != 187:
+              raise SystemExit(f'expected 187 files, got {len(expected)}')
+          print(f'candidate_id={expected_candidate}')
+          print(f'zip_sha256={actual_zip}')
+          print(f'manifest_sha256={actual_manifest_sha}')
+          print(f'verified_files={len(expected)}')
+          print('exact-byte-verification=PASS')
 
       - name: Static authority-boundary checks
         shell: python
         run: |
           import pathlib, sys
+          root=pathlib.Path('candidate')
           required = {
             'src/ProjectName.Harness/ControlPlaneOperatorTrust.cs': ['PMCRO_CONTROL_PLANE_TRUST_FILE','operator-trust-reparse-point-rejected','operator-state-path-mismatch'],
             'src/ProjectName.AgentCli/ControlPlaneCommand.cs': ['operatorTrust.Paths'],
@@ -62,38 +85,58 @@ jobs:
             'src/AgentSystem.AppHost/AppHost.cs': ['PMCRO_CONTROL_PLANE_TRUST_FILE'],
           }
           failures=[]
-          for path, needles in required.items():
-              text=pathlib.Path(path).read_text(encoding='utf-8-sig')
+          for rel, needles in required.items():
+              text=(root/rel).read_text(encoding='utf-8-sig')
               for needle in needles:
                   if needle not in text:
-                      failures.append(f'{path}: missing {needle}')
-          src='\n'.join(p.read_text(encoding='utf-8-sig',errors='replace') for p in pathlib.Path('src').rglob('*.cs'))
+                      failures.append(f'{rel}: missing {needle}')
+          src='\n'.join(p.read_text(encoding='utf-8-sig',errors='replace') for p in (root/'src').rglob('*.cs'))
           if 'FirstRegistrationBoundary' in src:
               failures.append('legacy FirstRegistrationBoundary present in production source')
           if 'PMCRO_CONTROL_PLANE_TRUST"' in src:
               failures.append('legacy request/environment trust JSON variable present in source')
-          if 'overwrite: true' in pathlib.Path('src/ProjectName.Infrastructure/FileControlPlaneStores.cs').read_text(encoding='utf-8-sig'):
+          stores=(root/'src/ProjectName.Infrastructure/FileControlPlaneStores.cs').read_text(encoding='utf-8-sig')
+          if 'overwrite: true' in stores:
               failures.append('overwrite-capable activation replacement remains')
           if failures:
               print('\n'.join(failures), file=sys.stderr)
               sys.exit(1)
           print('authority-boundary-static-checks=PASS')
 
-      - name: Restore
-        run: dotnet restore ProjectName.slnx
+      - name: Restore exact candidate
+        run: dotnet restore candidate/ProjectName.slnx
 
       - name: Test exact candidate
-        run: dotnet test ProjectName.slnx --nologo --no-restore --logger "console;verbosity=minimal"
+        run: dotnet test candidate/ProjectName.slnx --nologo --no-restore --logger "trx;LogFileName=external.trx" --results-directory candidate/TestResults
+
+      - name: Verify exact test count
+        shell: python
+        run: |
+          import pathlib, xml.etree.ElementTree as ET
+          trx=list(pathlib.Path('candidate/TestResults').rglob('*.trx'))
+          if len(trx) != 1:
+              raise SystemExit(f'expected one TRX, found {len(trx)}')
+          root=ET.parse(trx[0]).getroot()
+          counters=next((e for e in root.iter() if e.tag.endswith('Counters')), None)
+          if counters is None:
+              raise SystemExit('TRX counters missing')
+          passed=int(counters.attrib.get('passed','0'))
+          failed=int(counters.attrib.get('failed','0'))
+          total=int(counters.attrib.get('total','0'))
+          skipped=int(counters.attrib.get('notExecuted','0'))
+          print(f'tests_total={total} passed={passed} failed={failed} skipped={skipped}')
+          if (total,passed,failed,skipped) != (129,129,0,0):
+              raise SystemExit('unexpected test count/verdict')
 
       - name: Build with warnings as errors
-        run: dotnet build ProjectName.slnx --nologo --no-restore -warnaserror
+        run: dotnet build candidate/ProjectName.slnx --nologo --no-restore -warnaserror
 
       - name: Dependency vulnerability audit
         shell: bash
         run: |
           set -euo pipefail
-          dotnet list ProjectName.slnx package --vulnerable --include-transitive | tee vulnerability-audit.txt
-          if grep -Eiq 'has the following vulnerable packages|Critical|High|Moderate|Low' vulnerability-audit.txt; then
+          dotnet list candidate/ProjectName.slnx package --vulnerable --include-transitive | tee vulnerability-audit.txt
+          if grep -Fq 'has the following vulnerable packages' vulnerability-audit.txt; then
             echo 'Vulnerable package report detected' >&2
             exit 1
           fi
@@ -108,8 +151,12 @@ jobs:
             'checker':'github-actions/ubuntu-latest',
             'independent':True,
             'candidateDigest':'cd6ad173440511e3f3156cc7b88b7d42a97d0a0402b4bcca0cac7ba5a06dfe0f',
+            'bundleSha256':'03cee8cf05627dfd9a886b921027cbcc2d24fd83783578b8039513ed286b3d72',
+            'verifiedFileCount':187,
             'verdict':'PASS',
-            'testsExpected':129,
+            'testsPassed':129,
+            'testsFailed':0,
+            'testsSkipped':0,
             'buildWarningsAllowed':0,
             'buildErrorsAllowed':0,
             'authorityBoundaryStaticChecks':'PASS',
@@ -125,4 +172,5 @@ jobs:
           path: |
             external-checker-verdict.json
             vulnerability-audit.txt
+            candidate/TestResults/external.trx
           if-no-files-found: error
